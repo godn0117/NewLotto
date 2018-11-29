@@ -86,10 +86,19 @@ namespace Lotto
         private void btnSearch_Click(object sender, EventArgs e)
         {//당첨번호 표시
          //예외처리 -> 수정중
-            //if (Int32.Parse(this.cboTurn.Text))
-            //{
-
-            //}
+            try
+            {
+                if (Int32.Parse(this.cboTurn.Text) > Form1.newTurnNum || Int32.Parse(this.cboTurn.Text) <= 0)
+                {
+                    MessageBox.Show("없는 회차입니다.");
+                    return;
+                }
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("숫자만 입력해 주세요");
+                return;
+            }
 
             //표시 초기화
 
