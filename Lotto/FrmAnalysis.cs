@@ -36,5 +36,12 @@ namespace Lotto
             frmChart = new Chart();
             frmChart.Show();
         }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            FrmAddrSearch fas = new FrmAddrSearch();
+            fas.MdiParent = this;
+            fas.Show();
+        }
     }
 }
