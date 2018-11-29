@@ -37,6 +37,7 @@ namespace Lotto
 
         private void FrmColor_Load(object sender, EventArgs e)
         {
+            // 원그래프
             this.pieChart.Titles.Add("Title");
             this.pieChart.Titles[0].Text = "색상 통계";
 
