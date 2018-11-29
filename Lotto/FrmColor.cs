@@ -37,10 +37,10 @@ namespace Lotto
 
         private void FrmColor_Load(object sender, EventArgs e)
         {
-            this.myChart.Titles.Add("Title");
-            this.myChart.Titles[0].Text = "색상 통계";
+            this.pieChart.Titles.Add("Title");
+            this.pieChart.Titles[0].Text = "색상 통계";
 
-            myChart.Series[0].ChartType = SeriesChartType.Pie;
+            pieChart.Series[0].ChartType = SeriesChartType.Pie;
         }
     }
 }

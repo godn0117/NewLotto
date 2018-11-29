@@ -31,32 +31,37 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.myChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            this.pieChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cboSta = new System.Windows.Forms.ComboBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cboEnd = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.myChart)).BeginInit();
+            this.colChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            ((System.ComponentModel.ISupportInitialize)(this.pieChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colChart)).BeginInit();
             this.SuspendLayout();
             // 
-            // myChart
+            // pieChart
             // 
             chartArea1.Name = "ChartArea1";
-            this.myChart.ChartAreas.Add(chartArea1);
+            this.pieChart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
-            this.myChart.Legends.Add(legend1);
-            this.myChart.Location = new System.Drawing.Point(12, 12);
-            this.myChart.Name = "myChart";
+            this.pieChart.Legends.Add(legend1);
+            this.pieChart.Location = new System.Drawing.Point(12, 12);
+            this.pieChart.Name = "pieChart";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
-            this.myChart.Series.Add(series1);
-            this.myChart.Size = new System.Drawing.Size(396, 426);
-            this.myChart.TabIndex = 0;
-            this.myChart.Text = "chart1";
+            this.pieChart.Series.Add(series1);
+            this.pieChart.Size = new System.Drawing.Size(396, 426);
+            this.pieChart.TabIndex = 0;
+            this.pieChart.Text = "chart1";
             // 
             // cboSta
             // 
@@ -133,23 +138,41 @@
             this.dataGridView1.Size = new System.Drawing.Size(373, 397);
             this.dataGridView1.TabIndex = 6;
             // 
+            // colChart
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.colChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.colChart.Legends.Add(legend2);
+            this.colChart.Location = new System.Drawing.Point(794, 12);
+            this.colChart.Name = "colChart";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.colChart.Series.Add(series2);
+            this.colChart.Size = new System.Drawing.Size(432, 426);
+            this.colChart.TabIndex = 7;
+            this.colChart.Text = "chart1";
+            // 
             // FrmColor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1238, 450);
+            this.Controls.Add(this.colChart);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cboEnd);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.cboSta);
-            this.Controls.Add(this.myChart);
+            this.Controls.Add(this.pieChart);
             this.Name = "FrmColor";
             this.Text = "FrmColor";
             this.Load += new System.EventHandler(this.FrmColor_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.myChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pieChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colChart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -157,12 +180,13 @@
 
         #endregion
 
-        private System.Windows.Forms.DataVisualization.Charting.Chart myChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart pieChart;
         private System.Windows.Forms.ComboBox cboSta;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cboEnd;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart colChart;
     }
 }
