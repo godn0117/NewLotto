@@ -88,10 +88,13 @@ namespace Lotto
          //예외처리 -> 수정중
             try
             {
-                if (Int32.Parse(this.cboTurn.Text) > Form1.newTurnNum || Int32.Parse(this.cboTurn.Text) <= 0)
+                if (Int32.Parse(this.cboTurn.Text) <= 0)
                 {
-                    MessageBox.Show("없는 회차입니다.");
+                    MessageBox.Show("0회차보다 높아야합니다.");
                     return;
+                }else if(Int32.Parse(this.cboTurn.Text) > Form1.newTurnNum){
+                    MessageBox.Show("최신회차보다 높습니다. 최신회차로 검색합니다.");
+                    this.cboTurn.Text = Form1.newTurnNum.ToString();
                 }
             }
             catch (FormatException)
