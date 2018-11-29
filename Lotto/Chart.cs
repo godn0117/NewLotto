@@ -30,5 +30,18 @@ namespace Lotto
             fc.MdiParent = this;
             fc.Show();
         }
+
+        private FrmTest ft;
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            if (!(ft == null || !ft.Visible))
+            {
+                ft.Focus();
+                return;
+            }
+            ft = new FrmTest();
+            ft.MdiParent = this;
+            ft.Show();
+        }
     }
 }
