@@ -17,7 +17,9 @@ namespace Lotto
         int num = 0;
         // 색상 통계를 담을 컬렉션
         List<LottoStatistics> ls = new List<LottoStatistics>();
-        // 번호별 통계를 담을 리스트
+        // 번호별 통계를 담을 배열
+        List<int> number = new List<int>();
+        List<string> numName = new List<string>();
 
         public FrmColor()
         {
@@ -64,13 +66,64 @@ namespace Lotto
             pieChart.Series[0].Points.DataBind(ls, "Name", "Num", null);
 
 
-
-
-
-            // col 그래프
+            // bar 그래프
             this.colChart.Titles.Add("Title");
             this.colChart.Titles[0].Text = "번호별 통계";
-            this.colChart.Series[0].ChartType = SeriesChartType.Column;
+            this.colChart.Series[0].ChartType = SeriesChartType.Bar;
+
+            // 배열 초기화
+            for (int i = 0; i < 45; i++)
+            {
+                number.Add(0);
+                numName.Add((i + 1) + "번째 구");
+            }
+
+            // 해당 구 수정중.....
+            // 해당 구에 대한 출현횟수
+            CountBarNum(num);
+
+            // 한번도 나오지 않은 구 제외
+            RemoveNum(number,numName);
+
+            // 차트 표시
+            foreach (var item in number)
+            {
+                MessageBox.Show(item.ToString());
+            }
+            
+
+            this.colChart.Series[0].Points.DataBindXY(number, numName);
+            this.colChart.Series[0].LegendText = "해당 구 출현횟수";
+        }
+
+        private void RemoveNum(List<int> number, List<string> numName)
+        {
+            for (int i = 0; i < number.Count; i++)
+            {
+                if (number[i] == 0)
+                {
+                    number.RemoveAt(i);
+                    numName.RemoveAt(i);
+                }
+            }
+        }
+
+        private void CountBarNum(int num)
+        {
+            for (int i = Form1.lottoList.Count - num; i < Form1.lottoList.Count; i++)
+            {
+                CountNum(Form1.lottoList[i].Num1, number);
+                CountNum(Form1.lottoList[i].Num2, number);
+                CountNum(Form1.lottoList[i].Num3, number);
+                CountNum(Form1.lottoList[i].Num4, number);
+                CountNum(Form1.lottoList[i].Num5, number);
+                CountNum(Form1.lottoList[i].Num6, number);
+            }
+        }
+
+        private void CountNum(int num1, List<int> number)
+        {
+            number[(num1-1)]++;
         }
 
         private void InputNum(int num)
