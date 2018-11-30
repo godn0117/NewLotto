@@ -1,6 +1,6 @@
 ﻿namespace Lotto
 {
-    partial class LogIn
+    partial class FrmLogIn
     {
         /// <summary>
         /// Required designer variable.
@@ -30,8 +30,8 @@
         {
             this.btnLogIn = new System.Windows.Forms.Button();
             this.btnSubmit = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtId = new System.Windows.Forms.TextBox();
+            this.txtPwd = new System.Windows.Forms.TextBox();
             this.lblId = new System.Windows.Forms.Label();
             this.lblPwd = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -44,6 +44,7 @@
             this.btnLogIn.TabIndex = 0;
             this.btnLogIn.Text = "로그인";
             this.btnLogIn.UseVisualStyleBackColor = true;
+            this.btnLogIn.Click += new System.EventHandler(this.btnLogIn_Click);
             // 
             // btnSubmit
             // 
@@ -53,20 +54,21 @@
             this.btnSubmit.TabIndex = 1;
             this.btnSubmit.Text = "회원가입";
             this.btnSubmit.UseVisualStyleBackColor = true;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
-            // textBox1
+            // txtId
             // 
-            this.textBox1.Location = new System.Drawing.Point(95, 89);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(215, 21);
-            this.textBox1.TabIndex = 2;
+            this.txtId.Location = new System.Drawing.Point(95, 89);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(215, 21);
+            this.txtId.TabIndex = 2;
             // 
-            // textBox2
+            // txtPwd
             // 
-            this.textBox2.Location = new System.Drawing.Point(95, 130);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(215, 21);
-            this.textBox2.TabIndex = 3;
+            this.txtPwd.Location = new System.Drawing.Point(95, 130);
+            this.txtPwd.Name = "txtPwd";
+            this.txtPwd.Size = new System.Drawing.Size(215, 21);
+            this.txtPwd.TabIndex = 3;
             // 
             // lblId
             // 
@@ -86,18 +88,18 @@
             this.lblPwd.TabIndex = 5;
             this.lblPwd.Text = "비밀번호";
             // 
-            // LogIn
+            // FrmLogIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(374, 254);
             this.Controls.Add(this.lblPwd);
             this.Controls.Add(this.lblId);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtPwd);
+            this.Controls.Add(this.txtId);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.btnLogIn);
-            this.Name = "LogIn";
+            this.Name = "FrmLogIn";
             this.Text = "LogIn";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -108,8 +110,8 @@
 
         private System.Windows.Forms.Button btnLogIn;
         private System.Windows.Forms.Button btnSubmit;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.TextBox txtPwd;
         private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.Label lblPwd;
     }
