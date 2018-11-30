@@ -50,6 +50,7 @@
             this.cboTurn.Name = "cboTurn";
             this.cboTurn.Size = new System.Drawing.Size(121, 20);
             this.cboTurn.TabIndex = 1;
+            this.cboTurn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cboTurn_KeyUp);
             // 
             // btnSearch
             // 

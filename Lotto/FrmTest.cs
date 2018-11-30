@@ -142,5 +142,14 @@ namespace Lotto
                 }
             }
         }
+
+        // 엔터키 기능 추가
+        private void cboTurn_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch_Click(null, null);
+            }
+        }
     }
 }
