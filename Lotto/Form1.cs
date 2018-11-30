@@ -17,7 +17,7 @@ namespace Lotto
 {
     public partial class Form1 : Form
     {
-        List<Lotto> lottoList = new List<Lotto>();
+        internal static List<Lotto> lottoList = new List<Lotto>();
         List<int> unInsertedNumList = new List<int>();
         HtmlWeb web = new HtmlWeb(); // 
         HtmlAgilityPack.HtmlDocument htmlDoc;
