@@ -42,10 +42,12 @@ namespace Lotto
             DisplayList();
         }
 
-        private void btnAnalyst_Click(object sender, EventArgs e)
+        private void btnAnalyst_Click(object sender, EventArgs e) // 분석 버튼 클릭시 이벤트
         {
-            FrmAnalysis fa = new FrmAnalysis();
-            fa.ShowDialog();
+            //FrmAnalysis fa = new FrmAnalysis();
+            //fa.ShowDialog();
+            FrmLogIn fli = new FrmLogIn();
+            fli.Show();
         }
 
         private void btnReNew_Click(object sender, EventArgs e) // 갱신 버튼 클릭 이벤트
@@ -276,10 +278,5 @@ namespace Lotto
             DisplayList();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            FrmTest ft = new FrmTest();
-            ft.Show();
-        }
     }
 }
