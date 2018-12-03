@@ -32,23 +32,30 @@ namespace Lotto
             int startNum = Int32.Parse(this.cboSta.Text);
             int endNum = Int32.Parse(this.cboEnd.Text);
             
-            if(startNum > endNum)
-            {
-                int temp;
-                temp = startNum;
-                startNum = endNum;
-                endNum = startNum;
-            }
-
             // 색상 통계, 원 그래프
             ls.Clear();
             CollectReset();
-            InputNum(startNum, endNum);
+            if (startNum > endNum)
+            {
+                InputNum(endNum, startNum);
+            }
+            else
+            {
+                InputNum(startNum, endNum);
+            }
+            
             pieChart.Series[0].Points.DataBind(ls, "Name", "Num", null);
 
             // 번호별 통계, Bar 그래프
             ArrClear();
-            CountBarNum(startNum,endNum);
+            if (startNum > endNum)
+            {
+                CountBarNum(endNum, startNum);
+            }
+            else
+            {
+                CountBarNum(startNum, endNum);
+            }
             RemoveNum(number, numName);
             this.colChart.Series[0].Points.DataBindXY(numName, number);
         }
@@ -139,7 +146,7 @@ namespace Lotto
 
         private void CountBarNum(int startNum, int endNum)
         {
-            for (int i = startNum; i < endNum; i++)
+            for (int i = startNum; i <= endNum; i++)
             {
                 CountNum(Form1.lottoList[i].Num1, number);
                 CountNum(Form1.lottoList[i].Num2, number);
