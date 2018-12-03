@@ -55,19 +55,19 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(762, 603);
+            this.dataGridView1.Size = new System.Drawing.Size(465, 603);
             this.dataGridView1.TabIndex = 0;
             // 
             // tbxStoreName
             // 
-            this.tbxStoreName.Location = new System.Drawing.Point(3, 4);
+            this.tbxStoreName.Location = new System.Drawing.Point(2, 12);
             this.tbxStoreName.Name = "tbxStoreName";
             this.tbxStoreName.Size = new System.Drawing.Size(141, 21);
             this.tbxStoreName.TabIndex = 1;
             // 
             // btnStoreName
             // 
-            this.btnStoreName.Location = new System.Drawing.Point(3, 41);
+            this.btnStoreName.Location = new System.Drawing.Point(2, 49);
             this.btnStoreName.Name = "btnStoreName";
             this.btnStoreName.Size = new System.Drawing.Size(141, 32);
             this.btnStoreName.TabIndex = 2;
@@ -77,14 +77,14 @@
             // 
             // tbxAddr
             // 
-            this.tbxAddr.Location = new System.Drawing.Point(3, 114);
+            this.tbxAddr.Location = new System.Drawing.Point(2, 143);
             this.tbxAddr.Name = "tbxAddr";
             this.tbxAddr.Size = new System.Drawing.Size(141, 21);
             this.tbxAddr.TabIndex = 3;
             // 
             // btnAddr
             // 
-            this.btnAddr.Location = new System.Drawing.Point(3, 154);
+            this.btnAddr.Location = new System.Drawing.Point(2, 190);
             this.btnAddr.Name = "btnAddr";
             this.btnAddr.Size = new System.Drawing.Size(141, 32);
             this.btnAddr.TabIndex = 4;
@@ -106,7 +106,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(1239, 603);
-            this.splitContainer1.SplitterDistance = 762;
+            this.splitContainer1.SplitterDistance = 465;
             this.splitContainer1.TabIndex = 5;
             // 
             // splitContainer2
@@ -126,8 +126,8 @@
             this.splitContainer2.Panel2.Controls.Add(this.tbxAddr);
             this.splitContainer2.Panel2.Controls.Add(this.btnAddr);
             this.splitContainer2.Panel2.Controls.Add(this.tbxStoreName);
-            this.splitContainer2.Size = new System.Drawing.Size(473, 603);
-            this.splitContainer2.SplitterDistance = 313;
+            this.splitContainer2.Size = new System.Drawing.Size(770, 603);
+            this.splitContainer2.SplitterDistance = 617;
             this.splitContainer2.TabIndex = 5;
             // 
             // webBrowser1
@@ -136,12 +136,12 @@
             this.webBrowser1.Location = new System.Drawing.Point(0, 0);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(313, 603);
+            this.webBrowser1.Size = new System.Drawing.Size(617, 603);
             this.webBrowser1.TabIndex = 0;
             // 
             // btnAllData
             // 
-            this.btnAllData.Location = new System.Drawing.Point(3, 245);
+            this.btnAllData.Location = new System.Drawing.Point(5, 282);
             this.btnAllData.Name = "btnAllData";
             this.btnAllData.Size = new System.Drawing.Size(141, 50);
             this.btnAllData.TabIndex = 5;

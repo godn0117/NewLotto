@@ -1,0 +1,1366 @@
+﻿
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="EUC-KR">
+    <title>1등 배출점 &lt; 당첨 판매점 &lt; 판매점 | 동행복권</title>
+    <!-- common js, css include --------->
+
+
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="/images/common/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/common/favicon.ico" type="image/x-icon">
+    <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/js/common.js" charset="utf-8"></script>
+    <script type="text/javascript">
+
+fn_g_init_message("");
+
+var gameUserId = "";
+
+function goGame(){
+	var userId = "";
+
+	if(userId == '' || userId == null){
+		alert("로그인 후 사용 해주시기 바랍니다.");
+		location.href = "/user.do?method=login";
+		return;
+	}
+
+	$.ajax({
+		type:"get",                             // 메소드타입
+		url:"https://el.dhlottery.co.kr/portal_login.jsp",  //  url
+		dataType:"jsonp",                       //이부분이 중요 데이타타입을 jsonP로 해줘야 크로스도메인을 이용할수 있다.
+		jsonp : 'callback',                     // 콜백함수 이름 명이다.
+		timeout:3000,
+		error: function() {                     // 에러날경우 콜백함수
+			alert('접속이 원할하지 않습니다.');
+		},
+		success: function(data){        		// 성공했을때 콜백함수
+
+			if(userId == data.userId && data.userId != ""){
+				doGamePopUp("");
+			}else{
+				alert("로그인 세션이 해제 되었습니다.\n다시 한번 로그인해 주시기 바랍니다.");
+				document.location.href = "/user.do?method=logout";
+			}
+	}});
+}
+
+function goGame(lottoId,agreeType){
+	var userId = "";
+	if(userId == '' || userId == null){
+		alert("로그인 후 사용 해주시기 바랍니다.");
+		location.href = "/user.do?method=login&returnUrl=" + encodeURIComponent('/gameInfo.do?method=lottoMainView&lottoId=' + lottoId);
+		return;
+	}
+
+	$.ajax({
+		type:"get",                             // 메소드타입
+		url:"https://el.dhlottery.co.kr/portal_login.jsp",  //  url
+		dataType:"jsonp",                       //이부분이 중요 데이타타입을 jsonP로 해줘야 크로스도메인을 이용할수 있다.
+		jsonp : 'callback',                     // 콜백함수 이름 명이다.
+		timeout:3000,
+		error: function() {                     // 에러날경우 콜백함수
+			alert("시스템이 원할 하지 않습니다.\n이용에 불편을 드려 죄송합니다.");
+		},
+		success: function(data){        		// 성공했을때 콜백함수
+
+			if(userId == data.userId && data.userId != ""){
+				doGamePopUp(lottoId,agreeType);
+			}else{
+				alert("로그인 세션이 해제 되었습니다.\n다시 한번 로그인해 주시기 바랍니다.");
+				document.location.href = "/user.do?method=logout";
+			}
+	}});
+}
+
+function doGamePopUp(lotid,agreeType){
+	/*
+	* 스피드키노 LD10, 메가빙고 LD11, 더블잭마이더스 LD20, 파워볼 LD14, 트레져헌터 LI22, 트리플럭 LI21 -> gamePop
+	* 캐치미 LI23 -> catchPop
+	*/
+	var type;
+
+	if( lotid === 'LI23' ){
+		type = 'catchPop';
+	}else{
+		type = 'gamePop';
+	}
+
+	if($("#agreeChk").is(":checked") || agreeType == 2){
+		var new_popup = centerPop('https://el.dhlottery.co.kr/game/TotalGame.jsp?LottoId='+ lotid, 'type', 1164, 645, 'no');
+	}else{
+		alert('약관에 동의해 주셔야 이용이 가능합니다.');
+		$("#agreeChk").focus();
+	}
+
+}
+
+//샘플게임 팝업
+function sample_pop(code, userId){
+
+	//location.href = "/gamezone.do?method=gameZoneMainView";
+	//return;
+	if(userId == null || userId == ""){
+		alert("로그인 후 이용이 가능합니다.");
+		//location.href = "/user.do?method=login";
+		//location.href = "/user.do?method=login&returnUrl=/gamezone.do?method=gameZoneMainView";
+		location.href = "/user.do?method=login&returnUrl=" + encodeURIComponent('/gameInfo.do?method=lottoMainView&lottoId=' + code);
+		return;
+	}
+	if(!$("#sampleAgreeChk").is(":checked")){
+		alert('약관에 동의해 주셔야 이용이 가능합니다.');
+		$("#sampleAgreeChk").focus();
+		return;
+	}
+
+	$.ajax({
+		type:"POST",                             // 메소드타입
+		url:"/gamezone.do?method=autoAgreeProc",  //  url
+		dataType:"json",                       //이부분이 중요 데이타타입을 jsonP로 해줘야 크로스도메인을 이용할수 있다.
+		timeout:3000,
+		async:false,
+		contentType : "application/json; charset=EUC-KR",
+		error: function() {                     // 에러날경우 콜백함수
+			console.log("error");
+		},
+		success: function(data){        		// 성공했을때 콜백함수
+			if(data.successYn){
+				console.log(data);
+			}
+		}
+	});
+
+	$.ajax({
+		type:"get",                             // 메소드타입
+		url:"https://el.dhlottery.co.kr/portal_login.jsp",  //  url
+		//data:{"jackpot":strJackpotData},   	//파라메터 타입
+		dataType:"jsonp",                       //이부분이 중요 데이타타입을 jsonP로 해줘야 크로스도메인을 이용할수 있다.
+		timeout:3000,
+		jsonp : 'callback',                     // 콜백함수 이름 명이다.
+		error: function() {                     // 에러날경우 콜백함수
+			alert("시스템이 원할 하지 않습니다.\n이용에 불편을 드려 죄송합니다.");
+		},
+		success: function(data){        		// 성공했을때 콜백함수
+			if(userId == data.userId && data.userId != ""){
+				var new_popup =	centerPop('https://el.dhlottery.co.kr/game_sample/TotalGame.jsp?LottoId=' + code, 'gamePop', 1164, 645, 'no');
+			}else{
+				alert("로그인 세션이 해제 되었습니다.\n다시 한번 로그인해 주시기 바랍니다.");
+				document.location.href = "/user.do?method=logout";
+			}
+	}});
+}
+
+//샘플게임(랜덤) 팝업
+function sample_random_pop(userId){
+
+	//location.href = "/gamezone.do?method=gameZoneMainView";
+	//return;
+	if(userId == null || userId == ""){
+		alert("로그인 후 이용이 가능합니다.");
+		location.href = "/user.do?method=login";
+// 		location.href = "/user.do?method=login&returnUrl=/gamezone.do?method=gameZoneMainView";
+// 		location.href = "/common.do?method=main";
+		return;
+	}
+
+	var x = Math.floor((Math.random() * 7) + 1 );
+
+	if(x == 1){
+		var code = "LD14";//
+	}else if(x == 2){
+		var code = "LD10";
+	}else if(x == 3){
+		var code = "LD20";
+	}else if(x == 4){
+		var code = "LI23";
+	}else if(x == 5){
+		var code = "LI22";
+	}else if(x == 6){
+		var code = "LI21";
+	}else if(x == 7){
+		var code = "LD11";
+	}
+
+	$.ajax({
+		type:"get",                             // 메소드타입
+		url:"/gamezone.do?method=autoAgreeProc",  //  url
+		dataType:"json",                       //이부분이 중요 데이타타입을 jsonP로 해줘야 크로스도메인을 이용할수 있다.
+		timeout:3000,
+		async:false,
+		contentType : "application/json; charset=EUC-KR",
+		error: function() {                     // 에러날경우 콜백함수
+			console.log("error");
+		},
+		success: function(data){        		// 성공했을때 콜백함수
+			if(data.successYn){
+				console.log(data);
+			}
+		}
+	});
+
+	$.ajax({
+		type:"get",                             // 메소드타입
+		url:"https://el.dhlottery.co.kr/portal_login.jsp",  //  url
+		//data:{"jackpot":strJackpotData},   	//파라메터 타입
+		dataType:"jsonp",                       //이부분이 중요 데이타타입을 jsonP로 해줘야 크로스도메인을 이용할수 있다.
+		timeout:3000,
+		jsonp : 'callback',                     // 콜백함수 이름 명이다.
+		error: function() {                     // 에러날경우 콜백함수
+			alert("시스템이 원할 하지 않습니다.\n이용에 불편을 드려 죄송합니다.");
+		},
+		success: function(data){        		// 성공했을때 콜백함수
+			if(userId == data.userId && data.userId != ""){
+				var new_popup =	centerPop('https://el.dhlottery.co.kr/game_sample/TotalGame.jsp?LottoId=' + code , 'gamePop', 1164, 645, 'no');
+			}else{
+				alert("로그인 세션이 해제 되었습니다.\n다시 한번 로그인해 주시기 바랍니다.");
+				document.location.href = "/user.do?method=logout";
+			}
+	}});
+}
+
+
+
+function doReserve(){
+	var userId = "";
+
+	if(userId == '' || userId == null){
+		alert("로그인 후 사용 해주시기 바랍니다.");
+		//location.href = "/user.do?method=login";
+		location.href = "/user.do?method=login&returnUrl=/gameInfo.do?method=game520Method";
+		return;
+	}
+
+	$.ajax({
+		type:"get",                             // 메소드타입
+		url:"https://el.dhlottery.co.kr/portal_login.jsp",  //  url
+		dataType:"jsonp",                       //이부분이 중요 데이타타입을 jsonP로 해줘야 크로스도메인을 이용할수 있다.
+		timeout:3000,
+		jsonp : 'callback',                     // 콜백함수 이름 명이다.
+		error: function() {                     // 에러날경우 콜백함수
+			alert("시스템이 원할 하지 않습니다.\n이용에 불편을 드려 죄송합니다.");
+		},
+		success: function(data){        		// 성공했을때 콜백함수
+			if(userId == data.userId && data.userId != ""){
+					window.open('https://el.dhlottery.co.kr/lotto520.do?method=reserveBuy', 'pensionPop' , 'width=930, height=672, left=0, top=0, status=no, toolbar=no, menubar=no, location=no');
+			}else{
+				alert("로그인 세션이 해제 되었습니다.\n다시 한번 로그인해 주시기 바랍니다.");
+				document.location.href = "/user.do?method=logout";
+			}
+	}});
+
+}
+
+
+function jackpotViewPop(){
+	var url = "/gameInfo.do?method=jackpotView&lottoId=";
+	commonPop("", url, 820, 700, 'yes');
+}
+
+function goLottoBuy(agreeType){
+	var userId = "";
+
+	if(userId == '' || userId == null){
+		alert("로그인 후 사용 해주시기 바랍니다.");
+		//location.href = "/user.do?method=login";
+		location.href = "/user.do?method=login&returnUrl=/gameInfo.do?method=buyLotto";
+		return;
+	}
+	if(agreeType == 1 && !$("#agreeChk").is(":checked")){
+		alert('약관에 동의해 주셔야 이용이 가능합니다.');
+		$("#agreeChk").focus();
+		return;
+	}
+
+
+	 $.ajax({
+		type:"get",                             // 메소드타입
+		url:"https://el.dhlottery.co.kr/portal_login.jsp",  //  url
+		dataType:"jsonp",                       //이부분이 중요 데이타타입을 jsonP로 해줘야 크로스도메인을 이용할수 있다.
+		timeout:3000,
+		jsonp : 'callback',                     // 콜백함수 이름 명이다.
+		error: function() {                     // 에러날경우 콜백함수
+			alert("시스템이 원할 하지 않습니다.\n이용에 불편을 드려 죄송합니다.");
+		},
+		success: function(data){        		// 성공했을때 콜백함수
+			if(userId == data.userId && data.userId != ""){
+				var new_popup = centerPop('https://el.dhlottery.co.kr/game/TotalGame.jsp?LottoId=LO40', 'gamePop', 1164, 645, 'no');
+			}else{
+				alert("로그인 세션이 해제 되었습니다.\n다시 한번 로그인해 주시기 바랍니다.");
+				document.location.href = "/user.do?method=logout";
+			}
+	}});
+
+}
+
+function loginType(pageCode){
+	var userId = "";
+	var pageCodes = pageCode.split("-");
+}
+
+//엔터만 치면 로그인
+function enter_check_top(eventValue) {
+	if (eventValue == 13) {
+		check_if_Valid_top();
+		return;
+	}
+}
+
+function depositAlert(){
+	alert("12월 2일 이후부터 사용 가능합니다.");
+}
+
+function check_if_Valid_top() {
+	var f = document.frmLogin;
+
+	if (f.userId.value == "") {
+		alert("아이디를 입력해 주십시오");
+		f.userId.focus();
+		return;
+	}
+	if (f.password.value == "") {
+		alert("비밀번호를 입력해 주세요");
+		f.password.focus();
+		return;
+	}
+	if (f.userId.value.length >= 15) {
+		alert("아이디가 자릿수가 초과되었습니다.");
+		return;
+	}
+	if (f.password.value.length >= 101) {
+		alert("비밀번호가 자릿수가 초과되었습니다.");
+		return;
+	}
+	loginpage_top();
+}
+
+function loginpage_top(){
+
+	var f = window.document.frmLogin;
+	var pageUrl = document.location.href;
+	var returnUrl="";
+
+	f.method = "post";
+	//f.target = "jform";
+	if(returnUrl != ''){
+		f.action = "https://www.dhlottery.co.kr/userSsl.do?method=login&returnUrl="+encodeURIComponent(returnUrl);
+	}else{
+		f.action = "https://www.dhlottery.co.kr/userSsl.do?method=login&returnUrl="+encodeURIComponent(pageUrl);
+	}
+	f.submit();
+
+}
+
+function getCookie(uName) {
+	var flag = document.cookie.indexOf(uName + '=');
+	if (flag != -1) {
+		flag += uName.length + 1;
+		end = document.cookie.indexOf(';', flag);
+		if (end == -1)
+			end = document.cookie.length;
+		return unescape(document.cookie.substring(flag, end));
+	}
+}
+
+function gomain() {
+	location.href="/common.do?method=main";
+}
+
+$(document).ready(function() {
+	$("#phoneTopMenu").html("");
+
+	if(getCookie("userId") != undefined)
+	{
+		$('.top_userid').val(getCookie("userId"));
+	}
+
+});
+
+
+
+    </script>
+    <!-- <link rel="stylesheet" type="text/css" href="/css/nanum_gothic_dev.css" /> -->
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <script type="text/javascript" src="/js/function.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/js/InsertFlash.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/js/link.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/js/makePCookie.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/js/webfont.js"></script>
+    <script>
+var filter = 'win16|win32|win64|macintel';
+if (navigator.platform && !(filter.indexOf(navigator.platform.toLowerCase()) >= 0)) {
+	if (location.hostname.indexOf('https://m.dhlottery.co.kr') == -1 || location.hostname.indexOf('https://m.dhlottery.co.kr') == -1 ) {
+	  	location.href = 'https://m.dhlottery.co.kr';
+	}
+}
+    </script>
+    <!-- ----------------------------- -->
+    <!-- JSP PAGE CODE 및 PAGE NAME 정의 --------->
+    <script type="text/javascript">
+		var rankGubun = 1;
+
+		if(rankGubun == "1") {
+			var pageCode = "04-02-02";
+			var pageName = "1등 배출점";
+		} else if(rankGubun == "2") {
+			var pageCode = "04-02-03";
+			var pageName = "2등 배출점";
+		}
+
+		function selfSubmit(page){
+			if(page != null && page !="undefined"){
+				$("#nowPage").val(page);
+			}
+			if(rankGubun == "1") {
+				$("#frm").attr({action:"/store.do?method=topStoreRank&rank=1&pageGubun=L645"}).submit();
+			}
+			else if(rankGubun == "2"){
+				$("#frm").attr({action:"/store.do?method=topStoreRank&rank=2&pageGubun=L645"}).submit();
+			}
+		}
+
+		function showMapPage(rltlId) {
+
+		    var popwidth   = 600;
+		    var popheight  = 710;
+		    var leftPos       = (screen.width)  ? (screen.width-popwidth)/2   : 0;
+		    var topPos      = (screen.height) ? (screen.height-popheight)/2 : 0;
+		    var winName   = "팝업이름";
+		    var features   = 'left='+ leftPos+', top='+ topPos;
+		          features  += ',location=no, directories=no, menubar=no, scrollbars=auto, status=no';
+		          features  += ',width='+ popwidth+ ',height='+ popheight;
+		    var reqUrl       = "/store.do?method=topStoreLocation&gbn=lotto&rtlrId="+rltlId;
+
+		    window.open(reqUrl, winName, features);
+
+		}
+
+		$(document).ready(function() {
+			$('#btnExcel').click(function(e) {
+				e.preventDefault();
+				var f = document.frm;
+				f.target="ifExcel";
+
+				if(rankGubun == "1") {
+					f.action = "/store.do?method=topStoreRankExcel&rank=1&pageGubun=L645&nowPage="+$("#nowPage").val();
+				}
+				else if(rankGubun == "2") {
+					f.action = "/store.do?method=topStoreRankExcel&rank=2&pageGubun=L645&nowPage="+$("#nowPage").val();
+				}
+				f.submit();
+
+				f.target = "_self";
+			});
+
+			$('#frm').keypress(function(e){
+				if(e.which == 13) {
+					selfSubmit(1);
+				}
+				document.frm.keyWord.focus();
+			});
+		});
+    </script>
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div>
+
+
+
+
+        <script type="text/javascript">
+	$(document).ready(function(){
+		var banner = $(".slider > li"),
+			bannerLength = banner.length,
+			targetNum = 0, //보여질 숫자
+			currentNum = 0, //보여지고있는 숫자
+			speed = 400, //애니메이트 속도
+			delay = 5000, //재생타임
+			isPlay = true, //자동재생중일때 true
+			isTween = false; //false일때만 이동가능
+
+		function initBanner(){
+			if(bannerLength > 1){//배너가 두개 이상일때만 슬라이드실행
+				bnrSlide();
+			}
+			todayCookie();//쿠키실행
+		}
+
+		function bnrSlide(){
+			banner.not(":first").hide();
+			timer = setInterval(nextMove, delay); //인터벌
+
+			//아이콘 클릭
+			$(".icon_count a").on("click", function(e){
+				e.preventDefault();
+				clearInterval(timer);
+				var iconIdx = $(this).index();
+				if(iconIdx == currentNum){
+					if(isPlay == true){
+						timer = setInterval(nextMove, delay);
+					} else {
+						return;
+					}
+
+				} else {
+					bannerMove(iconIdx);
+				}
+			});
+
+			//stop 클릭
+			$(".play_stop .stop").on("click", function(e){
+				e.preventDefault();
+				clearInterval(timer);
+				$(this).hide();
+				$(".play_stop .play").show();
+				isPlay = false;
+			});
+
+			//play 클릭
+			$(".play_stop .play").on("click", function(e){
+				e.preventDefault();
+				timer = setInterval(nextMove, delay);
+				$(this).hide();
+				$(".play_stop .stop").show();
+				isPlay = true;
+			});
+
+			function nextMove(){
+				targetNum = currentNum +1;
+				if(targetNum >= bannerLength){
+					targetNum = 0;
+				}
+				bannerMove(targetNum);
+			}
+
+			function bannerMove(idx){
+				if(isTween){return;}
+				isTween = true; //이동불가
+				iconReplace(idx);
+
+				banner.eq(currentNum).css("z-index", 0);
+				banner.eq(idx).css("z-index", 1).fadeIn(speed, function(){
+					banner.eq(currentNum).hide();
+					tweenComplete(idx);
+				});
+			}
+
+			//아이콘 리플레이스
+			function iconReplace(idx){
+				$(".icon_count a").removeClass("on");
+				$(".icon_count a").eq(idx).addClass("on");
+			}
+
+			//애니메이트 완료
+			function tweenComplete(idx){
+				currentNum = idx;
+				isTween = false;
+				if(isPlay){
+					if(timer)clearInterval(timer);
+					timer = setInterval(nextMove, delay);
+				}
+			}
+		}
+
+		function todayCookie(){
+			var banner_cookie = $.cookie('cookie');
+
+			if(banner_cookie == undefined){//쿠키가없으면
+				$(".top_banner_wrap").show();//팝업 열기
+
+				$(".btn_top_bnr_close").on("click", function(e){//팝업 닫기 클릭
+					e.preventDefault();
+
+					if($("#today").is(":checked")){
+						$.cookie('cookie', 'today', {expires: 1, page:'/'});//메인만 쿠키 1일 설정
+						$(".top_banner_wrap").slideUp(400);
+					} else {
+						$(".top_banner_wrap").slideUp(400);
+					}
+				});
+			}
+		}
+
+		initBanner();
+
+	});
+        </script>
+        <ul id="skipnavigation">
+            <li><a href="#article">본문 바로가기</a></li>
+        </ul>
+        <header class="topHeader">
+            <div class="header_con">
+                <div class="logo">
+                    <h1><a href="/common.do?method=main">동행복권</a></h1>
+                </div>
+                <div class="top_menu">
+
+                    <script type="text/javascript" src="/js/link.js" charset="utf-8"></script>
+                    <form name="frmLogin">
+                        <div class="topAccount">
+
+
+
+                            <ul class="account">
+                                <li class="log"><a class="btn_common sml" href="/user.do?method=login&returnUrl=">로그인</a></li>
+                                <li class="devide"><a class="btn_common sml blu" href="/loginJoin.do?method=joinFormAgree">회원가입</a></li>
+                                <li><a class="btn_common sml gblu" href="/userSsl.do?method=myPage">마이페이지</a></li>
+                                <li><a class="btn_common sml gblu" href="/counsel.do?method=callCenter">고객센터</a></li>
+                            </ul>
+
+
+                        </div>
+                    </form>
+
+
+
+
+
+
+                </div>
+            </div>
+        </header>
+
+
+    </div>
+
+
+
+
+
+
+
+    <div class="nav_wrap" style="z-index:999;">
+        <nav class="gnbNav">
+
+            <div id="gnb" class="gnb">
+                <ul>
+                    <!-- <li class="gnb1"><a href="/gameBuy.do?method=gameBuyHome"></a></li> -->
+                    <li class="gnb1">
+                        <a href="javascript:void(0)">복권구매</a>
+                        <div class="group">
+                            <ul>
+                                <li class="gnb1_1"><a href="javascript:goLottoBuy(2);" title="새창 열림"><strong>로또 6/45</strong><span>매주 토요일 추첨<br>6개 숫자 직접 선택</span></a></li>
+                                <li class="gnb1_2"><a href="javascript:goGame('LD14',2);" title="새창 열림"><strong>파워볼</strong><span>5분마다 추첨<br>최고당첨금 3억원</span></a></li>
+                                <li class="gnb1_3"><a href="javascript:goGame('LD10',2);" title="새창 열림"><strong>스피드키노</strong><span>5분마다 추첨<br>숫자 10개 일치시 1등</span></a></li>
+                                <li class="gnb1_4"><a href="javascript:goGame('LD11',2);" title="새창 열림"><strong>메가빙고</strong><span>7분마다 추첨<br>가장 높은 당첨확률</span></a></li>
+                                <li class="gnb1_5"><a href="javascript:goGame('LI21',2);" title="새창 열림"><strong>트리플럭</strong><span>한번에 3게임! 1등 5억원<br>즉석식 긁는 복권</span></a></li>
+                                <li class="gnb1_6"><a href="javascript:goGame('LP32',2);" title="새창 열림"><strong>연금복권520</strong><span>매주 수요일 추첨<br>500만원씩 20년 지급</span></a></li>
+                                <li class="gnb1_7"><a href="javascript:goGame('LI22',2);" title="새창 열림"><strong>트레져헌터</strong><span>왕관이 5개 나오면 1등<br>심볼매치형 즉석복권</span></a></li>
+                                <li class="gnb1_8"><a href="javascript:goGame('LI23',2);" title="새창 열림"><strong>캐치미</strong><span>당첨금 x 5배 선택가능<br>보너스 게임 기회도~</span></a></li>
+                                <li class="gnb1_9"><a href="javascript:goGame('LD20',2);" title="새창 열림"><strong>더블잭마이더스</strong><span>같은 그림이 나오면 당첨<br>구매즉시 당첨확인</span></a></li>
+                                <li class="gnb1_10"><a href="javascript:sample_random_pop('');" title="새창 열림"><span>샘플게임 <br>해보기</span></a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="basic gnb2">
+                        <a href="/gameInfo.do?method=gameMethod">복권정보</a>
+                        <div class="group">
+                            <ul>
+                                <li>
+                                    <a href="/gameInfo.do?method=gameMethod">로또6/45</a>
+                                    <ul class="snb_dep3">
+                                        <li><a href="/gameInfo.do?method=gameMethod">로또 6/45 소개</a></li>
+                                        <li><a href="/gameInfo.do?method=buyLotto">구매하기</a></li>
+                                        <li><a href="/gameInfo.do?method=buyInfo">구매방법</a></li>
+                                        <li><a href="/gameInfo.do?method=lotMethod">추첨안내</a></li>
+                                        <li><a href="/gameInfo.do?method=statHistory">로또 히스토리</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="/gameInfo.do?method=gameGuide">연금복권520</a>
+                                    <ul class="snb_dep3">
+                                        <li><a href="/gameInfo.do?method=gameGuide">연금복권520 소개</a></li>
+                                        <li><a href="/gameInfo.do?method=game520Method">구매하기</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="/gameInfo.do?method=inetbokBuyInfo">인터넷복권</a>
+                                    <ul class="snb_dep3">
+                                        <li><a href="/gameInfo.do?method=inetbokBuyInfo">게임안내</a></li>
+                                        <li><a href="/gameInfo.do?method=lottoMainView&lottoId=LD14">파워볼</a></li>
+                                        <li><a href="/gameInfo.do?method=lottoMainView&lottoId=LD10">스피드키노</a></li>
+                                        <li><a href="/gameInfo.do?method=lottoMainView&lottoId=LI22">트레져헌터</a></li>
+                                        <li><a href="/gameInfo.do?method=lottoMainView&lottoId=LI21">트리플럭</a></li>
+                                        <li><a href="/gameInfo.do?method=lottoMainView&lottoId=LD11">메가빙고</a></li>
+                                        <li><a href="/gameInfo.do?method=lottoMainView&lottoId=LD20">더블잭마이더스</a></li>
+                                        <li><a href="/gameInfo.do?method=lottoMainView&lottoId=LI23">캐치미</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="/gameInfo.do?method=speettoGameMethod">즉석식인쇄복권</a>
+                                    <ul class="snb_dep3">
+                                        <li><a href="/gameInfo.do?method=speettoGameMethod">즉석식인쇄복권 소개</a></li>
+                                        <li><a href="/gameInfo.do?method=speetto500">스피또 500</a></li>
+                                        <li><a href="/gameInfo.do?method=speetto1000">스피또 1000</a></li>
+                                        <li><a href="/gameInfo.do?method=speetto2000">스피또 2000</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="basic gnb3">
+                        <a href="/gameResult.do?method=byWin">당첨결과</a>
+                        <div class="group">
+                            <ul>
+                                <li>
+                                    <a href="/gameResult.do?method=byWin">로또6/45</a>
+                                    <ul class="snb_dep3">
+                                        <li><a href="/gameResult.do?method=byWin">회차별 당첨번호</a></li>
+                                        <li><a href="/gameResult.do?method=myWin">내번호 당첨확인</a></li>
+                                        <li><a href="/gameResult.do?method=allWin">당첨내역</a></li>
+                                        <li><a href="/gameResult.do?method=locInfo645">당첨금 지급안내</a></li>
+                                        <li><a href="/gameResult.do?method=lotTv">추첨방송 다시보기</a></li>
+                                        <li><a href="/gameResult.do?method=visitWinList">추첨방송 참관신청</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="/gameResult.do?method=win520">연금복권520</a>
+                                    <ul class="snb_dep3">
+                                        <li><a href="/gameResult.do?method=win520">회차별 당첨번호</a></li>
+                                        <li><a href="/gameResult.do?method=myWin520">내번호 당첨확인</a></li>
+                                        <li><a href="/gameResult.do?method=winResult">당첨내역</a></li>
+                                        <li><a href="/gameResult.do?method=locInfo520">당첨금 지급안내</a></li>
+                                        <li><a href="/gameResult.do?method=lotInfo">추첨방송 다시보기</a></li>
+                                        <li><a href="/gameResult.do?method=visitWinList&tabGbn=2">추첨방송 참관신청</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/gameResult.do?method=winList">인터넷복권</a></li>
+                                <li>
+                                    <a href="/gameResult.do?method=speettoWin">즉석식인쇄복권</a>
+                                    <ul class="snb_dep3">
+                                        <li><a href="/gameResult.do?method=speettoWin">당첨내역</a></li>
+                                        <li><a href="/gameResult.do?method=speettoLotInfo">당첨금 지급안내</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="/gameResult.do?method=statIndex">로또6/45 당첨통계</a>
+                                    <ul class="snb_dep3">
+                                        <li><a href="/gameResult.do?method=statIndex">당첨통계</a></li>
+                                        <li><a href="/gameResult.do?method=statByNumber">번호별 통계</a></li>
+                                        <li><a href="/gameResult.do?method=statByColor">색상 통계</a></li>
+                                        <li><a href="/gameResult.do?method=statGroupNum">구간별 출현횟수</a></li>
+                                        <li><a href="/gameResult.do?method=noViewNumber">기간별 미출현 번호</a></li>
+                                        <li><a href="/gameResult.do?method=statOddEven">홀짝통계</a></li>
+                                        <li><a href="/gameResult.do?method=statConsNumber">연속번호 출현</a></li>
+                                        <li><a href="/gameResult.do?method=statPattern">패턴분석표</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li><a href="/gameResult.do?method=index520">연금복권520 당첨통계</a></li>
+                                <li>
+                                    <a href="/gameResult.do?method=highWin">당첨소식</a>
+                                    <ul class="snb_dep3">
+                                        <li><a href="/gameResult.do?method=highWin">당첨자 인터뷰</a></li>
+                                        <li><a href="/gameResult.do?method=winTalkList&boardType=T">당첨 소감 게시판</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="/gameResult.do?method=notReceiveInfo">미수령 당첨금</a>
+                                    <ul class="snb_dep3">
+                                        <li><a href="/gameResult.do?method=notReceiveInfo">로또6/45</a></li>
+                                        <li><a href="/gameResult.do?method=noRecieveInfo520">연금복권520</a></li>
+                                        <li><a href="/gameResult.do?method=notReceiveInfoElec">인터넷복권</a></li>
+                                        <li><a href="/gameResult.do?method=speetoNoGetList">즉석식 인쇄복권</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="basic gnb4">
+                        <a href="/store.do?method=sellerInfo645">판매점</a>
+                        <div class="group">
+                            <ul>
+                                <li>
+                                    <a href="/store.do?method=sellerInfo645">구입처 안내</a>
+                                    <ul class="snb_dep3">
+                                        <li><a href="/store.do?method=sellerInfo645">로또6/45판매점 조회</a></li>
+                                        <li><a href="/store.do?method=sellerInfoPrint">즉석 및 연금복권 판매점 조회</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="/store.do?method=topStore&pageGubun=L645">당첨 판매점</a>
+                                    <ul class="snb_dep3">
+                                        <li><a href="/store.do?method=topStore&pageGubun=L645">회차별</a></li>
+                                        <li><a href="/store.do?method=topStoreRank&rank=1&pageGubun=L645">1등 배출점</a></li>
+                                        <li><a href="/store.do?method=topStoreRank&rank=2&pageGubun=L645">2등 배출점</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="basic gnb5">
+                        <a href="/event.do?method=Eventend">이벤트</a>
+                        <div class="group">
+                            <ul>
+                                <li><a href="/event.do?method=Eventend">이벤트</a></li>
+
+
+
+
+
+
+
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="basic gnb6">
+                        <a href="/counsel.do?method=knowledge">행복공감</a>
+                        <div class="group">
+                            <ul>
+                                <li>
+                                    <a href="/counsel.do?method=knowledge">건전한 복권문화</a>
+                                    <ul class="snb_dep3">
+                                        <li><a href="/counsel.do?method=knowledge">복권바로알기</a></li>
+                                        <li><a href="/happy.do?method=healthCultureProc">건전구매 프로그램</a></li>
+                                        <li><a href="/user.do?method=campainVow">건전화 캠페인</a></li>
+                                        <li><a href="/happy.do?method=healthCultureRule">건전화 책임규정</a></li>
+                                        <li><a href="/happy.do?method=healthCulturePrevent">복권 과몰입 예방법</a></li>
+                                        <li><a href="/happy.do?method=counselInfo">중독예방 및 상담안내</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="/happy.do?method=fundInfo">복권기금</a>
+                                    <ul class="snb_dep3">
+                                        <li><a href="/happy.do?method=fundInfo">복권기금소개</a></li>
+                                        <li><a href="/happy.do?method=fundAdvance">기금사업 진행현황</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/happy.do?method=happySympathyService">행복공감봉사단</a></li>
+                                <li>
+                                    <a href="/happy.do?method=fundArchiveList">홍보센터</a>
+                                    <ul class="snb_dep3">
+                                        <li><a href="/happy.do?method=fundArchiveList">광고</a></li>
+                                        <li><a href="/happy.do?method=fundPressPrList">보도자료</a></li>
+                                        <li><a href="/service.do?method=noticeList">공지사항</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <script>
+
+/*
+ * QR안내 페이지 팝업 호출
+**/
+function pop_qr() {
+	var strUrl = "/popup/pop_qr.html";
+	var popwidth   = 600;
+	var popheight  = 793;
+	var winName    = "QR코드 당첨확인";
+
+	var new_popup = centerPop(strUrl, winName, popwidth, popheight, 'no');
+}
+
+            </script>
+        </nav>
+    </div>
+    <div class="containerWrap">
+        <!-- pc일 경우 컨텐츠 영역 감싸는 마크업 추가  -->
+
+
+
+
+        <section class="contentSection">
+            <!--왼쪽-->
+            <nav class="lnbNav">
+                <!-- left menu include -------------->
+
+
+
+                <div id="snb" class="lnb">
+                    <h2 id="04" class="lnb_title">판매점</h2>
+                    <ul id="lnb" class="lnb_dep1">
+                        <li id="04-01">
+                            <a href="/store.do?method=sellerInfo645" class="menuLnb"><span>구입처 안내</span></a>
+                            <ul class="lnb_dep2">
+                                <li id="04-01-01"><a href="/store.do?method=sellerInfo645"><span> 로또6/45판매점 조회</span></a></li>
+                                <li id="04-01-02"><a href="/store.do?method=sellerInfoPrint"><span> 즉석 및 연금복권 판매점 조회</span></a></li>
+                            </ul>
+                        </li>
+                        <li id="04-02">
+                            <a href="/store.do?method=topStore&pageGubun=L645" class="menuLnb"><span>당첨 판매점</span></a>
+                            <ul class="lnb_dep2">
+                                <li id="04-02-01"><a href="/store.do?method=topStore&pageGubun=L645"><span> 회차별</span></a></li>
+                                <li id="04-02-02"><a href="/store.do?method=topStoreRank&rank=1&pageGubun=L645"><span> 1등 배출점</span></a></li>
+                                <li id="04-02-03"><a href="/store.do?method=topStoreRank&rank=2&pageGubun=L645"><span> 2등 배출점</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <!-- ----------------------------- -->
+            </nav>
+
+            <!-- 컨텐츠 영역 -->
+            <div id="article" class="contentsArticle">
+                <div class="header_article">
+                    <h3 class="sub_title"></h3>
+                    <p class="location"></p>
+                </div>
+                <div>
+                    <div class="content_wrap content_store_win">
+                        <!-- -------------------------------------------------------------------------------------- -->
+
+
+                        <div class="tab_article tab_size5">
+
+
+
+                            <ul>
+                                <li class="active"><strong>로또6/45</strong><span class="accessibility">현재 선택됨</span></li>
+                                <li><a href="/store.do?method=topStoreRank&rank=1&pageGubun=L520">연금복권520</a></li>
+                                <li><a href="/store.do?method=topStoreRank&rank=1&pageGubun=SP2000">스피또2000</a></li>
+
+                                <li><a href="/store.do?method=topStoreRank&rank=1&pageGubun=SP1000">스피또1000</a></li>
+                                <li><a href="/store.do?method=topStoreRank&rank=1&pageGubun=SP500">스피또500</a></li>
+
+                            </ul>
+                        </div>
+
+                        <div class="group_content group_data_search">
+                            <div class="group_title">
+                                <h4 class="title">제 262회차 부터 현재까지의 1등 당첨판매점 입니다.</h4>
+                                <div class="action">
+                                    <div class="search">
+                                        <form name="frm" id="frm" method="post" action="/lotto645Confirm.do">
+                                            <input type="hidden" name="method" value="topStoreRank">
+                                            <input type="hidden" name="nowPage" id="nowPage" value="173">
+                                            <input type="hidden" name="rankNo" id="rankNo" value="1">
+                                            <input type="hidden" name="gameNo" id="gameNo" value="5133">
+                                            <select name="searchType" title="조회옵션 선택">
+                                                <option value="all" selected> 전체</option>
+                                                <option value="name">상호</option>
+                                                <option value="addr">지역명</option>
+                                            </select>
+                                            <input type="text" id="keyWord" name="keyWord" value="" title="검색어 입력">
+                                            <a class="btn_common form blu" href="javascript:selfSubmit('1');">조회</a>
+                                        </form>
+                                    </div>
+                                    <div class="btn"><a id="btnExcel" class="btn_common form" href="#">엑셀다운로드</a></div>
+                                </div>
+                            </div>
+                            <table class="tbl_data tbl_data_col">
+                                <caption>상호명, 배출건수, 소재지, 위치 등 로또6/45 1등 배출점 정보 안내</caption>
+                                <colgroup>
+                                    <col style="width:60px">
+                                    <col>
+                                    <col style="width:90px">
+                                    <col style="width:410px">
+                                    <col style="width:90px">
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">번호</th>
+                                        <th scope="col">상호명</th>
+                                        <th scope="col">배출건수</th>
+                                        <th scope="col">소재지</th>
+                                        <th scope="col">위치보기</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+                                    <tr>
+                                        <td>2581</td>
+                                        <td>
+                                            훼미리마트노원영성점
+
+                                        </td>
+                                        <td>1</td>
+                                        <td>대구 북구 노원동3가  58-46번지</td>
+                                        <td>
+
+                                            <a href="#" class="btn_search" onclick="javascript:showMapPage(12710107); return false;" title="새창 열림">훼미리마트노원영성점 지도보기</a>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>2582</td>
+                                        <td>
+                                            훼미리마트두암현대점
+
+                                        </td>
+                                        <td>1</td>
+                                        <td>광주 북구 두암동  880-17CU두암현대점내</td>
+                                        <td>
+
+                                            <a href="#" class="btn_search" onclick="javascript:showMapPage(12900137); return false;" title="새창 열림">훼미리마트두암현대점 지도보기</a>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>2583</td>
+                                        <td>
+                                            훼미리복권
+
+                                        </td>
+                                        <td>1</td>
+                                        <td>경기 안산시 상록구 월피동  448 현대2차아파트상가18호</td>
+                                        <td>
+
+                                            <a href="#" class="btn_search" onclick="javascript:showMapPage(14110606); return false;" title="새창 열림">훼미리복권 지도보기</a>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>2584</td>
+                                        <td>
+                                            훼밀리슈퍼
+
+                                        </td>
+                                        <td>1</td>
+                                        <td>경기 구리시 인창동  672-4번지 세신훼밀리타운102</td>
+                                        <td>
+
+                                            <a href="#" class="btn_search" onclick="javascript:showMapPage(14100318); return false;" title="새창 열림">훼밀리슈퍼 지도보기</a>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>2585</td>
+                                        <td>
+                                            흥부네복권
+
+                                        </td>
+                                        <td>1</td>
+                                        <td>인천 부평구 부평동  65-115번지 대우아파트상가102호</td>
+                                        <td>
+
+                                            <a href="#" class="btn_search" onclick="javascript:showMapPage(12890062); return false;" title="새창 열림">흥부네복권 지도보기</a>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>2586</td>
+                                        <td>
+                                            흥인식품
+
+                                        </td>
+                                        <td>1</td>
+                                        <td>서울 중구 흥인동  72번지</td>
+                                        <td>
+
+                                            <a href="#" class="btn_search" onclick="javascript:showMapPage(11100306); return false;" title="새창 열림">흥인식품 지도보기</a>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>2587</td>
+                                        <td>
+                                            희망복권
+
+                                        </td>
+                                        <td>1</td>
+                                        <td>경기 평택시 평택동  34-12 1층 복권방</td>
+                                        <td>
+
+                                            <a href="#" class="btn_search" onclick="javascript:showMapPage(14190003); return false;" title="새창 열림">희망복권 지도보기</a>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>2588</td>
+                                        <td>
+                                            희망복권방
+
+                                        </td>
+                                        <td>1</td>
+                                        <td>경기 의정부시  호원동 423대명빌딩1</td>
+                                        <td>
+
+                                            <a href="#" class="btn_search" onclick="javascript:showMapPage(14110316); return false;" title="새창 열림">희망복권방 지도보기</a>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>2589</td>
+                                        <td>
+                                            희성상사
+
+                                        </td>
+                                        <td>1</td>
+                                        <td>인천 남구 주안동  1282-8번지</td>
+                                        <td>
+
+                                            <a href="#" class="btn_search" onclick="javascript:showMapPage(12810005); return false;" title="새창 열림">희성상사 지도보기</a>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>2590</td>
+                                        <td></td>
+                                        <td>1</td>
+                                        <td>서울 금천구  독산동 1012-15번지 1012-15</td>
+                                        <td>
+
+                                            <a href="#" class="btn_search" onclick="javascript:showMapPage(11101184); return false;" title="새창 열림"> 지도보기</a>
+
+                                        </td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                            <div class="wrap_paginate">
+                                <p class="closed"><img src="/images/common/ico_closed_store.png" alt="폐점표시"> 폐점된 판매점입니다.</p>
+
+                                <div class="paginate_common" id="page_box">
+
+
+
+
+
+
+                                    <a class="go first" href="javascript:selfSubmit('1')">첫페이지</a>
+                                    <a class="go prev" href="javascript:selfSubmit('170')">이전 페이지</a>
+
+
+
+
+
+
+                                    <a href="javascript:selfSubmit('171')">171</a>
+
+
+
+
+
+
+                                    <a href="javascript:selfSubmit('172')">172</a>
+
+
+
+
+
+                                    <a href="#" class="current" title="현재 위치"><strong>173</strong></a>
+
+
+
+
+
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- -------------------------------------------------------------------------------------- -->
+                    </div>
+                    <iframe name="ifExcel" id="ifExcel" width="0" height="0" title="excel"></iframe>
+                </div>
+            </div>
+
+
+            <aside id="asideQuick" class="quic_aside">
+                <a href="#" class="toggle">퀵메뉴열기</a>
+                <div class="inner">
+                    <ul class="prog">
+                        <li class="p1"><a href="/myPage.do?method=enjoyEval">나의복권<br>건전지수</a></li>
+                        <li class="p2"><a href="/happy.do?method=healthCultureProc">건전구매<br>캠페인</a></li>
+                        <li class="p3"><a href="/user.do?method=campainVow">건전구매<br>서약</a></li>
+                        <li class="p4"><a href="/myPage.do?method=campainTest">자기관리<br>프로그램</a></li>
+                        <li class="p5"><a href="https://clean.dhlottery.co.kr/" target="_blank" title="새창 열림">동행<br>클린센터</a></li>
+                    </ul>
+                </div>
+                <div class="top"><a href="#skipnavigation">위로가기</a></div>
+            </aside>
+            <script type="text/javascript">
+		$(document).ready(function(){
+			var spread;
+			var min4quick = 1420;
+			var bodyw = $("body").prop("clientWidth");
+			var aside = $("#asideQuick");
+			var btn = aside.find(".toggle");
+			$(window).resize(function(){
+				bodyw = $("body").prop("clientWidth");
+				if(bodyw < min4quick){
+					aside.css("right","-86px");
+					aside.addClass("fold");
+					spread = false;
+				}else{
+					aside.css("right","0");
+					aside.removeClass("fold");
+					spread = true;
+				}
+			}).resize();
+			btn.click(function(e){
+				e.preventDefault();
+				if(spread == true){
+					aside.animate({right:-86},300);
+					btn.removeClass("opened");
+					spread = false;
+				}else{
+					aside.animate({right:0},300);
+					btn.addClass("opened");
+					spread = true;
+				}
+
+			});
+		});
+            </script>
+
+        </section>
+
+
+
+
+
+
+    </div><!-- //pc일 경우 컨텐츠 영역 감싸는 마크업 추가  -->
+    <!-- 접속대기 레이어 -->
+    <div id="popWaitConnect" class="wrap_pop_layer" style="display:none">
+        <div class="popup_layer popup_waiting">
+            <div class="header_layer">
+                <h2>접속대기 안내</h2>
+                <a class="close" href="#">닫기</a>
+            </div>
+            <div class="status">
+                <p class="m1"><strong>서비스연결 대기중</strong>입니다. <span>대기 순서에 따라 자동 접속됩니다.</span></p>
+                <div class="circle"><span>접속 대기중</span></div>
+                <p class="m2">현재 대기 인원 : <strong id="popWaitCount">총 1,200명</strong><br>예상 대기 시간 : <strong id="popWaitTime">약 5분 30초</strong></p>
+            </div>
+            <div class="noti">
+                <h3>유의사항</h3>
+                <ul class="list_text_common">
+                    <li>새로고침 또는 뒤로가기를 하면 다시 대기시간이 부여됩니다.</li>
+                </ul>
+            </div>
+            <div class="btns_bottom">
+                <a class="btn_common mid close" href="#">대기종료</a>
+            </div>
+        </div>
+    </div>
+    <!-- //접속대기 레이어 -->
+
+    <footer id="footer" class="footer">
+        <!-- <div class="footer_container">
+            <div class="footer_wrap"> -->
+        <h3 class="hide">하단메뉴</h3>
+        <ul class="foot_menu">
+            <li class="fisrt"><a id="eeeee" href="/clause.do?method=footerUseClause">이용약관</a></li>
+            <li><strong><a href="/clause.do?method=footerPrivate">개인정보 처리방침</a></strong></li>
+            <!-- 	            <li><a href="/company.do?method=footerIrWeb">공고 </a></li> -->
+            <li><a href="/clause.do?method=reportCenter">불법사행행위신고센터</a></li>
+            <li><a href="/company.do?method=footerInfo">수탁사업자 소개</a></li>
+        </ul>
+        <div class="foot_inner">
+            <div class="foot_txt_wrap">
+                <div class="logo">
+                    <div class="inner">
+                        <strong class="dh">동행복권</strong>
+                        <a href="javascript:goFacPop()" class="btn_foot" title="새창 열림">사업자정보확인</a>
+                    </div>
+                </div>
+                <div class="foot_txt1">
+                    <p>수탁사업자 (주)동행복권 <span class="ml15">주소 : 06719 서울 서초구 남부순환로 2423 한원빌딩 4층</span> <span class="ml15">고객문의 1588-6450</span> <span class="ml15">FAX 02-6933-3063</span></p>
+                    <p>대표자 : 조형섭  <span class="ml15">사업자등록번호 866-87-00833</span> <span class="ml15">통신판매사업자번호 : 제2018 - 서울서초 - 2075호</span> <!-- <span class="ml15"><a href="javascript:goFacPop()" class="btn_foot">사업자정보확인 &gt;</a></span> --></p>
+                </div>
+                <div class="foot_txt2">
+                    <p>Copyright (c) 2018 복권위원회&amp;동행복권. All rights reserved</p>
+                    <p>본 홈페이지는 게시된 이메일 주소가 자동 수집되는 것을 거부하며, 이를 위반시 정보통신망법에 의해 처벌됨을 유념하여 주시길 바랍니다.</p>
+                    <p class="f_blue2">청소년은 복권을 구매하거나 당첨금을 수령할 수 없습니다.</p>
+                </div>
+            </div>
+
+            <!-- <div class="footer_right">
+                <p class="sns" device="pc">
+                    <a href="http://cafe.naver.com/nanumlotto645" target="_blank" title="나눔로또 카페"><img src="/img/layout_index/btn_sns01.png" alt="나눔로또 카페" /></a>
+                    <a href="http://blog.naver.com/nanumlotto" target="_blank" title="나눔로또 블로그"><img src="/img/layout_index/btn_sns02.png" alt="나눔로또 블로그" /></a>
+                    <a href="https://www.facebook.com/nanumlotto" target="_blank" title="나눔로또 페이스북"><img src="/img/layout_index/btn_sns03.png" alt="나눔로또 페이스북" /></a>
+                </p>
+            </div> -->
+        </div>
+        <!-- </div>
+        </div> -->
+    </footer>
+    <!-- //footer -->
+
+    <script type="text/javascript">
+	//$$js_import$$("pohe_kr.m.theme.Collapsible", null, "phone");
+
+	function goFacPop(){
+		window.open('http://www.ftc.go.kr/info/bizinfo/communicationViewPopup.jsp?wrkr_no=8668700833', 'fac' , 'width=730, height=658, left=0, top=0, status=no, toolbar=no, menubar=no, location=no');
+	}
+    </script>
+    <script>
+$(document).ready(function(){
+	var valueDefault = $(".topLogin .top_userid").prop('value');
+
+	if (valueDefault == '' ) {
+		$(".topLogin .label_id").show();
+	} else {
+		$(".topLogin .label_id").hide();
+	}
+	$(".topLogin label").click(function(){
+		$(this).next().focus();
+	});
+	$(".topLogin input").focus(function(){
+		$(this).prev().hide();
+	});
+	$(".topLogin input").focusout(function(){
+		var value = $(this).prop('value');
+
+		if (value == '' ) {
+			$(this).prev().show();
+		} else {
+			return false;
+		}
+	});
+
+});
+    </script>
+
+
+
+</body>
+</html>
