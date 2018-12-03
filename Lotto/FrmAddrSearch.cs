@@ -176,9 +176,27 @@ namespace Lotto
             }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void btnAllData_Click(object sender, EventArgs e)
         {
+            this.dataGridView1.DataSource = null;
+            this.lst.Clear();
+            using (SqlConnection con = DBConnection.Connecting())
+            {
+                con.Open();
 
+                SqlCommand com = new SqlCommand();
+                com.Connection = con;
+                com.CommandType = CommandType.StoredProcedure;
+                com.CommandText = "GetentryStore";
+
+                var sdr = com.ExecuteReader();
+                while (sdr.Read())
+                {
+                    this.lst.Add(new Store(Int32.Parse(sdr["No"].ToString()), sdr["ShopName"].ToString(), Int32.Parse(sdr["WinningCount"].ToString()), sdr["Addr"].ToString()));
+                }
+                this.dataGridView1.DataSource = lst;
+                con.Close();
+            }
         }
     }
 }
