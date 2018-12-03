@@ -31,11 +31,26 @@ namespace Lotto
         {
             int startNum = Int32.Parse(this.cboSta.Text);
             int endNum = Int32.Parse(this.cboEnd.Text);
-            if (startNum > endNum)
+            
+            if(startNum > endNum)
             {
-                MessageBox.Show("앞자리 숫자가 뒤자리 숫자보다 클수 없습니다.");
-                return;
+                int temp;
+                temp = startNum;
+                startNum = endNum;
+                endNum = startNum;
             }
+
+            // 색상 통계, 원 그래프
+            ls.Clear();
+            CollectReset();
+            InputNum(startNum, endNum);
+            pieChart.Series[0].Points.DataBind(ls, "Name", "Num", null);
+
+            // 번호별 통계, Bar 그래프
+            ArrClear();
+            CountBarNum(startNum,endNum);
+            RemoveNum(number, numName);
+            this.colChart.Series[0].Points.DataBindXY(numName, number);
         }
 
         private void FrmColor_Load(object sender, EventArgs e)
@@ -48,17 +63,7 @@ namespace Lotto
             pieChart.Series[0].ChartType = SeriesChartType.Pie;
 
             // 컬렉션 초기화
-            for (int i = 0; i < 5; i++)
-            {
-                if (i == 0)
-                {
-                    ls.Add(new LottoStatistics(i + 1 + " 번대"));
-                }
-                else
-                {
-                    ls.Add(new LottoStatistics((i * 10) + " 번대"));
-                }
-            }
+            CollectReset();
 
             // 처음은 5회차
             num = 5;
@@ -73,11 +78,7 @@ namespace Lotto
             this.colChart.Series[0].ChartType = SeriesChartType.Bar;
 
             // 배열 초기화
-            for (int i = 0; i < 45; i++)
-            {
-                number.Add(0);
-                numName.Add((i + 1) + "번째 구");
-            }
+            ArrClear();
 
             // 해당 구 수정중.....
             // 해당 구에 대한 출현횟수
@@ -96,6 +97,33 @@ namespace Lotto
             this.colChart.Series[0].LegendText = "해당 구 출현횟수";
         }
 
+        private void CollectReset()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                if (i == 0)
+                {
+                    ls.Add(new LottoStatistics(i + 1 + " 번대"));
+                }
+                else
+                {
+                    ls.Add(new LottoStatistics((i * 10) + " 번대"));
+                }
+            }
+        }
+
+        private void ArrClear()
+        {
+            number.Clear();
+            numName.Clear();
+
+            for (int i = 0; i < 45; i++)
+            {
+                number.Add(0);
+                numName.Add((i + 1) + "번째 구");
+            }
+        }
+
         private void RemoveNum(List<int> number, List<string> numName)
         {
             for (int i = 0; i < number.Count; i++)
@@ -109,6 +137,18 @@ namespace Lotto
             }
         }
 
+        private void CountBarNum(int startNum, int endNum)
+        {
+            for (int i = startNum; i < endNum; i++)
+            {
+                CountNum(Form1.lottoList[i].Num1, number);
+                CountNum(Form1.lottoList[i].Num2, number);
+                CountNum(Form1.lottoList[i].Num3, number);
+                CountNum(Form1.lottoList[i].Num4, number);
+                CountNum(Form1.lottoList[i].Num5, number);
+                CountNum(Form1.lottoList[i].Num6, number);
+            }
+        }
         private void CountBarNum(int num)
         {
             for (int i = Form1.lottoList.Count - num; i < Form1.lottoList.Count; i++)
@@ -127,6 +167,19 @@ namespace Lotto
             number[(num1-1)]++;
         }
 
+
+        private void InputNum(int startNum, int endNum)
+        {
+            for (int i = startNum; i <= endNum; i++)
+            {
+                Switching(Form1.lottoList[i].Num1, ls);
+                Switching(Form1.lottoList[i].Num2, ls);
+                Switching(Form1.lottoList[i].Num3, ls);
+                Switching(Form1.lottoList[i].Num4, ls);
+                Switching(Form1.lottoList[i].Num5, ls);
+                Switching(Form1.lottoList[i].Num6, ls);
+            }
+        }
         private void InputNum(int num)
         {
             for (int i = Form1.lottoList.Count - num; i < Form1.lottoList.Count; i++)
