@@ -27,7 +27,7 @@ namespace Lotto
         private void FrmAddrSearch_Load(object sender, EventArgs e)
         {
             ResetDB();
-            this.uri = new Uri("http://nlotto.co.kr/store.do?method=topStoreRank&rank=1&pageGubun=L645");
+            this.uri = new Uri("https://www.dhlottery.co.kr/store.do?method=topStoreRank&rank=1&pageGubun=L645");
             web.OverrideEncoding = Encoding.Default;
             htmlDoc = web.Load(uri);
 
@@ -35,7 +35,7 @@ namespace Lotto
 
             for (int i = 1; i <= lastPageNum; i++)
             {
-                this.uri = new Uri("http://nlotto.co.kr/store.do?method=topStoreRank&rank=1&pageGubun=L645&nowPage=" + i);
+                this.uri = new Uri("https://www.dhlottery.co.kr/store.do?method=topStoreRank&rank=1&pageGubun=L645&nowPage=" + i);
                 htmlDoc = web.Load(uri);
                 Parsing(htmlDoc);
             }

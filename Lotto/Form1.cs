@@ -31,7 +31,7 @@ namespace Lotto
         private void Form1_Load(object sender, EventArgs e)
         {
             web.OverrideEncoding = Encoding.UTF8;
-            htmlDoc = web.Load(new Uri("http://nlotto.co.kr/gameResult.do?method=byWin")); //          
+            htmlDoc = web.Load(new Uri("https://www.dhlottery.co.kr/gameResult.do?method=byWin")); //          
             newTurnNum = Int32.Parse(htmlDoc.DocumentNode.SelectNodes("//body//option")[0].InnerText);   // 제일 최신 회차 번호 변수에 저장           
 
             for (int i = 1; i <= newTurnNum; i++)
@@ -99,7 +99,7 @@ namespace Lotto
                 SqlDataReader sdr = cmd.ExecuteReader();
 
                 web.OverrideEncoding = Encoding.UTF8;
-                htmlDoc = web.Load(new Uri("http://nlotto.co.kr/gameResult.do?method=byWin")); //          
+                htmlDoc = web.Load(new Uri("https://www.dhlottery.co.kr/gameResult.do?method=byWin")); //          
                 newTurnNum = Int32.Parse(htmlDoc.DocumentNode.SelectNodes("//body//option")[0].InnerText);   // 제일 최신 회차 번호 변수에 저장           
 
                 int nowNum = 0;
@@ -130,7 +130,7 @@ namespace Lotto
                 foreach (var item in unInsertedNumList)
                 {
                     UpdateProgressBar.Value += 1;
-                    htmlDoc = web.Load(new Uri("http://nlotto.co.kr/gameResult.do?method=byWin&drwNo=" + item.ToString()));
+                    htmlDoc = web.Load(new Uri("https://www.dhlottery.co.kr/gameResult.do?method=byWin&drwNo=" + item.ToString()));
                     Parsing(htmlDoc);
                 }
             }

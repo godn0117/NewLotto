@@ -40,6 +40,7 @@ namespace Lotto
 
         private void FrmColor_Load(object sender, EventArgs e)
         {
+            colChart.ChartAreas[0].AxisX.Interval = 1;
             // 원 그래프
             this.pieChart.Titles.Add("Title");
             this.pieChart.Titles[0].Text = "색상 통계";
@@ -83,16 +84,15 @@ namespace Lotto
             CountBarNum(num);
 
             // 한번도 나오지 않은 구 제외
-            RemoveNum(number,numName);
+            RemoveNum(number, numName);
 
             // 차트 표시
-            foreach (var item in number)
-            {
-                MessageBox.Show(item.ToString());
-            }
-            
+            //foreach (var item in number)
+            //{
+            //MessageBox.Show(item.ToString());
+            //}
 
-            this.colChart.Series[0].Points.DataBindXY(number, numName);
+            this.colChart.Series[0].Points.DataBindXY(numName, number);
             this.colChart.Series[0].LegendText = "해당 구 출현횟수";
         }
 
@@ -104,6 +104,7 @@ namespace Lotto
                 {
                     number.RemoveAt(i);
                     numName.RemoveAt(i);
+                    i= i - 1;
                 }
             }
         }
