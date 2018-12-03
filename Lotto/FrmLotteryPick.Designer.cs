@@ -77,6 +77,9 @@
             this.btnAuto = new System.Windows.Forms.Button();
             this.lblCount = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
+            this.lblNumbers = new System.Windows.Forms.Label();
+            this.cbxTurnNum = new System.Windows.Forms.ComboBox();
+            this.btnResist = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -644,9 +647,8 @@
             this.lblCount.AutoSize = true;
             this.lblCount.Location = new System.Drawing.Point(287, 90);
             this.lblCount.Name = "lblCount";
-            this.lblCount.Size = new System.Drawing.Size(38, 12);
+            this.lblCount.Size = new System.Drawing.Size(0, 12);
             this.lblCount.TabIndex = 2;
-            this.lblCount.Text = "label1";
             // 
             // btnClear
             // 
@@ -658,11 +660,40 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // lblNumbers
+            // 
+            this.lblNumbers.AutoSize = true;
+            this.lblNumbers.Location = new System.Drawing.Point(13, 396);
+            this.lblNumbers.Name = "lblNumbers";
+            this.lblNumbers.Size = new System.Drawing.Size(0, 12);
+            this.lblNumbers.TabIndex = 4;
+            // 
+            // cbxTurnNum
+            // 
+            this.cbxTurnNum.FormattingEnabled = true;
+            this.cbxTurnNum.Location = new System.Drawing.Point(15, 461);
+            this.cbxTurnNum.Name = "cbxTurnNum";
+            this.cbxTurnNum.Size = new System.Drawing.Size(121, 20);
+            this.cbxTurnNum.TabIndex = 5;
+            // 
+            // btnResist
+            // 
+            this.btnResist.Location = new System.Drawing.Point(151, 461);
+            this.btnResist.Name = "btnResist";
+            this.btnResist.Size = new System.Drawing.Size(75, 23);
+            this.btnResist.TabIndex = 6;
+            this.btnResist.Text = "등록";
+            this.btnResist.UseVisualStyleBackColor = true;
+            this.btnResist.Click += new System.EventHandler(this.btnResist_Click);
+            // 
             // FrmLotteryPick
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(665, 617);
+            this.Controls.Add(this.btnResist);
+            this.Controls.Add(this.cbxTurnNum);
+            this.Controls.Add(this.lblNumbers);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.lblCount);
             this.Controls.Add(this.btnAuto);
@@ -728,5 +759,8 @@
         private System.Windows.Forms.Button btnAuto;
         private System.Windows.Forms.Label lblCount;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Label lblNumbers;
+        private System.Windows.Forms.ComboBox cbxTurnNum;
+        private System.Windows.Forms.Button btnResist;
     }
 }

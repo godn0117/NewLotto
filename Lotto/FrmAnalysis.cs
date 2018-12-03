@@ -12,8 +12,9 @@ namespace Lotto
 {    
     public partial class FrmAnalysis : Form
     {
-        Users user = new Users();
-
+        internal Users user = new Users();
+        int[] numbers = new int[45];       
+        
         public FrmAnalysis()
         {
             InitializeComponent();
@@ -39,6 +40,7 @@ namespace Lotto
         {
             FrmLotteryPick flp = new FrmLotteryPick();
             flp.MdiParent = this;
+            flp.Owner = this;
             flp.Show();
         }
 

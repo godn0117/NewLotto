@@ -23,7 +23,7 @@ namespace Lotto
         private void FrmLotteryPick_Load(object sender, EventArgs e)
         {
             lblCount.Text = count.ToString();
-            
+
             foreach (Control item in groupBox1.Controls)
             {
                 string autoChk;
@@ -35,8 +35,13 @@ namespace Lotto
                     {
                         checkboxList.Add((CheckBox)item);
                     }
-                }                
-            }           
+                }
+            }
+
+            for (int i = 1; i <= Form1.newTurnNum; i++)
+            {
+                cbxTurnNum.Items.Add(i);
+            }
         }
 
         private void CheckCount(object sender)
@@ -62,13 +67,15 @@ namespace Lotto
                 MessageBox.Show("6까지만 선택 가능 합니다");
                 s.Checked = false;
             }
+
+            ShowLbl();
         }
 
         #region CheckedEvent
         private void chk1_CheckedChanged(object sender, EventArgs e)
         {
             CheckCount(sender);
-            RefrainChange(sender);
+            RefrainChange(sender);            
         }
 
         private void chk2_CheckedChanged(object sender, EventArgs e)
@@ -336,7 +343,7 @@ namespace Lotto
         }
         #endregion
 
-        private void btnAuto_Click(object sender, EventArgs e)
+        private void btnAuto_Click(object sender, EventArgs e) // 자동 버튼 클릭 이벤트 처리
         {
             autoCount = 6 - count;
 
@@ -350,7 +357,7 @@ namespace Lotto
                     {
                         CheckBox c = (CheckBox)item;
                         if (c.Checked)
-                        {
+                        {                            
                             i--;
                         }
                         else
@@ -362,12 +369,39 @@ namespace Lotto
             }            
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void ShowLbl() // 선택한 번호들을 라벨에 보여주는 메서드
+        {
+            lblNumbers.Text = "";
+
+            foreach (CheckBox item in groupBox1.Controls)
+            {
+                if (item.Checked)
+                {
+                    lblNumbers.Text += " " + item.Text;
+                }
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e) // 지우기 버튼 클릭 이벤트 처리
         {
             foreach (CheckBox item in checkboxList)
             {
                 item.Checked = false;
             }            
+        }
+
+        private void btnResist_Click(object sender, EventArgs e)
+        {
+            UserNumbers uNumbers = new UserNumbers();
+
+            FrmAnalysis fal = (FrmAnalysis)Owner;
+
+            uNumbers.Id = fal.user.Id;
+            //uNumbers
+            //using (resource)
+            //{
+
+            //}
         }
     }
 }
