@@ -72,7 +72,6 @@ namespace Lotto
                 con.Close();
             }
             this.dataGridView1.DataSource = lst;
-
         }
 
         private void ResetDB()
@@ -197,6 +196,13 @@ namespace Lotto
                 this.dataGridView1.DataSource = lst;
                 con.Close();
             }
+        }
+
+        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string addrmap = dataGridView1.SelectedRows[0].Cells[3].Value.ToString();
+            this.uri = new Uri("https://www.google.com/maps/place/"+addrmap);
+            webBrowser1.Url = uri;
         }
     }
 }
