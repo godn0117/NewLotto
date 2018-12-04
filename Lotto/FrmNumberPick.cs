@@ -19,7 +19,7 @@ namespace Lotto
         }
 
         // 추천해주는 로또 번호
-        List<Lotto> lottos;
+        List<LottoRecom> lottos;
         // 확률만큼 담을 번호 컬렉션
         List<int> num = new List<int>();
         // 확률을 계산해 주기 위한 컬렉션
@@ -39,7 +39,7 @@ namespace Lotto
                 lst.Add(new LoTNum { Name = (i + 1)});
             }
 
-            lottos = new List<Lotto>();
+            lottos = new List<LottoRecom>();
         }
 
         private void btnRecom_Click(object sender, EventArgs e)
@@ -90,7 +90,8 @@ namespace Lotto
             }
             // 정렬
             Sort(selNum);
-            lottos.Add(new Lotto { Num1 = selNum[0], Num2 = selNum[1], Num3 = selNum[2], Num4 = selNum[3], Num5 = selNum[4], Num6 = selNum[5] });
+
+            lottos.Add(new LottoRecom { Num1 = selNum[0], Num2 = selNum[1], Num3 = selNum[2], Num4 = selNum[3], Num5 = selNum[4], Num6 = selNum[5] });
         }
 
         private void Sort(int[] selNum)
