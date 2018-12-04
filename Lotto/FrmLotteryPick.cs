@@ -369,5 +369,17 @@ namespace Lotto
                 item.Checked = false;
             }            
         }
+
+        FrmNumberPick fnp;
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (fnp != null)
+            {
+                fnp.Focus();
+                return;
+            }
+            fnp = new FrmNumberPick();
+            fnp.Show();
+        }
     }
 }
