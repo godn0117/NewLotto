@@ -127,7 +127,7 @@
             this.Controls.Add(this.cbxTurnNum);
             this.Controls.Add(this.lblCurrentLottoNum);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "ㄱ";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.LottoGridView)).EndInit();
             this.ResumeLayout(false);

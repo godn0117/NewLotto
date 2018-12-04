@@ -64,7 +64,7 @@ namespace Lotto
 
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
-            frmPreference fpf = new frmPreference();
+            frmPreference fpf = new frmPreference(user);
             fpf.MdiParent = this;
             fpf.Show();
         }
