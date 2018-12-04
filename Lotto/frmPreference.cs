@@ -21,6 +21,12 @@ namespace Lotto
         {
             InitializeComponent();
         }
+        
+        FrmNumberPick fnp;
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
 
         public frmPreference(Users userInfo) : this()
         {
@@ -36,6 +42,7 @@ namespace Lotto
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.StoredProcedure;
+<<<<<<< HEAD
                 cmd.CommandText = "SelectUserNumbersById";
 
                 cmd.Parameters.AddWithValue("id", user.Id);
@@ -93,6 +100,9 @@ namespace Lotto
                 //{
                     
                 //}
+=======
+                cmd.CommandText = "SelectUserNumbers";
+>>>>>>> YG
             }
         }
     }
