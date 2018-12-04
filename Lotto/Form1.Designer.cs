@@ -95,6 +95,7 @@
             this.LottoGridView.RowTemplate.Height = 23;
             this.LottoGridView.Size = new System.Drawing.Size(879, 405);
             this.LottoGridView.TabIndex = 5;
+            this.LottoGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.LottoGridView_DataError);
             // 
             // UpdateProgressBar
             // 

@@ -63,7 +63,12 @@ namespace Lotto
             get { return num6; }
             set { num6 = value; }
         }
+<<<<<<< HEAD
 
+=======
+       
+        private string id;
+>>>>>>> cd4861abc14ab5b1fc5717604df247d083cc960e
 
         public UserNumbers(string turnnumber, int num1, int num2, int num3, int num4, int num5, int num6)
         {
@@ -74,6 +79,19 @@ namespace Lotto
             this.num4 = num4;
             this.num5 = num5;
             this.num6 = num6;
+        }
+
+        public List<int> MakeList()
+        {
+            List<int> list = new List<int>();
+            list.Add(num1);
+            list.Add(num2);
+            list.Add(num3);
+            list.Add(num4);
+            list.Add(num5);
+            list.Add(num6);
+
+            return list;
         }
     }
 }

@@ -12,8 +12,9 @@ namespace Lotto
 {    
     public partial class FrmAnalysis : Form
     {
-        Users user = new Users();
-
+        internal Users user = new Users();
+        int[] numbers = new int[45];       
+        
         public FrmAnalysis()
         {
             InitializeComponent();
@@ -37,7 +38,7 @@ namespace Lotto
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            FrmLotteryPick flp = new FrmLotteryPick();
+            FrmLotteryPick flp = new FrmLotteryPick(user);
             flp.MdiParent = this;
             flp.Show();
         }
