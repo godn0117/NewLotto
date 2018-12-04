@@ -43,7 +43,7 @@ namespace Lotto
 
                 while (sdr.Read())
                 {
-                    this.uNlst.Add(new UserNumbers(Int32.Parse(sdr["turnnumber"].ToString()) + " 회차", Int32.Parse(sdr["num1"].ToString()), Int32.Parse(sdr["num2"].ToString()), Int32.Parse(sdr["num3"].ToString()), Int32.Parse(sdr["num4"].ToString()), Int32.Parse(sdr["num5"].ToString()), Int32.Parse(sdr["num6"].ToString())));
+                    this.uNlst.Add(new UserNumbers(Int32.Parse(sdr["turnnumber"].ToString()), Int32.Parse(sdr["num1"].ToString()), Int32.Parse(sdr["num2"].ToString()), Int32.Parse(sdr["num3"].ToString()), Int32.Parse(sdr["num4"].ToString()), Int32.Parse(sdr["num5"].ToString()), Int32.Parse(sdr["num6"].ToString())));
                 }
                 this.dataGridView1.DataSource = uNlst;
                 con.Close();
@@ -71,7 +71,7 @@ namespace Lotto
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "SelectLottoByTurnnumber";
 
-                    cmd.Parameters.AddWithValue("turnnumber", Int32.Parse(uNlst[i].Turnnumber.Replace(" 회차", "").Trim()));
+                    cmd.Parameters.AddWithValue("turnnumber", Int32.Parse(uNlst[i].Turnnumber.ToString()));
                     SqlDataReader sdr = cmd.ExecuteReader();
 
                     while (sdr.Read())

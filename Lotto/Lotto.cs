@@ -35,7 +35,6 @@ namespace Lotto
             this.bonusNum = bonusNum;
         }
 
-<<<<<<< HEAD
         public Lotto(int num1, int num2, int num3, int num4, int num5, int num6, int bonusNum)
         {
             this.num1 = num1;
@@ -47,8 +46,6 @@ namespace Lotto
             this.bonusNum = bonusNum;
         }
 
-       
-=======
         public List<int> MakeList()
         {
             List<int> list = new List<int>();
@@ -62,7 +59,7 @@ namespace Lotto
 
             return list;
         }
->>>>>>> cd4861abc14ab5b1fc5717604df247d083cc960e
+
 
         #region Property
         public int TurnNumber

@@ -8,9 +8,17 @@ namespace Lotto
 {
     class UserNumbers
     {
-        private string turnnumber;
+        private int logNum;
 
-        public string Turnnumber
+        public int LogNum
+        {
+            get { return logNum; }
+            set { logNum = value; }
+        }
+
+        private int turnnumber;
+
+        public int Turnnumber
         {
             get { return turnnumber; }
             set { turnnumber = value; }
@@ -63,14 +71,22 @@ namespace Lotto
             get { return num6; }
             set { num6 = value; }
         }
-<<<<<<< HEAD
 
-=======
-       
         private string id;
->>>>>>> cd4861abc14ab5b1fc5717604df247d083cc960e
 
-        public UserNumbers(string turnnumber, int num1, int num2, int num3, int num4, int num5, int num6)
+        public string Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
+
+        public UserNumbers()
+        {
+
+        }
+
+        public UserNumbers(int turnnumber, int num1, int num2, int num3, int num4, int num5, int num6)
         {
             this.turnnumber = turnnumber;
             this.num1 = num1;
