@@ -15,7 +15,7 @@ namespace Lotto
     {
         List<CheckBox> checkboxList = new List<CheckBox>();
         List<UserNumbers> userNumbersList = new List<UserNumbers>();
-        
+
         int count = 0;
         int autoCount = 6;
         int[] selectedNums = new int[6];
@@ -94,270 +94,6 @@ namespace Lotto
 
         #region CheckedEvent
         private void chk1_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk2_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk3_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk4_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk5_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk6_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk7_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk8_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk9_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk10_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk11_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk12_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk13_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk14_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk15_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk16_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk17_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk18_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk19_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk20_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk21_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk22_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk23_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk24_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk25_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk26_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk27_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk28_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk29_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk30_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk31_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk32_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk33_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk34_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk35_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk36_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk37_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk38_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk39_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk40_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk41_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk42_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk43_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk44_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckCount(sender);
-            RefrainChange(sender);
-        }
-
-        private void chk45_CheckedChanged(object sender, EventArgs e)
         {
             CheckCount(sender);
             RefrainChange(sender);
@@ -504,6 +240,7 @@ namespace Lotto
                 while (sdr.Read())
                 {
                     UserNumbers userNumbers = new UserNumbers();
+                    userNumbers.LogNum = int.Parse(sdr["logNum"].ToString());
                     userNumbers.Turnnumber = int.Parse(sdr["turnnumber"].ToString());
                     userNumbers.Num1 = int.Parse(sdr["num1"].ToString());
                     userNumbers.Num2 = int.Parse(sdr["num2"].ToString());
@@ -518,14 +255,132 @@ namespace Lotto
 
                 dataGridView1.DataSource = userNumbersList;
 
-                dataGridView1.Columns[0].HeaderText = "회차";
-                dataGridView1.Columns[1].HeaderText = "1구";
-                dataGridView1.Columns[2].HeaderText = "2구";
-                dataGridView1.Columns[3].HeaderText = "3구";
-                dataGridView1.Columns[4].HeaderText = "4구";
-                dataGridView1.Columns[5].HeaderText = "5구";
-                dataGridView1.Columns[6].HeaderText = "6구";
+                dataGridView1.Columns[0].HeaderText = "번호";
+                dataGridView1.Columns[1].HeaderText = "회차";
+                dataGridView1.Columns[2].HeaderText = "1구";
+                dataGridView1.Columns[3].HeaderText = "2구";
+                dataGridView1.Columns[4].HeaderText = "3구";
+                dataGridView1.Columns[5].HeaderText = "4구";
+                dataGridView1.Columns[6].HeaderText = "5구";
+                dataGridView1.Columns[7].HeaderText = "6구";                
             }
+        }
+
+        public void CompareToLottoNum()
+        {
+            int[] countHit; 
+            int[] countWin = { 0, 0, 0, 0, 0, };
+
+            foreach (UserNumbers userLottoItem in userNumbersList)
+            {
+                countHit = new int[] { 0, 0, 0, 0, 0, 0, 0 };
+
+                foreach (Lotto lottoItem in Form1.lottoList)
+                {
+                    if (userLottoItem.Turnnumber == lottoItem.TurnNumber)
+                    {
+                        int i = 0;
+
+                        foreach (int lottoNum in lottoItem.MakeList())
+                        {
+                            foreach (int userLottoNum in userLottoItem.MakeList())
+                            {
+                                if (userLottoNum == lottoNum)
+                                {
+                                    countHit[i] = 1;
+                                }
+                            }
+                            i++;
+                        }                        
+                    }
+                }
+                CalculateWin(countHit, countWin, userLottoItem);
+            }
+        }
+
+        private void CalculateWin(int[] countHit, int[] countWin, UserNumbers userLottoItem)// 몇등 담첨됬는지 계산해주는 메서드
+        {
+            
+            int sum = 0;
+            for (int i = 0; i < countHit.Length - 1; i++)
+            {
+                sum += countHit[i];
+            }
+
+            int winNum = 0;
+
+            if (sum == 6) // 1등 당첨
+            {
+                countWin[1 - 1] += 1;
+                winNum = 1;
+            }
+            else if (sum == 5 && countHit[7 - 1] == 1) // 2등 당첨
+            {
+                countWin[2 - 1] += 1;
+                winNum = 2;
+            }
+            else if (sum == 4) // 4등 당첨
+            {
+                countWin[4 - 1] += 1;
+                winNum = 3;
+            }
+            else if (sum == 5) // 3등 당첨
+            {
+                countWin[3 - 1] += 1;
+                winNum = 4;
+            }
+            else if (sum == 3) // 5등 당첨
+            {
+                countWin[5 - 1] += 1;
+                winNum = 5;
+            }
+
+            if (winNum == 1)
+            {
+                ColorGridView(Color.Red, userLottoItem);
+            }
+            else if (winNum == 2)
+            {
+                ColorGridView(Color.Blue, userLottoItem);
+            }
+            else if (winNum == 3)
+            {
+                ColorGridView(Color.Green, userLottoItem);
+            }
+            else if (winNum == 4)
+            {
+                ColorGridView(Color.Orange, userLottoItem);
+            }
+            else if (winNum == 5)
+            {
+                ColorGridView(Color.Yellow, userLottoItem);
+            }
+
+            lblHitNum.Text = "";
+
+            for (int i = 0; i < countWin.Length; i++)
+            {
+                lblHitNum.Text += (i + 1) + "등 : " + countWin[i] + "\r\n";
+            }
+        }
+
+        private void ColorGridView(Color color, UserNumbers userLottoItem)
+        {
+            foreach (DataGridViewRow item in dataGridView1.Rows)
+            {
+                if (int.Parse(item.Cells[0].Value.ToString()) == userLottoItem.LogNum)
+                {
+                    foreach (DataGridViewCell item2 in item.Cells)
+                    {
+                        item2.Style.BackColor = color;
+                    }
+                }
+            }
+        }
+
+        private void btnCalculate_Click(object sender, EventArgs e)
+        {
+            CompareToLottoNum();
         }
     }
 }

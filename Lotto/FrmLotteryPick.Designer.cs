@@ -82,6 +82,13 @@
             this.btnResist = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblHitNum = new System.Windows.Forms.Label();
+            this.btnCalculate = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -149,7 +156,7 @@
             this.chk45.TabIndex = 44;
             this.chk45.Text = "45";
             this.chk45.UseVisualStyleBackColor = true;
-            this.chk45.CheckedChanged += new System.EventHandler(this.chk45_CheckedChanged);
+            this.chk45.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk44
             // 
@@ -160,7 +167,7 @@
             this.chk44.TabIndex = 43;
             this.chk44.Text = "44";
             this.chk44.UseVisualStyleBackColor = true;
-            this.chk44.CheckedChanged += new System.EventHandler(this.chk44_CheckedChanged);
+            this.chk44.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk43
             // 
@@ -171,7 +178,7 @@
             this.chk43.TabIndex = 42;
             this.chk43.Text = "43";
             this.chk43.UseVisualStyleBackColor = true;
-            this.chk43.CheckedChanged += new System.EventHandler(this.chk43_CheckedChanged);
+            this.chk43.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk42
             // 
@@ -182,7 +189,7 @@
             this.chk42.TabIndex = 41;
             this.chk42.Text = "42";
             this.chk42.UseVisualStyleBackColor = true;
-            this.chk42.CheckedChanged += new System.EventHandler(this.chk42_CheckedChanged);
+            this.chk42.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk41
             // 
@@ -193,7 +200,7 @@
             this.chk41.TabIndex = 40;
             this.chk41.Text = "41";
             this.chk41.UseVisualStyleBackColor = true;
-            this.chk41.CheckedChanged += new System.EventHandler(this.chk41_CheckedChanged);
+            this.chk41.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk40
             // 
@@ -204,7 +211,7 @@
             this.chk40.TabIndex = 39;
             this.chk40.Text = "40";
             this.chk40.UseVisualStyleBackColor = true;
-            this.chk40.CheckedChanged += new System.EventHandler(this.chk40_CheckedChanged);
+            this.chk40.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk39
             // 
@@ -215,7 +222,7 @@
             this.chk39.TabIndex = 38;
             this.chk39.Text = "39";
             this.chk39.UseVisualStyleBackColor = true;
-            this.chk39.CheckedChanged += new System.EventHandler(this.chk39_CheckedChanged);
+            this.chk39.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk38
             // 
@@ -226,7 +233,7 @@
             this.chk38.TabIndex = 37;
             this.chk38.Text = "38";
             this.chk38.UseVisualStyleBackColor = true;
-            this.chk38.CheckedChanged += new System.EventHandler(this.chk38_CheckedChanged);
+            this.chk38.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk37
             // 
@@ -237,7 +244,7 @@
             this.chk37.TabIndex = 36;
             this.chk37.Text = "37";
             this.chk37.UseVisualStyleBackColor = true;
-            this.chk37.CheckedChanged += new System.EventHandler(this.chk37_CheckedChanged);
+            this.chk37.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk36
             // 
@@ -248,7 +255,7 @@
             this.chk36.TabIndex = 35;
             this.chk36.Text = "36";
             this.chk36.UseVisualStyleBackColor = true;
-            this.chk36.CheckedChanged += new System.EventHandler(this.chk36_CheckedChanged);
+            this.chk36.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk35
             // 
@@ -259,7 +266,7 @@
             this.chk35.TabIndex = 34;
             this.chk35.Text = "35";
             this.chk35.UseVisualStyleBackColor = true;
-            this.chk35.CheckedChanged += new System.EventHandler(this.chk35_CheckedChanged);
+            this.chk35.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk34
             // 
@@ -270,7 +277,7 @@
             this.chk34.TabIndex = 33;
             this.chk34.Text = "34";
             this.chk34.UseVisualStyleBackColor = true;
-            this.chk34.CheckedChanged += new System.EventHandler(this.chk34_CheckedChanged);
+            this.chk34.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk33
             // 
@@ -281,7 +288,7 @@
             this.chk33.TabIndex = 32;
             this.chk33.Text = "33";
             this.chk33.UseVisualStyleBackColor = true;
-            this.chk33.CheckedChanged += new System.EventHandler(this.chk33_CheckedChanged);
+            this.chk33.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk32
             // 
@@ -292,7 +299,7 @@
             this.chk32.TabIndex = 31;
             this.chk32.Text = "32";
             this.chk32.UseVisualStyleBackColor = true;
-            this.chk32.CheckedChanged += new System.EventHandler(this.chk32_CheckedChanged);
+            this.chk32.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk31
             // 
@@ -303,7 +310,7 @@
             this.chk31.TabIndex = 30;
             this.chk31.Text = "31";
             this.chk31.UseVisualStyleBackColor = true;
-            this.chk31.CheckedChanged += new System.EventHandler(this.chk31_CheckedChanged);
+            this.chk31.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk30
             // 
@@ -314,7 +321,7 @@
             this.chk30.TabIndex = 29;
             this.chk30.Text = "30";
             this.chk30.UseVisualStyleBackColor = true;
-            this.chk30.CheckedChanged += new System.EventHandler(this.chk30_CheckedChanged);
+            this.chk30.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk29
             // 
@@ -325,7 +332,7 @@
             this.chk29.TabIndex = 28;
             this.chk29.Text = "29";
             this.chk29.UseVisualStyleBackColor = true;
-            this.chk29.CheckedChanged += new System.EventHandler(this.chk29_CheckedChanged);
+            this.chk29.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk28
             // 
@@ -336,7 +343,7 @@
             this.chk28.TabIndex = 27;
             this.chk28.Text = "28";
             this.chk28.UseVisualStyleBackColor = true;
-            this.chk28.CheckedChanged += new System.EventHandler(this.chk28_CheckedChanged);
+            this.chk28.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk27
             // 
@@ -347,7 +354,7 @@
             this.chk27.TabIndex = 26;
             this.chk27.Text = "27";
             this.chk27.UseVisualStyleBackColor = true;
-            this.chk27.CheckedChanged += new System.EventHandler(this.chk27_CheckedChanged);
+            this.chk27.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk26
             // 
@@ -358,7 +365,7 @@
             this.chk26.TabIndex = 25;
             this.chk26.Text = "26";
             this.chk26.UseVisualStyleBackColor = true;
-            this.chk26.CheckedChanged += new System.EventHandler(this.chk26_CheckedChanged);
+            this.chk26.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk25
             // 
@@ -369,7 +376,7 @@
             this.chk25.TabIndex = 24;
             this.chk25.Text = "25";
             this.chk25.UseVisualStyleBackColor = true;
-            this.chk25.CheckedChanged += new System.EventHandler(this.chk25_CheckedChanged);
+            this.chk25.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk24
             // 
@@ -380,7 +387,7 @@
             this.chk24.TabIndex = 23;
             this.chk24.Text = "24";
             this.chk24.UseVisualStyleBackColor = true;
-            this.chk24.CheckedChanged += new System.EventHandler(this.chk24_CheckedChanged);
+            this.chk24.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk23
             // 
@@ -391,7 +398,7 @@
             this.chk23.TabIndex = 22;
             this.chk23.Text = "23";
             this.chk23.UseVisualStyleBackColor = true;
-            this.chk23.CheckedChanged += new System.EventHandler(this.chk23_CheckedChanged);
+            this.chk23.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk22
             // 
@@ -402,7 +409,7 @@
             this.chk22.TabIndex = 21;
             this.chk22.Text = "22";
             this.chk22.UseVisualStyleBackColor = true;
-            this.chk22.CheckedChanged += new System.EventHandler(this.chk22_CheckedChanged);
+            this.chk22.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk21
             // 
@@ -413,7 +420,7 @@
             this.chk21.TabIndex = 20;
             this.chk21.Text = "21";
             this.chk21.UseVisualStyleBackColor = true;
-            this.chk21.CheckedChanged += new System.EventHandler(this.chk21_CheckedChanged);
+            this.chk21.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk20
             // 
@@ -424,7 +431,7 @@
             this.chk20.TabIndex = 19;
             this.chk20.Text = "20";
             this.chk20.UseVisualStyleBackColor = true;
-            this.chk20.CheckedChanged += new System.EventHandler(this.chk20_CheckedChanged);
+            this.chk20.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk19
             // 
@@ -435,7 +442,7 @@
             this.chk19.TabIndex = 18;
             this.chk19.Text = "19";
             this.chk19.UseVisualStyleBackColor = true;
-            this.chk19.CheckedChanged += new System.EventHandler(this.chk19_CheckedChanged);
+            this.chk19.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk18
             // 
@@ -446,7 +453,7 @@
             this.chk18.TabIndex = 17;
             this.chk18.Text = "18";
             this.chk18.UseVisualStyleBackColor = true;
-            this.chk18.CheckedChanged += new System.EventHandler(this.chk18_CheckedChanged);
+            this.chk18.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk17
             // 
@@ -457,7 +464,7 @@
             this.chk17.TabIndex = 16;
             this.chk17.Text = "17";
             this.chk17.UseVisualStyleBackColor = true;
-            this.chk17.CheckedChanged += new System.EventHandler(this.chk17_CheckedChanged);
+            this.chk17.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk16
             // 
@@ -468,7 +475,7 @@
             this.chk16.TabIndex = 15;
             this.chk16.Text = "16";
             this.chk16.UseVisualStyleBackColor = true;
-            this.chk16.CheckedChanged += new System.EventHandler(this.chk16_CheckedChanged);
+            this.chk16.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk15
             // 
@@ -479,7 +486,7 @@
             this.chk15.TabIndex = 14;
             this.chk15.Text = "15";
             this.chk15.UseVisualStyleBackColor = true;
-            this.chk15.CheckedChanged += new System.EventHandler(this.chk15_CheckedChanged);
+            this.chk15.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk14
             // 
@@ -490,7 +497,7 @@
             this.chk14.TabIndex = 13;
             this.chk14.Text = "14";
             this.chk14.UseVisualStyleBackColor = true;
-            this.chk14.CheckedChanged += new System.EventHandler(this.chk14_CheckedChanged);
+            this.chk14.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk13
             // 
@@ -501,7 +508,7 @@
             this.chk13.TabIndex = 12;
             this.chk13.Text = "13";
             this.chk13.UseVisualStyleBackColor = true;
-            this.chk13.CheckedChanged += new System.EventHandler(this.chk13_CheckedChanged);
+            this.chk13.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk12
             // 
@@ -512,7 +519,7 @@
             this.chk12.TabIndex = 11;
             this.chk12.Text = "12";
             this.chk12.UseVisualStyleBackColor = true;
-            this.chk12.CheckedChanged += new System.EventHandler(this.chk12_CheckedChanged);
+            this.chk12.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk11
             // 
@@ -523,7 +530,7 @@
             this.chk11.TabIndex = 10;
             this.chk11.Text = "11";
             this.chk11.UseVisualStyleBackColor = true;
-            this.chk11.CheckedChanged += new System.EventHandler(this.chk11_CheckedChanged);
+            this.chk11.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk10
             // 
@@ -534,7 +541,7 @@
             this.chk10.TabIndex = 9;
             this.chk10.Text = "10";
             this.chk10.UseVisualStyleBackColor = true;
-            this.chk10.CheckedChanged += new System.EventHandler(this.chk10_CheckedChanged);
+            this.chk10.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk9
             // 
@@ -545,7 +552,7 @@
             this.chk9.TabIndex = 8;
             this.chk9.Text = "9";
             this.chk9.UseVisualStyleBackColor = true;
-            this.chk9.CheckedChanged += new System.EventHandler(this.chk9_CheckedChanged);
+            this.chk9.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk8
             // 
@@ -556,7 +563,7 @@
             this.chk8.TabIndex = 7;
             this.chk8.Text = "8";
             this.chk8.UseVisualStyleBackColor = true;
-            this.chk8.CheckedChanged += new System.EventHandler(this.chk8_CheckedChanged);
+            this.chk8.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk7
             // 
@@ -567,7 +574,7 @@
             this.chk7.TabIndex = 6;
             this.chk7.Text = "7";
             this.chk7.UseVisualStyleBackColor = true;
-            this.chk7.CheckedChanged += new System.EventHandler(this.chk7_CheckedChanged);
+            this.chk7.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk6
             // 
@@ -578,7 +585,7 @@
             this.chk6.TabIndex = 5;
             this.chk6.Text = "6";
             this.chk6.UseVisualStyleBackColor = true;
-            this.chk6.CheckedChanged += new System.EventHandler(this.chk6_CheckedChanged);
+            this.chk6.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk5
             // 
@@ -589,7 +596,7 @@
             this.chk5.TabIndex = 4;
             this.chk5.Text = "5";
             this.chk5.UseVisualStyleBackColor = true;
-            this.chk5.CheckedChanged += new System.EventHandler(this.chk5_CheckedChanged);
+            this.chk5.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk4
             // 
@@ -600,7 +607,7 @@
             this.chk4.TabIndex = 3;
             this.chk4.Text = "4";
             this.chk4.UseVisualStyleBackColor = true;
-            this.chk4.CheckedChanged += new System.EventHandler(this.chk4_CheckedChanged);
+            this.chk4.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk3
             // 
@@ -611,7 +618,7 @@
             this.chk3.TabIndex = 2;
             this.chk3.Text = "3";
             this.chk3.UseVisualStyleBackColor = true;
-            this.chk3.CheckedChanged += new System.EventHandler(this.chk3_CheckedChanged);
+            this.chk3.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk2
             // 
@@ -622,7 +629,7 @@
             this.chk2.TabIndex = 1;
             this.chk2.Text = "2";
             this.chk2.UseVisualStyleBackColor = true;
-            this.chk2.CheckedChanged += new System.EventHandler(this.chk2_CheckedChanged);
+            this.chk2.CheckedChanged += new System.EventHandler(this.chk1_CheckedChanged);
             // 
             // chk1
             // 
@@ -709,11 +716,88 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "이 때까지의 나의 번호들";
             // 
+            // lblHitNum
+            // 
+            this.lblHitNum.AutoSize = true;
+            this.lblHitNum.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblHitNum.Location = new System.Drawing.Point(382, 345);
+            this.lblHitNum.Name = "lblHitNum";
+            this.lblHitNum.Size = new System.Drawing.Size(122, 19);
+            this.lblHitNum.TabIndex = 9;
+            this.lblHitNum.Text = "당첨된 횟수 :";
+            // 
+            // btnCalculate
+            // 
+            this.btnCalculate.Location = new System.Drawing.Point(889, 373);
+            this.btnCalculate.Name = "btnCalculate";
+            this.btnCalculate.Size = new System.Drawing.Size(75, 23);
+            this.btnCalculate.TabIndex = 12;
+            this.btnCalculate.Text = "계산";
+            this.btnCalculate.UseVisualStyleBackColor = true;
+            this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.Location = new System.Drawing.Point(870, 416);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(94, 19);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "빨강 : 1등";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label3.Location = new System.Drawing.Point(870, 449);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(94, 19);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "파랑 : 1등";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label4.Location = new System.Drawing.Point(870, 480);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(94, 19);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "초록 : 1등";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label5.Location = new System.Drawing.Point(870, 514);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(94, 19);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "주황 : 1등";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label6.Location = new System.Drawing.Point(870, 548);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(94, 19);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "노랑 : 1등";
+            // 
             // FrmLotteryPick
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(987, 498);
+            this.ClientSize = new System.Drawing.Size(987, 667);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnCalculate);
+            this.Controls.Add(this.lblHitNum);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnResist);
@@ -790,5 +874,12 @@
         private System.Windows.Forms.Button btnResist;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblHitNum;
+        private System.Windows.Forms.Button btnCalculate;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }

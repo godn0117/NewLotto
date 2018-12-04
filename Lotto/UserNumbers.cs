@@ -8,6 +8,14 @@ namespace Lotto
 {
     class UserNumbers
     {
+        private int logNum;
+
+        public int LogNum
+        {
+            get { return logNum; }
+            set { logNum = value; }
+        }
+
         private int turnnumber;
 
         public int Turnnumber
@@ -70,6 +78,19 @@ namespace Lotto
         {
             get { return id; }
             set { id = value; }
+        }
+
+        public List<int> MakeList()
+        {
+            List<int> list = new List<int>();
+            list.Add(num1);
+            list.Add(num2);
+            list.Add(num3);
+            list.Add(num4);
+            list.Add(num5);
+            list.Add(num6);
+
+            return list;
         }
     }
 }

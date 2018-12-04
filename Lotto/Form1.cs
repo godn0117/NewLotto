@@ -17,7 +17,7 @@ namespace Lotto
 {
     public partial class Form1 : Form
     {
-        List<Lotto> lottoList = new List<Lotto>();
+        internal static List<Lotto> lottoList = new List<Lotto>();
         List<int> unInsertedNumList = new List<int>();
         HtmlWeb web = new HtmlWeb(); // 
         HtmlAgilityPack.HtmlDocument htmlDoc;
@@ -219,9 +219,6 @@ namespace Lotto
             LottoGridView.Columns[5].HeaderText = "5구";
             LottoGridView.Columns[6].HeaderText = "6구";
             LottoGridView.Columns[7].HeaderText = "보너스구";
-
-            //LottoGridView.Sort(LottoGridView.Columns[0], ListSortDirection.Ascending);
-            //LottoGridView.Columns["TurnNumber"].SortMode = DataGridViewColumnSortMode.Automatic;
         }
 
         private void btnSearch_Click(object sender, EventArgs e) // 조회 버튼 클릭시 이벤트 처리 메소드
