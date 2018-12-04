@@ -754,7 +754,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(94, 19);
             this.label3.TabIndex = 14;
-            this.label3.Text = "파랑 : 1등";
+            this.label3.Text = "파랑 : 2등";
             // 
             // label4
             // 
@@ -764,7 +764,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(94, 19);
             this.label4.TabIndex = 15;
-            this.label4.Text = "초록 : 1등";
+            this.label4.Text = "초록 : 3등";
             // 
             // label5
             // 
@@ -774,7 +774,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(94, 19);
             this.label5.TabIndex = 16;
-            this.label5.Text = "주황 : 1등";
+            this.label5.Text = "주황 : 4등";
             // 
             // label6
             // 
@@ -784,7 +784,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(94, 19);
             this.label6.TabIndex = 17;
-            this.label6.Text = "노랑 : 1등";
+            this.label6.Text = "노랑 : 5등";
             // 
             // FrmLotteryPick
             // 

@@ -88,11 +88,11 @@ namespace Lotto
         {
             foreach (var item in uNlst)
             {
-                int[] list1 = new string[] { item.Num1.ToString(), item.Num2.ToString(), item.Num3.ToString(), item.Num4.ToString(), item.Num5.ToString(), item.Num6.ToString() };
-                foreach (var item2 in lNlst)
-                {
+                //int[] list1 = new string[] { item.Num1.ToString(), item.Num2.ToString(), item.Num3.ToString(), item.Num4.ToString(), item.Num5.ToString(), item.Num6.ToString() };
+                //foreach (var item2 in lNlst)
+                //{
                     
-                }
+                //}
             }
         }
     }
