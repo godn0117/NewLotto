@@ -80,7 +80,10 @@
             this.lblNumbers = new System.Windows.Forms.Label();
             this.cbxTurnNum = new System.Windows.Forms.ComboBox();
             this.btnResist = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -671,14 +674,15 @@
             // cbxTurnNum
             // 
             this.cbxTurnNum.FormattingEnabled = true;
-            this.cbxTurnNum.Location = new System.Drawing.Point(15, 461);
+            this.cbxTurnNum.Location = new System.Drawing.Point(762, 344);
             this.cbxTurnNum.Name = "cbxTurnNum";
             this.cbxTurnNum.Size = new System.Drawing.Size(121, 20);
             this.cbxTurnNum.TabIndex = 5;
             // 
             // btnResist
             // 
-            this.btnResist.Location = new System.Drawing.Point(151, 461);
+            this.btnResist.Enabled = false;
+            this.btnResist.Location = new System.Drawing.Point(889, 344);
             this.btnResist.Name = "btnResist";
             this.btnResist.Size = new System.Drawing.Size(75, 23);
             this.btnResist.TabIndex = 6;
@@ -686,11 +690,32 @@
             this.btnResist.UseVisualStyleBackColor = true;
             this.btnResist.Click += new System.EventHandler(this.btnResist_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(386, 54);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.Size = new System.Drawing.Size(578, 284);
+            this.dataGridView1.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.Location = new System.Drawing.Point(561, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(217, 19);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "이 때까지의 나의 번호들";
+            // 
             // FrmLotteryPick
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(665, 617);
+            this.ClientSize = new System.Drawing.Size(987, 498);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnResist);
             this.Controls.Add(this.cbxTurnNum);
             this.Controls.Add(this.lblNumbers);
@@ -703,6 +728,7 @@
             this.Load += new System.EventHandler(this.FrmLotteryPick_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -762,5 +788,7 @@
         private System.Windows.Forms.Label lblNumbers;
         private System.Windows.Forms.ComboBox cbxTurnNum;
         private System.Windows.Forms.Button btnResist;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label1;
     }
 }

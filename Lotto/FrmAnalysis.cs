@@ -38,9 +38,8 @@ namespace Lotto
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            FrmLotteryPick flp = new FrmLotteryPick();
+            FrmLotteryPick flp = new FrmLotteryPick(user);
             flp.MdiParent = this;
-            flp.Owner = this;
             flp.Show();
         }
 

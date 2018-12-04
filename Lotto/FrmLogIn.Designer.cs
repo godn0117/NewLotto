@@ -101,6 +101,7 @@
             this.Controls.Add(this.btnLogIn);
             this.Name = "FrmLogIn";
             this.Text = "LogIn";
+            this.Load += new System.EventHandler(this.FrmLogIn_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

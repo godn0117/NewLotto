@@ -8,14 +8,6 @@ namespace Lotto
 {
     class UserNumbers
     {
-        private int logNum;
-
-        public int LogNum
-        {
-            get { return logNum; }
-            set { logNum = value; }
-        }
-
         private int turnnumber;
 
         public int Turnnumber
@@ -71,15 +63,7 @@ namespace Lotto
             get { return num6; }
             set { num6 = value; }
         }
-
-        private int bonusnum;
-
-        public int Bonusnum
-        {
-            get { return bonusnum; }
-            set { bonusnum = value; }
-        }
-
+       
         private string id;
 
         public string Id
