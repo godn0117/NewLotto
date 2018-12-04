@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lotto
 {
-    class Lotto
+    internal class Lotto
     {
         private int turnNumber;
         private int num1;
@@ -17,12 +17,13 @@ namespace Lotto
         private int num6;
         private int bonusNum;
 
+
         public Lotto()
         {
-
+            
         }
 
-        public Lotto(int turnNumber, int num1, int num2, int num3, int num4, int num5, int num6, int bonusNum)
+        public Lotto(int turnNumber, int num1, int num2, int num3, int num4, int num5, int num6, int bonusNum) : this()
         {
             this.turnNumber = turnNumber;
             this.num1 = num1;
@@ -34,7 +35,19 @@ namespace Lotto
             this.bonusNum = bonusNum;
         }
 
-       
+        public List<int> MakeList()
+        {
+            List<int> list = new List<int>();
+            list.Add(num1);
+            list.Add(num2);
+            list.Add(num3);
+            list.Add(num4);
+            list.Add(num5);
+            list.Add(num6);
+            list.Add(bonusNum);
+
+            return list;
+        }
 
         #region Property
         public int TurnNumber

@@ -71,21 +71,26 @@ namespace Lotto
             get { return num6; }
             set { num6 = value; }
         }
-
-        private int bonusnum;
-
-        public int Bonusnum
-        {
-            get { return bonusnum; }
-            set { bonusnum = value; }
-        }
-
+       
         private string id;
 
         public string Id
         {
             get { return id; }
             set { id = value; }
+        }
+
+        public List<int> MakeList()
+        {
+            List<int> list = new List<int>();
+            list.Add(num1);
+            list.Add(num2);
+            list.Add(num3);
+            list.Add(num4);
+            list.Add(num5);
+            list.Add(num6);
+
+            return list;
         }
     }
 }

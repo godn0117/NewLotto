@@ -74,5 +74,10 @@ namespace Lotto
                 con.Close();              
             }
         }
+
+        private void FrmLogIn_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

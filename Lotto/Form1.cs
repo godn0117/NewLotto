@@ -30,9 +30,11 @@ namespace Lotto
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
             web.OverrideEncoding = Encoding.UTF8;
             htmlDoc = web.Load(new Uri("https://www.dhlottery.co.kr/gameResult.do?method=byWin")); //          
-            newTurnNum = Int32.Parse(htmlDoc.DocumentNode.SelectNodes("//body//option")[0].InnerText);   // 제일 최신 회차 번호 변수에 저장           
+
+            newTurnNum = Int32.Parse(htmlDoc.DocumentNode.SelectNodes("//body//option")[0].InnerText);   // 제일 최신 회차 번호 변수에 저장                       
 
             for (int i = 1; i <= newTurnNum; i++)
             {
@@ -218,9 +220,6 @@ namespace Lotto
             LottoGridView.Columns[5].HeaderText = "5구";
             LottoGridView.Columns[6].HeaderText = "6구";
             LottoGridView.Columns[7].HeaderText = "보너스구";
-
-            //LottoGridView.Sort(LottoGridView.Columns[0], ListSortDirection.Ascending);
-            //LottoGridView.Columns["TurnNumber"].SortMode = DataGridViewColumnSortMode.Automatic;
         }
 
         private void btnSearch_Click(object sender, EventArgs e) // 조회 버튼 클릭시 이벤트 처리 메소드
@@ -278,5 +277,9 @@ namespace Lotto
             DisplayList();
         }
 
+        private void LottoGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            
+        }
     }
 }
