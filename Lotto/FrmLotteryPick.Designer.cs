@@ -786,6 +786,7 @@
             this.label6.Size = new System.Drawing.Size(94, 19);
             this.label6.TabIndex = 17;
             this.label6.Text = "노랑 : 5등";
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(13, 582);
@@ -800,7 +801,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(987, 667);
+            this.ClientSize = new System.Drawing.Size(1031, 630);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -813,7 +814,6 @@
             this.Controls.Add(this.btnResist);
             this.Controls.Add(this.cbxTurnNum);
             this.Controls.Add(this.lblNumbers);
-            this.ClientSize = new System.Drawing.Size(665, 617);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.lblCount);
