@@ -13,8 +13,6 @@ namespace Lotto
 {
     public partial class FrmColor : Form
     {
-        // 뽑아갈 갯수
-        int num = 0;
         // 색상 통계를 담을 컬렉션
         List<LottoStatistics> ls = new List<LottoStatistics>();
         // 번호별 통계를 담을 배열
@@ -62,6 +60,12 @@ namespace Lotto
 
         private void FrmColor_Load(object sender, EventArgs e)
         {
+            for (int i = 0; i < Form1.newTurnNum; i++)
+            {
+                this.cboSta.Items.Add(i + 1);
+                this.cboEnd.Items.Add(i + 1);
+            }
+
             colChart.ChartAreas[0].AxisX.Interval = 1;
             // 원 그래프
             this.pieChart.Titles.Add("Title");
@@ -73,8 +77,12 @@ namespace Lotto
             CollectReset();
 
             // 처음은 5회차
-            num = 5;
-            InputNum(num);
+            int staNum = Form1.newTurnNum - 5;
+            int endNum = Form1.newTurnNum;
+            cboSta.Text = staNum.ToString();
+            cboEnd.Text = endNum.ToString();
+
+            InputNum(staNum, endNum);
 
             pieChart.Series[0].Points.DataBind(ls, "Name", "Num", null);
 
@@ -89,7 +97,7 @@ namespace Lotto
 
             // 해당 구 수정중.....
             // 해당 구에 대한 출현횟수
-            CountBarNum(num);
+            CountBarNum(staNum,endNum);
 
             // 한번도 나오지 않은 구 제외
             RemoveNum(number, numName);
@@ -148,24 +156,12 @@ namespace Lotto
         {
             for (int i = startNum; i <= endNum; i++)
             {
-                CountNum(Form1.lottoList[i].Num1, number);
-                CountNum(Form1.lottoList[i].Num2, number);
-                CountNum(Form1.lottoList[i].Num3, number);
-                CountNum(Form1.lottoList[i].Num4, number);
-                CountNum(Form1.lottoList[i].Num5, number);
-                CountNum(Form1.lottoList[i].Num6, number);
-            }
-        }
-        private void CountBarNum(int num)
-        {
-            for (int i = Form1.lottoList.Count - num; i < Form1.lottoList.Count; i++)
-            {
-                CountNum(Form1.lottoList[i].Num1, number);
-                CountNum(Form1.lottoList[i].Num2, number);
-                CountNum(Form1.lottoList[i].Num3, number);
-                CountNum(Form1.lottoList[i].Num4, number);
-                CountNum(Form1.lottoList[i].Num5, number);
-                CountNum(Form1.lottoList[i].Num6, number);
+                CountNum(Form1.lottoList[i - 1].Num1, number);
+                CountNum(Form1.lottoList[i - 1].Num2, number);
+                CountNum(Form1.lottoList[i - 1].Num3, number);
+                CountNum(Form1.lottoList[i - 1].Num4, number);
+                CountNum(Form1.lottoList[i - 1].Num5, number);
+                CountNum(Form1.lottoList[i - 1].Num6, number);
             }
         }
 
@@ -179,26 +175,26 @@ namespace Lotto
         {
             for (int i = startNum; i <= endNum; i++)
             {
-                Switching(Form1.lottoList[i].Num1, ls);
-                Switching(Form1.lottoList[i].Num2, ls);
-                Switching(Form1.lottoList[i].Num3, ls);
-                Switching(Form1.lottoList[i].Num4, ls);
-                Switching(Form1.lottoList[i].Num5, ls);
-                Switching(Form1.lottoList[i].Num6, ls);
+                Switching(Form1.lottoList[i - 1].Num1, ls);
+                Switching(Form1.lottoList[i - 1].Num2, ls);
+                Switching(Form1.lottoList[i - 1].Num3, ls);
+                Switching(Form1.lottoList[i - 1].Num4, ls);
+                Switching(Form1.lottoList[i - 1].Num5, ls);
+                Switching(Form1.lottoList[i - 1].Num6, ls);
             }
         }
-        private void InputNum(int num)
-        {
-            for (int i = Form1.lottoList.Count - num; i < Form1.lottoList.Count; i++)
-            {
-                Switching(Form1.lottoList[i].Num1, ls);
-                Switching(Form1.lottoList[i].Num2, ls);
-                Switching(Form1.lottoList[i].Num3, ls);
-                Switching(Form1.lottoList[i].Num4, ls);
-                Switching(Form1.lottoList[i].Num5, ls);
-                Switching(Form1.lottoList[i].Num6, ls);
-            }
-        }
+        //private void InputNum(int num)
+        //{
+        //    for (int i = Form1.lottoList.Count - num; i < Form1.lottoList.Count; i++)
+        //    {
+        //        Switching(Form1.lottoList[i].Num1, ls);
+        //        Switching(Form1.lottoList[i].Num2, ls);
+        //        Switching(Form1.lottoList[i].Num3, ls);
+        //        Switching(Form1.lottoList[i].Num4, ls);
+        //        Switching(Form1.lottoList[i].Num5, ls);
+        //        Switching(Form1.lottoList[i].Num6, ls);
+        //    }
+        //}
 
         private void Switching(int num1, List<LottoStatistics> ls)
         {
