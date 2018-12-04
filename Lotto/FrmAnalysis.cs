@@ -60,6 +60,11 @@ namespace Lotto
             FrmAddrSearch fas = new FrmAddrSearch();
             fas.MdiParent = this;
             fas.Show();
+        }private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+            frmPreference fpf = new frmPreference();
+            fpf.MdiParent = this;
+            fpf.Show();
         }
     }
 }
