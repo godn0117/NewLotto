@@ -217,5 +217,33 @@ namespace Lotto
                     break;
             }
         }
+
+        private void cboSta_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Int32.Parse(this.cboSta.Text);
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("숫자만 입력하세요.");
+                this.cboSta.Focus();
+            }
+        }
+
+        private void cboEnd_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Int32.Parse(this.cboEnd.Text);
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("숫자만 입력하세요.");
+                this.cboEnd.Focus();
+            }
+        }
     }
 }
