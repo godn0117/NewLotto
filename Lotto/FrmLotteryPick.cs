@@ -397,11 +397,7 @@ namespace Lotto
             FrmAnalysis fal = (FrmAnalysis)Owner;
 
             uNumbers.Id = fal.user.Id;
-            //uNumbers
-            //using (resource)
-            //{
-
-            //}
+            
         }
     }
 }
