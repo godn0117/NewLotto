@@ -227,6 +227,10 @@ namespace Lotto
             }
             catch (Exception)
             {
+                if (this.cboSta.Text == String.Empty)
+                {
+                    return;
+                }
                 MessageBox.Show("숫자만 입력하세요.");
                 this.cboSta.Focus();
             }
@@ -241,6 +245,10 @@ namespace Lotto
             }
             catch (Exception)
             {
+                if (this.cboEnd.Text == String.Empty)
+                {
+                    return;
+                }
                 MessageBox.Show("숫자만 입력하세요.");
                 this.cboEnd.Focus();
             }
