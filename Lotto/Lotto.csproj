@@ -165,6 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="source.html" />
+    <Content Include="StoreAddr.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

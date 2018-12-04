@@ -31,7 +31,7 @@ namespace Lotto
             web.OverrideEncoding = Encoding.Default;
             htmlDoc = web.Load(uri);
 
-            int lastPageNum = Int32.Parse(htmlDoc.DocumentNode.SelectNodes("//body//section//article//article//div//div//ul//li//span//a")[11].Attributes[0].Value.Substring(23, 3));
+            int lastPageNum = Int32.Parse(htmlDoc.DocumentNode.SelectNodes("//body//div//section//div//div//div//div//div//div//a")[13].GetAttributeValue("href", null).Substring(23, 3));
 
             for (int i = 1; i <= lastPageNum; i++)
             {
@@ -72,7 +72,6 @@ namespace Lotto
                 con.Close();
             }
             this.dataGridView1.DataSource = lst;
-
         }
 
         private void ResetDB()
@@ -176,9 +175,34 @@ namespace Lotto
             }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void btnAllData_Click(object sender, EventArgs e)
         {
+            this.dataGridView1.DataSource = null;
+            this.lst.Clear();
+            using (SqlConnection con = DBConnection.Connecting())
+            {
+                con.Open();
 
+                SqlCommand com = new SqlCommand();
+                com.Connection = con;
+                com.CommandType = CommandType.StoredProcedure;
+                com.CommandText = "GetentryStore";
+
+                var sdr = com.ExecuteReader();
+                while (sdr.Read())
+                {
+                    this.lst.Add(new Store(Int32.Parse(sdr["No"].ToString()), sdr["ShopName"].ToString(), Int32.Parse(sdr["WinningCount"].ToString()), sdr["Addr"].ToString()));
+                }
+                this.dataGridView1.DataSource = lst;
+                con.Close();
+            }
+        }
+
+        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string addrmap = dataGridView1.SelectedRows[0].Cells[3].Value.ToString();
+            this.uri = new Uri("https://www.google.com/maps/place/"+addrmap);
+            webBrowser1.Url = uri;
         }
     }
 }

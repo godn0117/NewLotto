@@ -35,12 +35,15 @@
             this.btnAddr = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.btnAllData = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
@@ -51,21 +54,23 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(540, 603);
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(505, 685);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             // 
             // tbxStoreName
             // 
-            this.tbxStoreName.Location = new System.Drawing.Point(3, 4);
+            this.tbxStoreName.Location = new System.Drawing.Point(10, 12);
             this.tbxStoreName.Name = "tbxStoreName";
             this.tbxStoreName.Size = new System.Drawing.Size(141, 21);
             this.tbxStoreName.TabIndex = 1;
             // 
             // btnStoreName
             // 
-            this.btnStoreName.Location = new System.Drawing.Point(3, 41);
+            this.btnStoreName.Location = new System.Drawing.Point(10, 56);
             this.btnStoreName.Name = "btnStoreName";
             this.btnStoreName.Size = new System.Drawing.Size(141, 32);
             this.btnStoreName.TabIndex = 2;
@@ -75,14 +80,14 @@
             // 
             // tbxAddr
             // 
-            this.tbxAddr.Location = new System.Drawing.Point(3, 114);
+            this.tbxAddr.Location = new System.Drawing.Point(10, 156);
             this.tbxAddr.Name = "tbxAddr";
             this.tbxAddr.Size = new System.Drawing.Size(141, 21);
             this.tbxAddr.TabIndex = 3;
             // 
             // btnAddr
             // 
-            this.btnAddr.Location = new System.Drawing.Point(3, 154);
+            this.btnAddr.Location = new System.Drawing.Point(10, 202);
             this.btnAddr.Name = "btnAddr";
             this.btnAddr.Size = new System.Drawing.Size(141, 32);
             this.btnAddr.TabIndex = 4;
@@ -103,8 +108,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1173, 603);
-            this.splitContainer1.SplitterDistance = 540;
+            this.splitContainer1.Size = new System.Drawing.Size(1348, 685);
+            this.splitContainer1.SplitterDistance = 505;
             this.splitContainer1.TabIndex = 5;
             // 
             // splitContainer2
@@ -113,21 +118,45 @@
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
             this.splitContainer2.Name = "splitContainer2";
             // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.webBrowser1);
+            // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.btnAllData);
             this.splitContainer2.Panel2.Controls.Add(this.btnStoreName);
             this.splitContainer2.Panel2.Controls.Add(this.tbxAddr);
             this.splitContainer2.Panel2.Controls.Add(this.btnAddr);
             this.splitContainer2.Panel2.Controls.Add(this.tbxStoreName);
-            this.splitContainer2.Size = new System.Drawing.Size(629, 603);
-            this.splitContainer2.SplitterDistance = 472;
+            this.splitContainer2.Size = new System.Drawing.Size(839, 685);
+            this.splitContainer2.SplitterDistance = 672;
             this.splitContainer2.TabIndex = 5;
+            // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser1.Location = new System.Drawing.Point(0, 0);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(672, 685);
+            this.webBrowser1.TabIndex = 0;
+            // 
+            // btnAllData
+            // 
+            this.btnAllData.Location = new System.Drawing.Point(10, 289);
+            this.btnAllData.Name = "btnAllData";
+            this.btnAllData.Size = new System.Drawing.Size(141, 50);
+            this.btnAllData.TabIndex = 5;
+            this.btnAllData.Text = "판매점 목록";
+            this.btnAllData.UseVisualStyleBackColor = true;
+            this.btnAllData.Click += new System.EventHandler(this.btnAllData_Click);
             // 
             // FrmAddrSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1173, 603);
+            this.ClientSize = new System.Drawing.Size(1348, 685);
             this.Controls.Add(this.splitContainer1);
             this.Name = "FrmAddrSearch";
             this.Text = "FrmAddrSearch";
@@ -137,6 +166,7 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -154,5 +184,7 @@
         private System.Windows.Forms.Button btnAddr;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.WebBrowser webBrowser1;
+        private System.Windows.Forms.Button btnAllData;
     }
 }
