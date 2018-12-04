@@ -29,12 +29,8 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-<<<<<<< HEAD
-            this.button1 = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-=======
->>>>>>> YG
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -47,16 +43,6 @@
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.Size = new System.Drawing.Size(787, 217);
             this.dataGridView1.TabIndex = 0;
-            // 
-<<<<<<< HEAD
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(890, 553);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // dataGridView2
             // 
@@ -76,20 +62,13 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "선택한 번호에 대한 당첨확률";
             // 
-=======
->>>>>>> YG
             // frmPreference
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-<<<<<<< HEAD
-            this.ClientSize = new System.Drawing.Size(977, 588);
+            this.ClientSize = new System.Drawing.Size(914, 487);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.button1);
-=======
-            this.ClientSize = new System.Drawing.Size(977, 460);
->>>>>>> YG
             this.Controls.Add(this.dataGridView1);
             this.Name = "frmPreference";
             this.Text = "frmPreference";
@@ -104,11 +83,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-<<<<<<< HEAD
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label label1;
-=======
->>>>>>> YG
     }
 }

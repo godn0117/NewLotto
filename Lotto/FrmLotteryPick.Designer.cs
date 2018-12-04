@@ -77,7 +77,6 @@
             this.btnAuto = new System.Windows.Forms.Button();
             this.lblCount = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
-<<<<<<< HEAD
             this.lblNumbers = new System.Windows.Forms.Label();
             this.cbxTurnNum = new System.Windows.Forms.ComboBox();
             this.btnResist = new System.Windows.Forms.Button();
@@ -90,9 +89,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-=======
             this.button1 = new System.Windows.Forms.Button();
->>>>>>> YG
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -674,7 +671,6 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
-<<<<<<< HEAD
             // lblNumbers
             // 
             this.lblNumbers.AutoSize = true;
@@ -790,7 +786,6 @@
             this.label6.Size = new System.Drawing.Size(94, 19);
             this.label6.TabIndex = 17;
             this.label6.Text = "노랑 : 5등";
-=======
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(13, 582);
@@ -800,13 +795,11 @@
             this.button1.Text = "추천 번호";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
->>>>>>> YG
             // 
             // FrmLotteryPick
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(987, 667);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -820,10 +813,8 @@
             this.Controls.Add(this.btnResist);
             this.Controls.Add(this.cbxTurnNum);
             this.Controls.Add(this.lblNumbers);
-=======
             this.ClientSize = new System.Drawing.Size(665, 617);
             this.Controls.Add(this.button1);
->>>>>>> YG
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.lblCount);
             this.Controls.Add(this.btnAuto);
@@ -890,7 +881,6 @@
         private System.Windows.Forms.Button btnAuto;
         private System.Windows.Forms.Label lblCount;
         private System.Windows.Forms.Button btnClear;
-<<<<<<< HEAD
         private System.Windows.Forms.Label lblNumbers;
         private System.Windows.Forms.ComboBox cbxTurnNum;
         private System.Windows.Forms.Button btnResist;
@@ -903,8 +893,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-=======
         private System.Windows.Forms.Button button1;
->>>>>>> YG
     }
 }

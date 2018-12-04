@@ -42,7 +42,6 @@ namespace Lotto
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.StoredProcedure;
-<<<<<<< HEAD
                 cmd.CommandText = "SelectUserNumbersById";
 
                 cmd.Parameters.AddWithValue("id", user.Id);
@@ -100,9 +99,7 @@ namespace Lotto
                 //{
                     
                 //}
-=======
-                cmd.CommandText = "SelectUserNumbers";
->>>>>>> YG
+                //cmd.CommandText = "SelectUserNumbers";
             }
         }
     }
