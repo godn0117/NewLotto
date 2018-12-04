@@ -40,8 +40,6 @@ namespace Lotto
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "SelectUserNumbers";
-
-
             }
         }
     }

@@ -118,6 +118,7 @@
     <Compile Include="FrmLogIn.Designer.cs">
       <DependentUpon>FrmLogIn.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoTNum.cs" />
     <Compile Include="Lotto.cs" />
     <Compile Include="LottoStatistics.cs" />
     <Compile Include="Program.cs" />
@@ -142,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLotteryPick.resx">
       <DependentUpon>FrmLotteryPick.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmNumberPick.resx">
+      <DependentUpon>FrmNumberPick.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPreference.resx">
       <DependentUpon>frmPreference.cs</DependentUpon>
