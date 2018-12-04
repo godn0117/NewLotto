@@ -9,12 +9,30 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Lotto
-{
+{    
     public partial class FrmAnalysis : Form
     {
+        Users user = new Users();
+
         public FrmAnalysis()
         {
             InitializeComponent();
+        }
+
+        public FrmAnalysis(Users gotUser)
+        {
+            user.Id = gotUser.Id;
+            user.Name = gotUser.Name;
+            user.Password = gotUser.Password;
+
+            InitializeComponent();
+        }
+
+        private void FrmAnalysis_Load(object sender, EventArgs e)
+        {
+            toolStripLabelId.Text = "아이디 : " + user.Id;
+            toolStripLabelPwd.Text = "비밀번호 : " + user.Password;
+            toolStripLabelName.Text = "이름 : " + user.Name;
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -42,6 +60,6 @@ namespace Lotto
             FrmAddrSearch fas = new FrmAddrSearch();
             fas.MdiParent = this;
             fas.Show();
-        }
+        }       
     }
 }

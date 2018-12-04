@@ -35,6 +35,10 @@
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabelId = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabelPwd = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabelName = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,7 +49,11 @@
             this.toolStripButton2,
             this.toolStripButton3,
             this.toolStripButton4,
-            this.toolStripButton5});
+            this.toolStripButton5,
+            this.toolStripSeparator1,
+            this.toolStripLabelId,
+            this.toolStripLabelPwd,
+            this.toolStripLabelName});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1111, 25);
@@ -100,6 +108,26 @@
             this.toolStripButton5.Size = new System.Drawing.Size(83, 22);
             this.toolStripButton5.Text = "나의선호번호";
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabelId
+            // 
+            this.toolStripLabelId.Name = "toolStripLabelId";
+            this.toolStripLabelId.Size = new System.Drawing.Size(0, 22);
+            // 
+            // toolStripLabelPwd
+            // 
+            this.toolStripLabelPwd.Name = "toolStripLabelPwd";
+            this.toolStripLabelPwd.Size = new System.Drawing.Size(0, 22);
+            // 
+            // toolStripLabelName
+            // 
+            this.toolStripLabelName.Name = "toolStripLabelName";
+            this.toolStripLabelName.Size = new System.Drawing.Size(0, 22);
+            // 
             // FrmAnalysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -109,6 +137,7 @@
             this.IsMdiContainer = true;
             this.Name = "FrmAnalysis";
             this.Text = "analysis";
+            this.Load += new System.EventHandler(this.FrmAnalysis_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -124,5 +153,9 @@
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
         private System.Windows.Forms.ToolStripButton toolStripButton5;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabelId;
+        private System.Windows.Forms.ToolStripLabel toolStripLabelPwd;
+        private System.Windows.Forms.ToolStripLabel toolStripLabelName;
     }
 }
