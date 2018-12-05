@@ -70,8 +70,7 @@ namespace Lotto
                 for (int i = 0; i < uNlst.Count; i++)
                 {
                     con.Open();
-
-
+                    
                     SqlCommand cmd = new SqlCommand();
                     cmd.Connection = con;
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -82,7 +81,7 @@ namespace Lotto
 
                     while (sdr.Read())
                     {
-                        this.lNlst.Add(new Lotto(Int32.Parse(sdr["num1"].ToString()), Int32.Parse(sdr["num2"].ToString()), Int32.Parse(sdr["num3"].ToString()), Int32.Parse(sdr["num4"].ToString()), Int32.Parse(sdr["num5"].ToString()), Int32.Parse(sdr["num6"].ToString()), Int32.Parse(sdr["bonusnum"].ToString())));
+                        this.lNlst.Add(new Lotto(Int32.Parse(sdr["turnnumber"].ToString()),Int32.Parse(sdr["num1"].ToString()), Int32.Parse(sdr["num2"].ToString()), Int32.Parse(sdr["num3"].ToString()), Int32.Parse(sdr["num4"].ToString()), Int32.Parse(sdr["num5"].ToString()), Int32.Parse(sdr["num6"].ToString()), Int32.Parse(sdr["bonusnum"].ToString())));
                     }
                     con.Close();
                 }

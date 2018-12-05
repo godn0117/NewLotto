@@ -32,7 +32,6 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,7 +51,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(13, 52);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(311, 355);
+            this.dataGridView1.Size = new System.Drawing.Size(680, 355);
             this.dataGridView1.TabIndex = 1;
             // 
             // comboBox1
@@ -72,20 +71,11 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "번";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(343, 52);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(278, 355);
-            this.textBox1.TabIndex = 4;
-            // 
             // FrmNumberPick
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(633, 419);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(708, 419);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.dataGridView1);
@@ -105,6 +95,5 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
     }
 }

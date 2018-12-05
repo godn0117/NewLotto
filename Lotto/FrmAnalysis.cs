@@ -22,9 +22,7 @@ namespace Lotto
 
         public FrmAnalysis(Users gotUser)
         {
-            user.Id = gotUser.Id;
-            user.Name = gotUser.Name;
-            user.Password = gotUser.Password;
+            this.user = gotUser;
 
             InitializeComponent();
         }
@@ -32,7 +30,7 @@ namespace Lotto
         private void FrmAnalysis_Load(object sender, EventArgs e)
         {
             toolStripLabelId.Text = "아이디 : " + user.Id;
-            toolStripLabelPwd.Text = "비밀번호 : " + user.Password;
+            //toolStripLabelPwd.Text = "비밀번호 : " + user.Password;
             toolStripLabelName.Text = "이름 : " + user.Name;
         }
 
@@ -53,6 +51,7 @@ namespace Lotto
                 return;
             }
             frmChart = new Chart();
+            //frmChart.MdiParent = this;
             frmChart.Show();
         }
 
@@ -66,6 +65,32 @@ namespace Lotto
             frmPreference fpf = new frmPreference(user);
             fpf.MdiParent = this;
             fpf.Show();
+        }
+
+        private FrmColor fc;
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            if (!(fc == null || !fc.Visible))
+            {
+                fc.Focus();
+                return;
+            }
+            fc = new FrmColor();
+            fc.MdiParent = this;
+            fc.Show();
+        }
+
+        private FrmTest ft;
+        private void toolStripButton6_Click(object sender, EventArgs e)
+        {
+            if (!(ft == null || !ft.Visible))
+            {
+                ft.Focus();
+                return;
+            }
+            ft = new FrmTest();
+            ft.MdiParent = this;
+            ft.Show();
         }
     }
 }

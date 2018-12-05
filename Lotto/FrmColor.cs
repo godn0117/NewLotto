@@ -29,7 +29,21 @@ namespace Lotto
         {
             int startNum = Int32.Parse(this.cboSta.Text);
             int endNum = Int32.Parse(this.cboEnd.Text);
-            
+            List<Lotto> forGridView = new List<Lotto>();
+            // 그리드뷰
+            for (int i = startNum; i <= endNum; i++)
+            {
+                foreach (Lotto item in Form1.lottoList)
+                {
+                    if (i == item.TurnNumber)
+                    {
+                        forGridView.Add(item);
+                    }
+                }
+            }
+
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = forGridView;
             // 색상 통계, 원 그래프
             ls.Clear();
             CollectReset();

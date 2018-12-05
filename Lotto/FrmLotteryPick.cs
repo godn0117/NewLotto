@@ -38,7 +38,7 @@ namespace Lotto
             foreach (Control item in groupBox1.Controls)
             {
                 string autoChk;
-                for (int i = 1; i < 45; i++)
+                for (int i = 1; i <= 45; i++)
                 {
                     autoChk = "chk" + i.ToString();
 
@@ -162,12 +162,12 @@ namespace Lotto
         private void btnResist_Click(object sender, EventArgs e) // 등록 버튼 클릭 이벤트 처리
         {
             UserNumbers uNumbers = new UserNumbers();
-
+           
             try
             {
                 if (Int32.Parse(cbxTurnNum.Text) <= Form1.newTurnNum && cbxTurnNum.Text != null)
                 {
-                    uNumbers.Turnnumber = int.Parse(cbxTurnNum.SelectedItem.ToString());
+                    uNumbers.Turnnumber = int.Parse(cbxTurnNum.Text);
                     uNumbers.Num1 = int.Parse(selectedNums[0].ToString());
                     uNumbers.Num2 = int.Parse(selectedNums[1].ToString());
                     uNumbers.Num3 = int.Parse(selectedNums[2].ToString());

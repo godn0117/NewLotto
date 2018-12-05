@@ -75,6 +75,7 @@
             this.IsMdiContainer = true;
             this.Name = "Chart";
             this.Text = "Chart";
+            this.Load += new System.EventHandler(this.Chart_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
