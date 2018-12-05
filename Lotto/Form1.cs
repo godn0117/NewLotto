@@ -41,6 +41,8 @@ namespace Lotto
                 cbxTurnNum.Items.Add(i);
             }
 
+            UpdateLotto(); // 갱신되지 않은 최신회차 가져오기
+            InsertLotto(); // 최신회차까지 올라온 list 내용을 
             DisplayList();
         }
 
@@ -80,6 +82,7 @@ namespace Lotto
                     cmd.Parameters.AddWithValue("bonusnum", item.BonusNum);
 
                     cmd.ExecuteNonQuery();
+                    
                 }
                 con.Close();
             }
@@ -123,6 +126,7 @@ namespace Lotto
                 {
                     UpdateProgressBar.Maximum = 1;
                     UpdateProgressBar.Value = unInsertedNumList.Count + 1;
+                    MessageBox.Show("업데이트 완료");
                 }
                 else
                 {
@@ -135,6 +139,10 @@ namespace Lotto
                     web.OverrideEncoding = Encoding.UTF8;
                     htmlDoc = web.Load(new Uri("https://www.dhlottery.co.kr/gameResult.do?method=byWin&drwNo=" + item.ToString()));                    
                     Parsing(htmlDoc);
+                    if (UpdateProgressBar.Value == UpdateProgressBar.Maximum)
+                    {
+                        MessageBox.Show("업데이트 완료");
+                    }
                 }
             }
         }
