@@ -77,8 +77,8 @@ namespace Lotto
             CollectReset();
 
             // 처음은 5회차
-            int staNum = Form1.newTurnNum - 5;
-            int endNum = Form1.newTurnNum;
+            int staNum = Form1.lottoList.Count - 5;
+            int endNum = Form1.lottoList.Count;
             cboSta.Text = staNum.ToString();
             cboEnd.Text = endNum.ToString();
 
