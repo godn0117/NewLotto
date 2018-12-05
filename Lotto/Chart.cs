@@ -43,5 +43,10 @@ namespace Lotto
             ft.MdiParent = this;
             ft.Show();
         }
+
+        private void Chart_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

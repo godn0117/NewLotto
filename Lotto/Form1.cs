@@ -30,12 +30,12 @@ namespace Lotto
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            this.Text = "로또";
             web.OverrideEncoding = Encoding.UTF8;
-            htmlDoc = web.Load(new Uri("https://www.dhlottery.co.kr/gameResult.do?method=byWin")); //          
+            htmlDoc = web.Load(new Uri("https://www.dhlottery.co.kr/gameResult.do?method=byWin")); //                     
 
-            newTurnNum = Int32.Parse(htmlDoc.DocumentNode.SelectNodes("//body//option")[0].InnerText);   // 제일 최신 회차 번호 변수에 저장                       
-
+            newTurnNum = Int32.Parse(htmlDoc.DocumentNode.SelectNodes("//body//option")[0].InnerText); // 제일 최신 회차 번호 변수에 저장  
+            
             for (int i = 1; i <= newTurnNum; i++)
             {
                 cbxTurnNum.Items.Add(i);
@@ -46,8 +46,6 @@ namespace Lotto
 
         private void btnAnalyst_Click(object sender, EventArgs e) // 분석 버튼 클릭시 이벤트
         {
-            //FrmAnalysis fa = new FrmAnalysis();
-            //fa.ShowDialog();
             FrmLogIn fli = new FrmLogIn();
             fli.Show();
         }
@@ -134,7 +132,8 @@ namespace Lotto
                 foreach (var item in unInsertedNumList)
                 {
                     UpdateProgressBar.Value += 1;
-                    htmlDoc = web.Load(new Uri("https://www.dhlottery.co.kr/gameResult.do?method=byWin&drwNo=" + item.ToString()));
+                    web.OverrideEncoding = Encoding.UTF8;
+                    htmlDoc = web.Load(new Uri("https://www.dhlottery.co.kr/gameResult.do?method=byWin&drwNo=" + item.ToString()));                    
                     Parsing(htmlDoc);
                 }
             }
@@ -142,34 +141,19 @@ namespace Lotto
 
         private void Parsing(HtmlAgilityPack.HtmlDocument htmlDoc) // 원하는 회차를 파싱해서 로또 객체에 저장후 List에 넣어줌
         {
-            string[] temp = new string[6];
+            string[] temp = new string[7];
             Lotto lotto = new Lotto();
-            foreach (var item in htmlDoc.DocumentNode.SelectNodes("//body//p"))
-            {
-                if (item.GetAttributeValue("class", "") == "number")
-                {
-                    int i = 0;
-                    foreach (var item2 in item.ChildNodes)
-                    {
-                        if (item2.Name == "img")
-                        {
-                            temp[i] = item2.Attributes["alt"].Value;
-                            i++;
-                        }
-                        foreach (var item3 in item2.ChildNodes)
-                        {
-                            if (item3.Name == "img")
-                            {
-                                lotto.BonusNum = Int32.Parse(item3.Attributes["alt"].Value);
-                            }
-                        }
-                    }
-                }
-            }
 
-            foreach (var item in htmlDoc.DocumentNode.SelectNodes("//body//h3//strong"))
+            int i = 0;
+            foreach (HtmlNode item in htmlDoc.DocumentNode.SelectNodes("//body//div//section//div//div//div//div//div//div//p//span"))
+            {                
+                temp[i] = item.InnerText;
+                i++;
+            }
+            
+            foreach (var item in htmlDoc.DocumentNode.SelectNodes("//body//h4//strong"))
             {
-                lotto.TurnNumber = Int32.Parse(item.InnerText);
+                lotto.TurnNumber = Int32.Parse(item.InnerText.Remove(item.InnerText.Length - 1, 1));
             }
 
             lotto.Num1 = Int32.Parse(temp[0]);
@@ -178,6 +162,7 @@ namespace Lotto
             lotto.Num4 = Int32.Parse(temp[3]);
             lotto.Num5 = Int32.Parse(temp[4]);
             lotto.Num6 = Int32.Parse(temp[5]);
+            lotto.BonusNum = Int32.Parse(temp[6]);
             lottoList.Add(lotto);
         }
 
@@ -207,7 +192,7 @@ namespace Lotto
                     if (Int32.Parse(sdr["turnnumber"].ToString()) == newTurnNum)
                     {
                         lblCurrentLottoNum.Text = lotto.TurnNumber + "회차 : " + lotto.Num1 + " " + lotto.Num2 + " " + lotto.Num3 + " " + lotto.Num4 + " " + lotto.Num5 + " " + lotto.Num6 + " 보너스 번호 : " + lotto.BonusNum + "";
-                    }                    
+                    }
                 }
             }
             LottoGridView.DataSource = lottoList;
@@ -256,9 +241,9 @@ namespace Lotto
             {
                 MessageBox.Show("숫자를 입력해 주세요");
             }
-            
+
             //LottoGridView.Rows[0].Cells[0].Style.BackColor = Color.Yellow;
-            
+
             //if (cbxTurnNum.SelectedIndex != -1) // 콤보박스가 선택되었을경우에만 실행
             //{
             //    // 선택된 row의 cell collection을 가져와 선택을 해준다.
@@ -279,7 +264,7 @@ namespace Lotto
 
         private void LottoGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
-            
+
         }
     }
 }
