@@ -127,6 +127,7 @@ namespace Lotto
                     UpdateProgressBar.Maximum = 1;
                     UpdateProgressBar.Value = unInsertedNumList.Count + 1;
                     MessageBox.Show("업데이트 완료");
+                    lblLastUpdate.Text = "마지막 업데이트 : " + DateTime.Now;
                 }
                 else
                 {
@@ -142,6 +143,7 @@ namespace Lotto
                     if (UpdateProgressBar.Value == UpdateProgressBar.Maximum)
                     {
                         MessageBox.Show("업데이트 완료");
+                        lblLastUpdate.Text = "마지막 업데이트 : " + DateTime.Now;
                     }
                 }
             }
@@ -248,21 +250,7 @@ namespace Lotto
             catch (Exception)
             {
                 MessageBox.Show("숫자를 입력해 주세요");
-            }
-
-            //LottoGridView.Rows[0].Cells[0].Style.BackColor = Color.Yellow;
-
-            //if (cbxTurnNum.SelectedIndex != -1) // 콤보박스가 선택되었을경우에만 실행
-            //{
-            //    // 선택된 row의 cell collection을 가져와 선택을 해준다.
-            //    foreach (DataGridViewCell tt in LottoGridView.Rows[Int32.Parse(cbxTurnNum.SelectedItem.ToString()) - 1].Cells)
-            //    {
-            //        tt.Style.BackColor = Color.Yellow; // 선택된 row의 cell들 전체를 칼라로 칠해준다.
-            //    }
-
-            //    // 스크롤바의 위치를 선택된 row의 값으로 이동해준다.
-            //    LottoGridView.FirstDisplayedScrollingRowIndex = Int32.Parse(cbxTurnNum.SelectedItem.ToString()) - 1;
-            //}
+            }          
         }
 
         private void btnSelectAll_Click(object sender, EventArgs e)

@@ -33,6 +33,7 @@ namespace Lotto
 
         private void FrmLotteryPick_Load(object sender, EventArgs e)
         {
+            this.Text = "내 로또 관리";
             lblCount.Text = count.ToString();
 
             foreach (Control item in groupBox1.Controls)

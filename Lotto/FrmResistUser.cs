@@ -139,5 +139,10 @@ namespace Lotto
                 MessageBox.Show("회원가입 실패");
             }
         }
+
+        private void FrmResistUser_Load(object sender, EventArgs e)
+        {
+            this.Text = "회원가입";
+        }
     }
 }

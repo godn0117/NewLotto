@@ -74,6 +74,7 @@ namespace Lotto
 
         private void FrmColor_Load(object sender, EventArgs e)
         {
+            this.Text = "색상 통계";
             for (int i = 0; i < Form1.newTurnNum; i++)
             {
                 this.cboSta.Items.Add(i + 1);

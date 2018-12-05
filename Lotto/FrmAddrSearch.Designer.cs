@@ -57,7 +57,7 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(505, 685);
+            this.dataGridView1.Size = new System.Drawing.Size(504, 685);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             // 
@@ -109,7 +109,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(1348, 685);
-            this.splitContainer1.SplitterDistance = 505;
+            this.splitContainer1.SplitterDistance = 504;
             this.splitContainer1.TabIndex = 5;
             // 
             // splitContainer2
@@ -129,7 +129,7 @@
             this.splitContainer2.Panel2.Controls.Add(this.tbxAddr);
             this.splitContainer2.Panel2.Controls.Add(this.btnAddr);
             this.splitContainer2.Panel2.Controls.Add(this.tbxStoreName);
-            this.splitContainer2.Size = new System.Drawing.Size(839, 685);
+            this.splitContainer2.Size = new System.Drawing.Size(840, 685);
             this.splitContainer2.SplitterDistance = 672;
             this.splitContainer2.TabIndex = 5;
             // 

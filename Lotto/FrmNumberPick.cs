@@ -27,6 +27,7 @@ namespace Lotto
 
         private void FrmNumberPick_Load(object sender, EventArgs e)
         {
+            this.Text = "번호 추천";
             // 최대 10만원 100번 콤보박스 리스트 초기화
             for (int i = 0; i < 100; i++)
             {

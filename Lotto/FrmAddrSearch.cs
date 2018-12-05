@@ -26,6 +26,7 @@ namespace Lotto
 
         private void FrmAddrSearch_Load(object sender, EventArgs e)
         {
+            this.Text = "당첨 판매점";
             ResetDB();
             this.uri = new Uri("https://www.dhlottery.co.kr/store.do?method=topStoreRank&rank=1&pageGubun=L645");
             web.OverrideEncoding = Encoding.Default;

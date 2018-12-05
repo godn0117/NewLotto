@@ -168,6 +168,7 @@
             this.Controls.Add(this.lblId);
             this.Name = "FrmResistUser";
             this.Text = "FrmResistUser";
+            this.Load += new System.EventHandler(this.FrmResistUser_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

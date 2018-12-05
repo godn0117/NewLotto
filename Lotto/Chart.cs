@@ -46,7 +46,7 @@ namespace Lotto
 
         private void Chart_Load(object sender, EventArgs e)
         {
-
+            this.Text = "차트 분석";
         }
     }
 }
