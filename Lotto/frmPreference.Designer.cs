@@ -68,9 +68,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 238);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(161, 12);
+            this.label1.Size = new System.Drawing.Size(97, 12);
             this.label1.TabIndex = 3;
-            this.label1.Text = "선택한 번호에 대한 당첨확률";
+            this.label1.Text = "선택한 번호 비교";
             // 
             // frmPreference
             // 

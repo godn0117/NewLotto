@@ -76,7 +76,7 @@ namespace Lotto
 
                     while (sdr.Read())
                     {
-                        this.lNlst.Add(new Lotto(Int32.Parse(sdr["num1"].ToString()), Int32.Parse(sdr["num2"].ToString()), Int32.Parse(sdr["num3"].ToString()), Int32.Parse(sdr["num4"].ToString()), Int32.Parse(sdr["num5"].ToString()), Int32.Parse(sdr["num6"].ToString()), Int32.Parse(sdr["bonusnum"].ToString())));
+                        this.lNlst.Add(new Lotto(Int32.Parse(sdr["turnnumber"].ToString()),Int32.Parse(sdr["num1"].ToString()), Int32.Parse(sdr["num2"].ToString()), Int32.Parse(sdr["num3"].ToString()), Int32.Parse(sdr["num4"].ToString()), Int32.Parse(sdr["num5"].ToString()), Int32.Parse(sdr["num6"].ToString()), Int32.Parse(sdr["bonusnum"].ToString())));
                     }
                     con.Close();
                 }
@@ -86,12 +86,20 @@ namespace Lotto
 
         private void Percentage()
         {
-            foreach (var item in uNlst)
+            foreach (UserNumbers item in uNlst)
             {
-                int[] list1 = new string[] { item.Num1.ToString(), item.Num2.ToString(), item.Num3.ToString(), item.Num4.ToString(), item.Num5.ToString(), item.Num6.ToString() };
-                foreach (var item2 in lNlst)
+                foreach (Lotto item2 in lNlst)
                 {
-                    
+                    if (item.Turnnumber == item2.TurnNumber)
+                    {
+                        foreach (var item3 in item.MakeList())
+                        {
+                            foreach (var item4 in item2.MakeList())
+                            {
+                                // 유저값과 로또값을 비교하고 확률로 나타내기
+                            }
+                        }
+                    }
                 }
             }
         }
