@@ -91,14 +91,21 @@ namespace Lotto
 
         private void Percentage()
         {
-            foreach (var item in uNlst)
+            foreach (UserNumbers item in uNlst)
             {
-                //int[] list1 = new string[] { item.Num1.ToString(), item.Num2.ToString(), item.Num3.ToString(), item.Num4.ToString(), item.Num5.ToString(), item.Num6.ToString() };
-                //foreach (var item2 in lNlst)
-                //{
-                    
-                //}
-                //cmd.CommandText = "SelectUserNumbers";
+                foreach (Lotto item2 in lNlst)
+                {
+                    if (item.Turnnumber == item2.TurnNumber)
+                    {
+                        foreach (var item3 in item.MakeList())
+                        {
+                            foreach (var item4 in item2.MakeList())
+                            {
+                                // 유저값과 로또값을 비교하고 확률로 나타내기
+                            }
+                        }
+                    }
+                }
             }
         }
     }

@@ -18,7 +18,7 @@ namespace Lotto
         private List<Store> lst = new List<Store>();
         HtmlWeb web = new HtmlWeb();
         HtmlAgilityPack.HtmlDocument htmlDoc;
-
+        private DataTable addrTab;
         public FrmAddrSearch()
         {
             InitializeComponent();
@@ -51,6 +51,13 @@ namespace Lotto
                 com.CommandText = "InsertStore";
 
 
+
+                addrTab = new DataTable();
+                addrTab.Columns.Add("순위");
+                addrTab.Columns.Add("판매점 명");
+                addrTab.Columns.Add("1등 당첨횟수");
+                addrTab.Columns.Add("주소");
+
                 foreach (var item in lst)
                 {
                     com.Parameters.Clear();
@@ -60,6 +67,14 @@ namespace Lotto
                     com.Parameters.AddWithValue("WinningCount", item.WinningCount);
                     com.Parameters.AddWithValue("Addr", item.Addr);
 
+
+                    DataRow row = addrTab.NewRow();
+                    row["순위"] = item.PkNo;
+                    row["판매점 명"] = item.ShopName;
+                    row["1등 당첨횟수"] = item.WinningCount;
+                    row["주소"] = item.Addr;
+
+                    addrTab.Rows.Add(row);
                     try
                     {
                         com.ExecuteNonQuery();
@@ -71,7 +86,8 @@ namespace Lotto
                 }
                 con.Close();
             }
-            this.dataGridView1.DataSource = lst;
+            //this.dataGridView1.DataSource = lst;
+            this.dataGridView1.DataSource = addrTab;
         }
 
         private void ResetDB()
@@ -145,6 +161,10 @@ namespace Lotto
                 }
 
                 this.dataGridView1.DataSource = lst;
+                this.dataGridView1.Columns[0].HeaderText = "순위";
+                this.dataGridView1.Columns[1].HeaderText = "판매점 명";
+                this.dataGridView1.Columns[2].HeaderText = "1등 당첨횟수";
+                this.dataGridView1.Columns[3].HeaderText = "주소";
                 con.Close();
             }
         }
@@ -171,6 +191,10 @@ namespace Lotto
                 }
 
                 this.dataGridView1.DataSource = lst;
+                this.dataGridView1.Columns[0].HeaderText = "순위";
+                this.dataGridView1.Columns[1].HeaderText = "판매점 명";
+                this.dataGridView1.Columns[2].HeaderText = "1등 당첨횟수";
+                this.dataGridView1.Columns[3].HeaderText = "주소";
                 con.Close();
             }
         }
@@ -194,6 +218,10 @@ namespace Lotto
                     this.lst.Add(new Store(Int32.Parse(sdr["No"].ToString()), sdr["ShopName"].ToString(), Int32.Parse(sdr["WinningCount"].ToString()), sdr["Addr"].ToString()));
                 }
                 this.dataGridView1.DataSource = lst;
+                this.dataGridView1.Columns[0].HeaderText = "순위";
+                this.dataGridView1.Columns[1].HeaderText = "판매점 명";
+                this.dataGridView1.Columns[2].HeaderText = "1등 당첨횟수";
+                this.dataGridView1.Columns[3].HeaderText = "주소";
                 con.Close();
             }
         }
