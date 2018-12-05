@@ -76,6 +76,12 @@ namespace Lotto
 
             // 추천번호 등록
             this.dataGridView1.DataSource = lottos;
+            dataGridView1.Columns[0].HeaderText = "1번";
+            dataGridView1.Columns[1].HeaderText = "2번";
+            dataGridView1.Columns[2].HeaderText = "3번";
+            dataGridView1.Columns[3].HeaderText = "4번";
+            dataGridView1.Columns[4].HeaderText = "5번";
+            dataGridView1.Columns[5].HeaderText = "6번";
         }
 
         private void AddList(int numBer)
