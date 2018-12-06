@@ -49,13 +49,27 @@ namespace Lotto
             // 색상 통계, 원 그래프
             ls.Clear();
             CollectReset();
-            InputNum(startNum, endNum);
+            if (!this.checkBox1.Checked)
+            {
+                InputNum(startNum, endNum);
+            }
+            else
+            {
+                InputBNum(startNum, endNum);
+            }
 
             pieChart.Series[0].Points.DataBind(ls, "Name", "Num", null);
 
             // 번호별 통계, Bar 그래프
             ArrClear();
-            CountBarNum(startNum, endNum);
+            if (!this.checkBox1.Checked)
+            {
+                CountBarNum(startNum, endNum);
+            }
+            else
+            {
+                CountBarBNum(startNum, endNum);
+            }
 
             RemoveNum(number, numName);
             this.colChart.Series[0].Points.DataBindXY(numName, number);
@@ -66,18 +80,18 @@ namespace Lotto
             this.Text = "색상 번호 통계";
             forGridView = new List<Lotto>();
             
-            for (int i = 0; i < Form1.newTurnNum; i++)
+            for (int i = Form1.newTurnNum; i > 0; i--)
             {
-                this.cboSta.Items.Add(i + 1);
-                this.cboEnd.Items.Add(i + 1);
+                this.cboSta.Items.Add(i);
+                this.cboEnd.Items.Add(i);
             }
 
             colChart.ChartAreas[0].AxisX.Interval = 1;
             // 원 그래프
             this.pieChart.Titles.Add("Title");
+            pieChart.Series[0].ChartType = SeriesChartType.Pie;
             this.pieChart.Titles[0].Text = "색상 통계";
 
-            pieChart.Series[0].ChartType = SeriesChartType.Pie;
 
             // 컬렉션 초기화
             CollectReset();
@@ -92,9 +106,9 @@ namespace Lotto
             GridViewInput(staNum, endNum);
 
             InputNum(staNum, endNum);
-
+            
             pieChart.Series[0].Points.DataBind(ls, "Name", "Num", null);
-
+            //pieChart.Series[0].Legend = "Num";
 
             // bar 그래프
             this.colChart.Titles.Add("Title");
@@ -197,6 +211,19 @@ namespace Lotto
                 CountNum(Form1.lottoList[i - 1].Num6, number);
             }
         }
+        private void CountBarBNum(int startNum, int endNum)
+        {
+            for (int i = startNum; i <= endNum; i++)
+            {
+                CountNum(Form1.lottoList[i - 1].Num1, number);
+                CountNum(Form1.lottoList[i - 1].Num2, number);
+                CountNum(Form1.lottoList[i - 1].Num3, number);
+                CountNum(Form1.lottoList[i - 1].Num4, number);
+                CountNum(Form1.lottoList[i - 1].Num5, number);
+                CountNum(Form1.lottoList[i - 1].Num6, number);
+                CountNum(Form1.lottoList[i - 1].BonusNum, number);
+            }
+        }
 
         private void CountNum(int num1, List<int> number)
         {
@@ -214,6 +241,19 @@ namespace Lotto
                 Switching(Form1.lottoList[i - 1].Num4, ls);
                 Switching(Form1.lottoList[i - 1].Num5, ls);
                 Switching(Form1.lottoList[i - 1].Num6, ls);
+            }
+        }
+        private void InputBNum(int startNum, int endNum)
+        {
+            for (int i = startNum; i <= endNum; i++)
+            {
+                Switching(Form1.lottoList[i - 1].Num1, ls);
+                Switching(Form1.lottoList[i - 1].Num2, ls);
+                Switching(Form1.lottoList[i - 1].Num3, ls);
+                Switching(Form1.lottoList[i - 1].Num4, ls);
+                Switching(Form1.lottoList[i - 1].Num5, ls);
+                Switching(Form1.lottoList[i - 1].Num6, ls);
+                Switching(Form1.lottoList[i - 1].BonusNum, ls);
             }
         }
 
@@ -243,8 +283,11 @@ namespace Lotto
         {
             try
             {
-                Int32.Parse(this.cboSta.Text);
-
+                if (Int32.Parse(this.cboSta.Text) > Form1.lottoList.Count)
+                {
+                    MessageBox.Show("최신회차보다 높을 수 없습니다.");
+                    this.cboSta.Text = Form1.lottoList.Count.ToString();
+                }
             }
             catch (Exception)
             {
@@ -253,6 +296,7 @@ namespace Lotto
                     return;
                 }
                 MessageBox.Show("숫자만 입력하세요.");
+                this.cboSta.Text = String.Empty;
                 this.cboSta.Focus();
             }
         }
@@ -261,8 +305,11 @@ namespace Lotto
         {
             try
             {
-                Int32.Parse(this.cboEnd.Text);
-
+                if (Int32.Parse(this.cboEnd.Text) > Form1.lottoList.Count)
+                {
+                    MessageBox.Show("최신회차보다 높을 수 없습니다.");
+                    this.cboEnd.Text = Form1.lottoList.Count.ToString();
+                }
             }
             catch (Exception)
             {
@@ -271,7 +318,89 @@ namespace Lotto
                     return;
                 }
                 MessageBox.Show("숫자만 입력하세요.");
+                this.cboEnd.Text = String.Empty;
                 this.cboEnd.Focus();
+            }
+        }
+
+        ToolTip toolTip = new ToolTip();
+        Point? prevPos = null;
+        private void pieChart_MouseMove(object sender, MouseEventArgs e)
+        {
+            Point point =e.Location;
+            if (prevPos.HasValue && point == prevPos)
+            {
+                return;
+            }
+            toolTip.RemoveAll();
+            prevPos = point;
+            var hit = pieChart.HitTest(point.X, point.Y, ChartElementType.DataPoint);
+
+            if (hit.ChartElementType == ChartElementType.DataPoint)
+            {
+                var xValue = ls[hit.PointIndex].Name;
+                var yValue = (hit.Object as DataPoint).YValues[0];
+
+                double percent = 0;
+                int sum = 0;
+                foreach (var item in ls)
+                {
+                    sum += item.Num;
+                }
+                percent = Math.Round((double)yValue / sum * 100, 2);
+
+                toolTip.Show(xValue + " : " + "총" + yValue + "번, " + percent + "%", pieChart, new Point(point.X + 10, point.Y + 15));
+            }
+        }
+
+        private void colChart_MouseMove(object sender, MouseEventArgs e)
+        {
+            Point point = e.Location;
+            if (prevPos.HasValue && point == prevPos)
+            {
+                return;
+            }
+            toolTip.RemoveAll();
+            prevPos = point;
+            var hit = colChart.HitTest(point.X, point.Y, ChartElementType.DataPoint);
+
+            if (hit.ChartElementType == ChartElementType.DataPoint)
+            {
+                var xValue = numName[hit.PointIndex];
+                var yValue = (hit.Object as DataPoint).YValues[0];
+
+                toolTip.Show(xValue + " : " + yValue + "번", colChart, new Point(point.X + 10, point.Y + 15));
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            btnSearch_Click(null, null);
+        }
+
+        private void cboSta_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (Int32.Parse(this.cboSta.Text) > Form1.lottoList.Count)
+                {
+                    MessageBox.Show("최신회차보다 높습니다. 최신회차로 설정합니다.");
+                    this.cboSta.Text = Form1.lottoList.Count.ToString();
+                }
+                this.cboEnd.Focus();
+            }
+        }
+
+        private void cboEnd_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (Int32.Parse(this.cboEnd.Text) > Form1.lottoList.Count)
+                {
+                    MessageBox.Show("최신회차보다 높습니다. 최신회차로 설정합니다.");
+                    this.cboEnd.Text = Form1.lottoList.Count.ToString();
+                }
+                btnSearch_Click(null, null);
             }
         }
     }

@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.pieChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cboSta = new System.Windows.Forms.ComboBox();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -42,6 +42,8 @@
             this.cboEnd = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.colChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label3 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pieChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.colChart)).BeginInit();
@@ -49,19 +51,20 @@
             // 
             // pieChart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.pieChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.pieChart.Legends.Add(legend1);
+            chartArea7.Name = "ChartArea1";
+            this.pieChart.ChartAreas.Add(chartArea7);
+            legend7.Name = "Legend1";
+            this.pieChart.Legends.Add(legend7);
             this.pieChart.Location = new System.Drawing.Point(12, 12);
             this.pieChart.Name = "pieChart";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.pieChart.Series.Add(series1);
+            series7.ChartArea = "ChartArea1";
+            series7.Legend = "Legend1";
+            series7.Name = "Series1";
+            this.pieChart.Series.Add(series7);
             this.pieChart.Size = new System.Drawing.Size(396, 426);
             this.pieChart.TabIndex = 0;
             this.pieChart.Text = "chart1";
+            this.pieChart.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pieChart_MouseMove);
             // 
             // cboSta
             // 
@@ -71,6 +74,7 @@
             this.cboSta.Size = new System.Drawing.Size(85, 20);
             this.cboSta.TabIndex = 1;
             this.cboSta.TextChanged += new System.EventHandler(this.cboSta_TextChanged);
+            this.cboSta.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cboSta_KeyUp);
             // 
             // btnSearch
             // 
@@ -108,6 +112,7 @@
             this.cboEnd.Size = new System.Drawing.Size(85, 20);
             this.cboEnd.TabIndex = 4;
             this.cboEnd.TextChanged += new System.EventHandler(this.cboEnd_TextChanged);
+            this.cboEnd.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cboEnd_KeyUp);
             // 
             // dataGridView1
             // 
@@ -115,30 +120,53 @@
             this.dataGridView1.Location = new System.Drawing.Point(415, 41);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(400, 397);
+            this.dataGridView1.Size = new System.Drawing.Size(432, 397);
             this.dataGridView1.TabIndex = 6;
             // 
             // colChart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.colChart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.colChart.Legends.Add(legend2);
-            this.colChart.Location = new System.Drawing.Point(821, 12);
+            chartArea8.Name = "ChartArea1";
+            this.colChart.ChartAreas.Add(chartArea8);
+            legend8.Name = "Legend1";
+            this.colChart.Legends.Add(legend8);
+            this.colChart.Location = new System.Drawing.Point(853, 12);
             this.colChart.Name = "colChart";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.colChart.Series.Add(series2);
-            this.colChart.Size = new System.Drawing.Size(742, 600);
+            series8.ChartArea = "ChartArea1";
+            series8.Legend = "Legend1";
+            series8.Name = "Series1";
+            this.colChart.Series.Add(series8);
+            this.colChart.Size = new System.Drawing.Size(710, 600);
             this.colChart.TabIndex = 9;
             this.colChart.Text = "chart1";
+            this.colChart.MouseMove += new System.Windows.Forms.MouseEventHandler(this.colChart_MouseMove);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 445);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(233, 24);
+            this.label3.TabIndex = 10;
+            this.label3.Text = " ※해당 그래프에 마우스를 올리시면\r\n    몇번, 몇퍼센트인지 확인할수 있습니다.";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(759, 17);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(88, 16);
+            this.checkBox1.TabIndex = 11;
+            this.checkBox1.Text = "보너스 포함";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // FrmColor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1575, 624);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.colChart);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label2);
@@ -168,5 +196,7 @@
         private System.Windows.Forms.ComboBox cboEnd;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataVisualization.Charting.Chart colChart;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
