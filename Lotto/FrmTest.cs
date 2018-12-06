@@ -60,34 +60,26 @@ namespace Lotto
             dataGridView1.Columns[5].HeaderText = "";
             dataGridView1.Columns[6].HeaderText = "";
 
-
-            using (SqlConnection con = DBConnection.Connecting())
+            for (int i = Form1.lottoList.Count; i > 0; i--)
             {
-                con.Open();
-
-                SqlCommand com = new SqlCommand();
-                com.Connection = con;
-                com.CommandType = CommandType.StoredProcedure;
-                com.CommandText = "SelectLotto";
-
-                SqlDataReader dr = com.ExecuteReader();
-                while (dr.Read())
-                {
-                    this.cboTurn.Items.Add(Int32.Parse(dr[0].ToString()));
-                }
-                dr.Close();
-                con.Close();
+                this.cboTurn.Items.Add(i);
             }
-            // 당첨 표시 예시
-            // 1, 4, 
-            //dataGridView1.Rows[0].Cells[0].Style.BackColor = Color.Red;
-            //int num1 = 35;
-            //if ((num1 % 7) == 0)
+            //using (SqlConnection con = DBConnection.Connecting())
             //{
-            //    dataGridView1.Rows[(num1 / 7)-1].Cells[(num1 % 7) +6].Style.BackColor = Color.Red;
-            //}
-            //else {
-            //    dataGridView1.Rows[num1 / 7].Cells[(num1 % 7) - 1].Style.BackColor = Color.Red;
+            //    con.Open();
+
+            //    SqlCommand com = new SqlCommand();
+            //    com.Connection = con;
+            //    com.CommandType = CommandType.StoredProcedure;
+            //    com.CommandText = "SelectLotto";
+
+            //    SqlDataReader dr = com.ExecuteReader();
+            //    while (dr.Read())
+            //    {
+            //        this.cboTurn.Items.Add(Int32.Parse(dr[0].ToString()));
+            //    }
+            //    dr.Close();
+            //    con.Close();
             //}
         }
 
@@ -150,9 +142,9 @@ namespace Lotto
                 }
             }
         }
-
+        
         // 엔터키 기능 추가
-        private void cboTurn_KeyUp(object sender, KeyEventArgs e)
+        private void cboTurn_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
