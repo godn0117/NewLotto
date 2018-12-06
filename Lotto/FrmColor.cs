@@ -18,6 +18,7 @@ namespace Lotto
         // 번호별 통계를 담을 배열
         List<int> number = new List<int>();
         List<string> numName = new List<string>();
+        List<Lotto> forGridView;
 
         public FrmColor()
         {
@@ -27,53 +28,44 @@ namespace Lotto
         // 조회버튼 클릭
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            this.dataGridView1.DataSource = null;
+            forGridView.Clear();
+
             int startNum = Int32.Parse(this.cboSta.Text);
             int endNum = Int32.Parse(this.cboEnd.Text);
-            List<Lotto> forGridView = new List<Lotto>();
-            // 그리드뷰
-            for (int i = startNum; i <= endNum; i++)
+            if (startNum > endNum)
             {
-                foreach (Lotto item in Form1.lottoList)
-                {
-                    if (i == item.TurnNumber)
-                    {
-                        forGridView.Add(item);
-                    }
-                }
+                int temp = startNum;
+                startNum = endNum;
+                endNum = temp;
+
+                this.cboSta.Text = startNum.ToString();
+                this.cboEnd.Text = endNum.ToString();
             }
 
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = forGridView;
+            // 그리드뷰
+            GridViewInput(startNum, endNum);
+
             // 색상 통계, 원 그래프
             ls.Clear();
             CollectReset();
-            if (startNum > endNum)
-            {
-                InputNum(endNum, startNum);
-            }
-            else
-            {
-                InputNum(startNum, endNum);
-            }
-            
+            InputNum(startNum, endNum);
+
             pieChart.Series[0].Points.DataBind(ls, "Name", "Num", null);
 
             // 번호별 통계, Bar 그래프
             ArrClear();
-            if (startNum > endNum)
-            {
-                CountBarNum(endNum, startNum);
-            }
-            else
-            {
-                CountBarNum(startNum, endNum);
-            }
+            CountBarNum(startNum, endNum);
+
             RemoveNum(number, numName);
             this.colChart.Series[0].Points.DataBindXY(numName, number);
         }
-
+        
         private void FrmColor_Load(object sender, EventArgs e)
         {
+            this.Text = "색상 번호 통계";
+            forGridView = new List<Lotto>();
+
             for (int i = 0; i < Form1.newTurnNum; i++)
             {
                 this.cboSta.Items.Add(i + 1);
@@ -96,6 +88,9 @@ namespace Lotto
             cboSta.Text = staNum.ToString();
             cboEnd.Text = endNum.ToString();
 
+            // 그리드뷰
+            GridViewInput(staNum, endNum);
+
             InputNum(staNum, endNum);
 
             pieChart.Series[0].Points.DataBind(ls, "Name", "Num", null);
@@ -105,6 +100,7 @@ namespace Lotto
             this.colChart.Titles.Add("Title");
             this.colChart.Titles[0].Text = "번호별 통계";
             this.colChart.Series[0].ChartType = SeriesChartType.Bar;
+           
 
             // 배열 초기화
             ArrClear();
@@ -116,14 +112,37 @@ namespace Lotto
             // 한번도 나오지 않은 구 제외
             RemoveNum(number, numName);
 
-            // 차트 표시
-            //foreach (var item in number)
-            //{
-            //MessageBox.Show(item.ToString());
-            //}
-
             this.colChart.Series[0].Points.DataBindXY(numName, number);
             this.colChart.Series[0].LegendText = "해당 구 출현횟수";
+        }
+
+        private void GridViewInput(int startNum, int endNum)
+        {
+            for (int i = startNum; i <= endNum; i++)
+            {
+                foreach (Lotto item in Form1.lottoList)
+                {
+                    if (i == item.TurnNumber)
+                    {
+                        forGridView.Add(item);
+                    }
+                }
+            }
+
+            dataGridView1.DataSource = forGridView;
+            this.dataGridView1.Columns[0].HeaderText = "회차";
+            this.dataGridView1.Columns[1].HeaderText = "1번";
+            this.dataGridView1.Columns[2].HeaderText = "2번";
+            this.dataGridView1.Columns[3].HeaderText = "3번";
+            this.dataGridView1.Columns[4].HeaderText = "4번";
+            this.dataGridView1.Columns[5].HeaderText = "5번";
+            this.dataGridView1.Columns[6].HeaderText = "6번";
+            this.dataGridView1.Columns[7].HeaderText = "보너스 번호";
+            this.dataGridView1.Columns[7].Width = 70;
+            for (int i = 0; i <= 6; i++)
+            {
+                this.dataGridView1.Columns[i].Width = 40;
+            }
         }
 
         private void CollectReset()
@@ -197,18 +216,6 @@ namespace Lotto
                 Switching(Form1.lottoList[i - 1].Num6, ls);
             }
         }
-        //private void InputNum(int num)
-        //{
-        //    for (int i = Form1.lottoList.Count - num; i < Form1.lottoList.Count; i++)
-        //    {
-        //        Switching(Form1.lottoList[i].Num1, ls);
-        //        Switching(Form1.lottoList[i].Num2, ls);
-        //        Switching(Form1.lottoList[i].Num3, ls);
-        //        Switching(Form1.lottoList[i].Num4, ls);
-        //        Switching(Form1.lottoList[i].Num5, ls);
-        //        Switching(Form1.lottoList[i].Num6, ls);
-        //    }
-        //}
 
         private void Switching(int num1, List<LottoStatistics> ls)
         {

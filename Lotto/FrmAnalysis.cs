@@ -29,6 +29,8 @@ namespace Lotto
 
         private void FrmAnalysis_Load(object sender, EventArgs e)
         {
+            this.Text = "분석 관리 기능창";
+
             toolStripLabelId.Text = "아이디 : " + user.Id;
             //toolStripLabelPwd.Text = "비밀번호 : " + user.Password;
             toolStripLabelName.Text = "이름 : " + user.Name;
