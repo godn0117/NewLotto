@@ -35,6 +35,7 @@ namespace Lotto
 
         private void frmPreference_Load(object sender, EventArgs e)
         {
+            this.Text = "선호번호 분석";
             using (SqlConnection con = DBConnection.Connecting())
             {
                 con.Open();
@@ -66,7 +67,6 @@ namespace Lotto
         {
             using (SqlConnection con = DBConnection.Connecting())
             {
-
                 for (int i = 0; i < uNlst.Count; i++)
                 {
                     con.Open();

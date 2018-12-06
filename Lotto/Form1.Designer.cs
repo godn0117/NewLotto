@@ -36,6 +36,7 @@
             this.LottoGridView = new System.Windows.Forms.DataGridView();
             this.UpdateProgressBar = new System.Windows.Forms.ProgressBar();
             this.btnSelectAll = new System.Windows.Forms.Button();
+            this.lblLastUpdate = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.LottoGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,11 +115,21 @@
             this.btnSelectAll.UseVisualStyleBackColor = true;
             this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
             // 
+            // lblLastUpdate
+            // 
+            this.lblLastUpdate.AutoSize = true;
+            this.lblLastUpdate.Location = new System.Drawing.Point(17, 565);
+            this.lblLastUpdate.Name = "lblLastUpdate";
+            this.lblLastUpdate.Size = new System.Drawing.Size(101, 12);
+            this.lblLastUpdate.TabIndex = 8;
+            this.lblLastUpdate.Text = "마지막 업데이트 :";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(942, 604);
+            this.Controls.Add(this.lblLastUpdate);
             this.Controls.Add(this.btnSelectAll);
             this.Controls.Add(this.UpdateProgressBar);
             this.Controls.Add(this.LottoGridView);
@@ -146,6 +157,7 @@
         private System.Windows.Forms.DataGridView LottoGridView;
         private System.Windows.Forms.ProgressBar UpdateProgressBar;
         private System.Windows.Forms.Button btnSelectAll;
+        private System.Windows.Forms.Label lblLastUpdate;
     }
 }
 

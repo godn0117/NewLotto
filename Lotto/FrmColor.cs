@@ -65,7 +65,7 @@ namespace Lotto
         {
             this.Text = "색상 번호 통계";
             forGridView = new List<Lotto>();
-
+            
             for (int i = 0; i < Form1.newTurnNum; i++)
             {
                 this.cboSta.Items.Add(i + 1);

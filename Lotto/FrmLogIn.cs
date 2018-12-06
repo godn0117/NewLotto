@@ -77,7 +77,7 @@ namespace Lotto
 
         private void FrmLogIn_Load(object sender, EventArgs e)
         {
-
+            this.Text = "로그인 창";
         }
     }
 }

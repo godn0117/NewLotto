@@ -19,7 +19,7 @@ namespace Lotto
         }
 
         private void FrmTest_Load(object sender, EventArgs e)
-        {
+        {            
             this.Text = "패턴 분석";
             int num = 1;
             DataTable dt = new DataTable();
