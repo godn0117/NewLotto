@@ -16,6 +16,10 @@ namespace Lotto
         List<CheckBox> checkboxList = new List<CheckBox>();
         List<UserNumbers> userNumbersList = new List<UserNumbers>();
 
+        long takeBackMoney = 0;
+        int buyingMoney = 0;
+        int calculateMoney = 0;
+
         int count = 0;
         int autoCount = 6;
         int[] selectedNums = new int[6];
@@ -56,6 +60,8 @@ namespace Lotto
             }
 
             DisplayUserNumbers();
+
+            
         }
 
         private void CheckCount(object sender) // 몇개가 체크 되어있는지 확인하는 메서드
@@ -163,7 +169,7 @@ namespace Lotto
         private void btnResist_Click(object sender, EventArgs e) // 등록 버튼 클릭 이벤트 처리
         {
             UserNumbers uNumbers = new UserNumbers();
-           
+
             try
             {
                 if (Int32.Parse(cbxTurnNum.Text) <= Form1.newTurnNum && cbxTurnNum.Text != null)
@@ -263,14 +269,21 @@ namespace Lotto
                 dataGridView1.Columns[4].HeaderText = "3구";
                 dataGridView1.Columns[5].HeaderText = "4구";
                 dataGridView1.Columns[6].HeaderText = "5구";
-                dataGridView1.Columns[7].HeaderText = "6구";                
+                dataGridView1.Columns[7].HeaderText = "6구";
+
+               
             }
         }
 
         public void CompareToLottoNum()
         {
-            int[] countHit; 
+            int[] countHit;
             int[] countWin = { 0, 0, 0, 0, 0, };
+
+            foreach (var item in userNumbersList)
+            {
+                buyingMoney -= 1000;
+            }
 
             foreach (UserNumbers userLottoItem in userNumbersList)
             {
@@ -292,16 +305,39 @@ namespace Lotto
                                 }
                             }
                             i++;
-                        }                        
+                        }
                     }
                 }
                 CalculateWin(countHit, countWin, userLottoItem);
             }
+
+            string buyingMoneyForlbl = buyingMoney.ToString();
+            string takeBackMoneyForlbl = takeBackMoney.ToString();
+            string calculatedMoneyForlbl = (buyingMoney + takeBackMoney).ToString();
+
+            for (int i = buyingMoneyForlbl.Length - 3; i >= 1; i = i - 3)
+            {
+                buyingMoneyForlbl = buyingMoneyForlbl.Insert(i, ",");
+            }
+
+            for (int i = takeBackMoneyForlbl.Length - 3; i >= 1; i = i - 3)
+            {
+                takeBackMoneyForlbl = takeBackMoneyForlbl.Insert(i, ",");
+            }
+
+            for (int i = calculatedMoneyForlbl.Length - 3; i >= 1; i = i - 3)
+            {
+                calculatedMoneyForlbl = calculatedMoneyForlbl.Insert(i, ",");
+            }
+
+            lblBuyed.Text = "투자 : " + buyingMoneyForlbl;
+            lblTakeBack.Text = "회수 : " + takeBackMoneyForlbl;
+            lblCalculation.Text = "손익계산 : " + calculatedMoneyForlbl; // 손익계산 label에 display
         }
 
         private void CalculateWin(int[] countHit, int[] countWin, UserNumbers userLottoItem)// 몇등 담첨됬는지 계산해주는 메서드
         {
-            
+
             int sum = 0;
             for (int i = 0; i < countHit.Length - 1; i++)
             {
@@ -309,6 +345,8 @@ namespace Lotto
             }
 
             int winNum = 0;
+
+
 
             if (sum == 6) // 1등 당첨
             {
@@ -336,26 +374,33 @@ namespace Lotto
                 winNum = 5;
             }
 
+            
             if (winNum == 1)
             {
+                takeBackMoney += FindWinMoney(1, userLottoItem); 
                 ColorGridView(Color.Red, userLottoItem);
             }
             else if (winNum == 2)
             {
+                takeBackMoney += FindWinMoney(2, userLottoItem);
                 ColorGridView(Color.Blue, userLottoItem);
             }
             else if (winNum == 3)
             {
+                takeBackMoney += FindWinMoney(3, userLottoItem);
                 ColorGridView(Color.Green, userLottoItem);
             }
             else if (winNum == 4)
             {
+                takeBackMoney += FindWinMoney(4, userLottoItem);
                 ColorGridView(Color.Orange, userLottoItem);
             }
             else if (winNum == 5)
             {
+                takeBackMoney += FindWinMoney(5, userLottoItem);
                 ColorGridView(Color.Yellow, userLottoItem);
             }
+
 
             lblHitNum.Text = "";
 
@@ -363,6 +408,33 @@ namespace Lotto
             {
                 lblHitNum.Text += (i + 1) + "등 : " + countWin[i] + "\r\n";
             }
+        }
+
+        private long FindWinMoney(int i, UserNumbers userLottoItem)
+        {
+            long money = 0;
+
+            using (SqlConnection con = DBConnection.Connecting())
+            {
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "SelectWinMoney";
+
+                SqlDataReader sdr = cmd.ExecuteReader();
+
+                while (sdr.Read())
+                {
+                    if (userLottoItem.Turnnumber == int.Parse(sdr["turnnumber"].ToString()))
+                    {
+                        money = int.Parse(sdr["win" + i].ToString());
+                    }
+                }
+            }
+
+            return money;
         }
 
         private void ColorGridView(Color color, UserNumbers userLottoItem)

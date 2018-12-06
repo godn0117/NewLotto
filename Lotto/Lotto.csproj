@@ -127,6 +127,7 @@
     <Compile Include="Store.cs" />
     <Compile Include="UserNumbers.cs" />
     <Compile Include="Users.cs" />
+    <Compile Include="WinMoney.cs" />
     <EmbeddedResource Include="Chart.resx">
       <DependentUpon>Chart.cs</DependentUpon>
     </EmbeddedResource>

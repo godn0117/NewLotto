@@ -90,6 +90,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.lblCalculation = new System.Windows.Forms.Label();
+            this.lblBuyed = new System.Windows.Forms.Label();
+            this.lblTakeBack = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -682,7 +685,7 @@
             // cbxTurnNum
             // 
             this.cbxTurnNum.FormattingEnabled = true;
-            this.cbxTurnNum.Location = new System.Drawing.Point(762, 344);
+            this.cbxTurnNum.Location = new System.Drawing.Point(897, 345);
             this.cbxTurnNum.Name = "cbxTurnNum";
             this.cbxTurnNum.Size = new System.Drawing.Size(121, 20);
             this.cbxTurnNum.TabIndex = 5;
@@ -690,7 +693,7 @@
             // btnResist
             // 
             this.btnResist.Enabled = false;
-            this.btnResist.Location = new System.Drawing.Point(889, 344);
+            this.btnResist.Location = new System.Drawing.Point(1024, 345);
             this.btnResist.Name = "btnResist";
             this.btnResist.Size = new System.Drawing.Size(75, 23);
             this.btnResist.TabIndex = 6;
@@ -704,7 +707,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(386, 54);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(578, 284);
+            this.dataGridView1.Size = new System.Drawing.Size(813, 284);
             this.dataGridView1.TabIndex = 7;
             // 
             // label1
@@ -729,7 +732,7 @@
             // 
             // btnCalculate
             // 
-            this.btnCalculate.Location = new System.Drawing.Point(889, 373);
+            this.btnCalculate.Location = new System.Drawing.Point(1024, 374);
             this.btnCalculate.Name = "btnCalculate";
             this.btnCalculate.Size = new System.Drawing.Size(75, 23);
             this.btnCalculate.TabIndex = 12;
@@ -741,7 +744,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(870, 404);
+            this.label2.Location = new System.Drawing.Point(1105, 345);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(94, 19);
             this.label2.TabIndex = 13;
@@ -751,7 +754,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.Location = new System.Drawing.Point(870, 437);
+            this.label3.Location = new System.Drawing.Point(1105, 378);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(94, 19);
             this.label3.TabIndex = 14;
@@ -761,7 +764,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label4.Location = new System.Drawing.Point(870, 468);
+            this.label4.Location = new System.Drawing.Point(1105, 409);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(94, 19);
             this.label4.TabIndex = 15;
@@ -771,7 +774,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label5.Location = new System.Drawing.Point(870, 502);
+            this.label5.Location = new System.Drawing.Point(1105, 443);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(94, 19);
             this.label5.TabIndex = 16;
@@ -781,7 +784,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label6.Location = new System.Drawing.Point(870, 536);
+            this.label6.Location = new System.Drawing.Point(1105, 477);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(94, 19);
             this.label6.TabIndex = 17;
@@ -797,11 +800,44 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // lblCalculation
+            // 
+            this.lblCalculation.AutoSize = true;
+            this.lblCalculation.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCalculation.Location = new System.Drawing.Point(603, 549);
+            this.lblCalculation.Name = "lblCalculation";
+            this.lblCalculation.Size = new System.Drawing.Size(103, 19);
+            this.lblCalculation.TabIndex = 18;
+            this.lblCalculation.Text = "손익 계산 :";
+            // 
+            // lblBuyed
+            // 
+            this.lblBuyed.AutoSize = true;
+            this.lblBuyed.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblBuyed.Location = new System.Drawing.Point(603, 467);
+            this.lblBuyed.Name = "lblBuyed";
+            this.lblBuyed.Size = new System.Drawing.Size(59, 19);
+            this.lblBuyed.TabIndex = 19;
+            this.lblBuyed.Text = "투자 :";
+            // 
+            // lblTakeBack
+            // 
+            this.lblTakeBack.AutoSize = true;
+            this.lblTakeBack.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTakeBack.Location = new System.Drawing.Point(603, 506);
+            this.lblTakeBack.Name = "lblTakeBack";
+            this.lblTakeBack.Size = new System.Drawing.Size(59, 19);
+            this.lblTakeBack.TabIndex = 20;
+            this.lblTakeBack.Text = "회수 :";
+            // 
             // FrmLotteryPick
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(995, 577);
+            this.ClientSize = new System.Drawing.Size(1211, 640);
+            this.Controls.Add(this.lblTakeBack);
+            this.Controls.Add(this.lblBuyed);
+            this.Controls.Add(this.lblCalculation);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -894,5 +930,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblCalculation;
+        private System.Windows.Forms.Label lblBuyed;
+        private System.Windows.Forms.Label lblTakeBack;
     }
 }

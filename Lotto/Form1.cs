@@ -18,7 +18,11 @@ namespace Lotto
     public partial class Form1 : Form
     {
         internal static List<Lotto> lottoList = new List<Lotto>();
+        internal static List<WinMoney> winMoneyList = new List<WinMoney>();
+
         List<int> unInsertedNumList = new List<int>();
+        List<int> unInsertedWinMoneyList = new List<int>();
+
         HtmlWeb web = new HtmlWeb(); // 
         HtmlAgilityPack.HtmlDocument htmlDoc;
         static public int newTurnNum;
@@ -31,11 +35,11 @@ namespace Lotto
         private void Form1_Load(object sender, EventArgs e)
         {
             this.Text = "로또";
-            web.OverrideEncoding = Encoding.UTF8;
+            web.OverrideEncoding = Encoding.Default;
             htmlDoc = web.Load(new Uri("https://www.dhlottery.co.kr/gameResult.do?method=byWin")); //                     
 
             newTurnNum = Int32.Parse(htmlDoc.DocumentNode.SelectNodes("//body//option")[0].InnerText); // 제일 최신 회차 번호 변수에 저장  
-            
+
             for (int i = 1; i <= newTurnNum; i++)
             {
                 cbxTurnNum.Items.Add(i);
@@ -43,7 +47,11 @@ namespace Lotto
 
             UpdateLotto(); // 갱신되지 않은 최신회차 가져오기
             InsertLotto(); // 최신회차까지 올라온 list 내용을 
-            DisplayList();
+            DisplayLottoList();
+
+            InsertWinMoney();
+            UpdateWinMoney();
+            DisplayWinMoneyList();
         }
 
         private void btnAnalyst_Click(object sender, EventArgs e) // 분석 버튼 클릭시 이벤트
@@ -56,7 +64,11 @@ namespace Lotto
         {
             UpdateLotto(); // 갱신되지 않은 최신회차 가져오기
             InsertLotto(); // 최신회차까지 올라온 list 내용을 
-            DisplayList();
+            DisplayLottoList();
+
+            UpdateWinMoney();
+            InsertWinMoney();
+            DisplayWinMoneyList();
         }
 
         private void InsertLotto() // LottoDB에 Insert 작업 하는 메소드
@@ -82,7 +94,33 @@ namespace Lotto
                     cmd.Parameters.AddWithValue("bonusnum", item.BonusNum);
 
                     cmd.ExecuteNonQuery();
-                    
+                }
+                con.Close();
+            }
+        }
+
+        private void InsertWinMoney() // WinMoneyDB에 Insert 작업 하는 메소드
+        {
+            using (SqlConnection con = DBConnection.Connecting())
+            {
+                con.Open();
+
+                foreach (var item in winMoneyList)
+                {
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.Connection = con;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "InsertWinMoney";
+
+                    cmd.Parameters.AddWithValue("turnnumber", item.Turnnumber);
+                    cmd.Parameters.AddWithValue("win1", item.Win1);
+                    cmd.Parameters.AddWithValue("win2", item.Win2);
+                    cmd.Parameters.AddWithValue("win3", item.Win3);
+                    cmd.Parameters.AddWithValue("win4", item.Win4);
+                    cmd.Parameters.AddWithValue("win5", item.Win5);
+
+                    cmd.ExecuteNonQuery();
+
                 }
                 con.Close();
             }
@@ -92,6 +130,7 @@ namespace Lotto
         {
             lottoList.Clear(); // 리스트 클리어
             unInsertedNumList.Clear();
+
             using (SqlConnection con = DBConnection.Connecting())
             {
                 con.Open();
@@ -103,10 +142,10 @@ namespace Lotto
 
                 SqlDataReader sdr = cmd.ExecuteReader();
 
-                web.OverrideEncoding = Encoding.UTF8;
+                web.OverrideEncoding = Encoding.Default;
                 htmlDoc = web.Load(new Uri("https://www.dhlottery.co.kr/gameResult.do?method=byWin")); //          
                 newTurnNum = Int32.Parse(htmlDoc.DocumentNode.SelectNodes("//body//option")[0].InnerText);   // 제일 최신 회차 번호 변수에 저장           
-
+                
                 int nowNum = 0;
                 for (int i = 1; i <= newTurnNum; i++)
                 {
@@ -126,7 +165,7 @@ namespace Lotto
                 {
                     UpdateProgressBar.Maximum = 1;
                     UpdateProgressBar.Value = unInsertedNumList.Count + 1;
-                    MessageBox.Show("업데이트 완료");
+                    MessageBox.Show("로또 번호 업데이트 완료");
                     lblLastUpdate.Text = "마지막 업데이트 : " + DateTime.Now;
                 }
                 else
@@ -137,30 +176,91 @@ namespace Lotto
                 foreach (var item in unInsertedNumList)
                 {
                     UpdateProgressBar.Value += 1;
-                    web.OverrideEncoding = Encoding.UTF8;
-                    htmlDoc = web.Load(new Uri("https://www.dhlottery.co.kr/gameResult.do?method=byWin&drwNo=" + item.ToString()));                    
-                    Parsing(htmlDoc);
+                    web.OverrideEncoding = Encoding.Default;
+                    htmlDoc = web.Load(new Uri("https://www.dhlottery.co.kr/gameResult.do?method=byWin&drwNo=" + item.ToString()));
+                    ParsingLotto(htmlDoc);
                     if (UpdateProgressBar.Value == UpdateProgressBar.Maximum)
                     {
-                        MessageBox.Show("업데이트 완료");
+                        MessageBox.Show("로또 번호 업데이트 완료");
                         lblLastUpdate.Text = "마지막 업데이트 : " + DateTime.Now;
                     }
                 }
             }
         }
 
-        private void Parsing(HtmlAgilityPack.HtmlDocument htmlDoc) // 원하는 회차를 파싱해서 로또 객체에 저장후 List에 넣어줌
+        private void UpdateWinMoney()
+        {
+            winMoneyList.Clear();
+            unInsertedWinMoneyList.Clear();
+
+            using (SqlConnection con = DBConnection.Connecting())
+            {
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "SelectWinMoney";
+
+                SqlDataReader sdr = cmd.ExecuteReader();
+
+                web.OverrideEncoding = Encoding.Default;
+                htmlDoc = web.Load(new Uri("https://www.dhlottery.co.kr/gameResult.do?method=byWin")); //          
+                newTurnNum = Int32.Parse(htmlDoc.DocumentNode.SelectNodes("//body//option")[0].InnerText);   // 제일 최신 회차 번호 변수에 저장           
+                
+                int nowNum = 0;
+                for (int i = 1; i <= newTurnNum; i++)
+                {
+                    unInsertedWinMoneyList.Add(i);
+                }
+                
+                while (sdr.Read())
+                {
+                    nowNum = Int32.Parse(sdr["turnnumber"].ToString());
+                    unInsertedWinMoneyList.Remove(nowNum);
+                }
+                
+                con.Close();
+
+                if (unInsertedWinMoneyList.Count == 0)
+                {
+                    UpdateProgressBar2.Maximum = 1;
+                    UpdateProgressBar2.Value = unInsertedNumList.Count + 1;
+                    MessageBox.Show("당첨 번호 업데이트 완료");
+                    lblLastUpdate.Text = "마지막 업데이트 : " + DateTime.Now;
+                }
+                else
+                {
+                    UpdateProgressBar2.Maximum = unInsertedWinMoneyList.Count;
+                }
+
+                foreach (var item in unInsertedWinMoneyList)
+                {
+                    UpdateProgressBar2.Value += 1;
+                    web.OverrideEncoding = Encoding.Default;
+                    htmlDoc = web.Load(new Uri("https://www.dhlottery.co.kr/gameResult.do?method=byWin&drwNo=" + item.ToString()));
+                    ParsingWinNum(htmlDoc);
+                    if (UpdateProgressBar2.Value == UpdateProgressBar2.Maximum)
+                    {
+                        MessageBox.Show("당첨 번호 업데이트 완료");
+                        lblLastUpdate.Text = "마지막 업데이트 : " + DateTime.Now;
+                    }
+                }
+            }
+        }
+
+        private void ParsingLotto(HtmlAgilityPack.HtmlDocument htmlDoc) // 원하는 회차를 파싱해서 로또 객체에 저장후 List에 넣어줌
         {
             string[] temp = new string[7];
             Lotto lotto = new Lotto();
 
             int i = 0;
             foreach (HtmlNode item in htmlDoc.DocumentNode.SelectNodes("//body//div//section//div//div//div//div//div//div//p//span"))
-            {                
+            {
                 temp[i] = item.InnerText;
                 i++;
             }
-            
+
             foreach (var item in htmlDoc.DocumentNode.SelectNodes("//body//h4//strong"))
             {
                 lotto.TurnNumber = Int32.Parse(item.InnerText.Remove(item.InnerText.Length - 1, 1));
@@ -174,9 +274,37 @@ namespace Lotto
             lotto.Num6 = Int32.Parse(temp[5]);
             lotto.BonusNum = Int32.Parse(temp[6]);
             lottoList.Add(lotto);
+
         }
 
-        private void DisplayList() // LottoDB에서 전체 내용을 가져와 List에 저장후 DataGridView에 보여준다
+        private void ParsingWinNum(HtmlAgilityPack.HtmlDocument htmlDoc)
+        {
+            int i;
+            long[] temp = new long[5];
+            WinMoney winMoney = new WinMoney();
+
+            i = 0;
+            foreach (HtmlNode item in htmlDoc.DocumentNode.SelectNodes("//body//div/section//div//div/div//table//tbody//tr"))
+            {
+                temp[i] = long.Parse(item.ChildNodes[7].InnerText.Substring(0, item.ChildNodes[7].InnerText.Length - 1).Replace(",", ""));
+                i++;
+            }
+
+            foreach (var item in htmlDoc.DocumentNode.SelectNodes("//body//h4//strong"))
+            {
+                winMoney.Turnnumber = Int32.Parse(item.InnerText.Remove(item.InnerText.Length - 1, 1));
+            }
+
+            winMoney.Win1 = temp[0];
+            winMoney.Win2 = temp[1];
+            winMoney.Win3 = temp[2];
+            winMoney.Win4 = temp[3];
+            winMoney.Win5 = temp[4];
+           
+            winMoneyList.Add(winMoney);
+        }
+
+        private void DisplayLottoList() // LottoDB에서 전체 내용을 가져와 List에 저장후 DataGridView에 보여준다
         {
             lottoList.Clear();
             LottoGridView.Columns.Clear();
@@ -217,6 +345,36 @@ namespace Lotto
             LottoGridView.Columns[7].HeaderText = "보너스구";
         }
 
+        private void DisplayWinMoneyList()
+        {
+            winMoneyList.Clear();
+
+            using (SqlConnection con = DBConnection.Connecting())
+            {
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "SelectWinMoney";
+
+                SqlDataReader sdr = cmd.ExecuteReader();
+
+                while (sdr.Read())
+                {
+                    WinMoney winMoney = new WinMoney();
+                    winMoney.Turnnumber = Int32.Parse(sdr["turnnumber"].ToString());
+                    winMoney.Win1 = long.Parse(sdr["win1"].ToString());
+                    winMoney.Win2 = long.Parse(sdr["win2"].ToString());
+                    winMoney.Win3 = long.Parse(sdr["win3"].ToString());
+                    winMoney.Win4 = long.Parse(sdr["win4"].ToString());
+                    winMoney.Win5 = long.Parse(sdr["win5"].ToString());
+
+                    winMoneyList.Add(winMoney); //                     
+                }
+            }
+        }
+
         private void btnSearch_Click(object sender, EventArgs e) // 조회 버튼 클릭시 이벤트 처리 메소드
         {
             try
@@ -250,12 +408,12 @@ namespace Lotto
             catch (Exception)
             {
                 MessageBox.Show("숫자를 입력해 주세요");
-            }          
+            }
         }
 
         private void btnSelectAll_Click(object sender, EventArgs e)
         {
-            DisplayList();
+            DisplayLottoList();            
         }
 
         private void LottoGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
